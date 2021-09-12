@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewData["Title"] = "Utility";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/Utility.js"></script>
+
+<div class="page-wrapper mappedUser open_Main" ng-controller="Utility">
+    <div class="container">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Get Your Policy PDF</h3>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <section class="mngUserfirst mngUserfirstMapping" style="border-bottom: 0;">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="manageUserFLT">
+                                <div class="row getResponseMain">
+                                    <div class="col-md-3 PadRight">
+                                        <div class="">
+                                            <select id="SlctProduct" class="theFiltersBulk theFilters">
+                                                <option value="">Select Your Insurance Type</option>
+                                                <option value="Car">Car Insurance</option>
+                                                <option value="Health">Health Insurance</option>
+                                                <option value="TwoWheeler">Two Wheeler Insurance</option>
+                                                <option value="Commercial">Commercial Insurance</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 PadRight">
+                                        <div class="row">
+                                            <div class="col-md-12"><h4 class="getResponseTitle">Get Policy By</h4></div>
+                                            <div class="col-md-3 PadRight">
+                                                <input type="radio" ng-model="getpolicybyNumber" value="enquiryno"  name="getpolicyby" ng-change='newValue(value)' /> Enquiry Number
+                                            </div>
+                                            <div class="col-md-3 PadRight">
+                                                <input type="radio" ng-model="getpolicybyNumber" value="policyno"  name="getpolicyby" ng-change='newValue(value)' /> Policy Number
+                                            </div>
+                                            <div class="col-md-3 PadRight">
+                                                <input type="radio" ng-model="getpolicybyNumber" value="proposalno"  name="getpolicyby"  ng-change='newValue(value)' /> Proposal Number
+                                            </div>
+                                            <div class="col-md-3 PadRight">
+                                                <input type="radio" ng-model="getpolicybyNumber" value="vehicleno" name="getpolicyby" ng-change='newValue(value)' /> Vehicle Number
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 createUserBox GetRequest_Response01 text-left">
+                                        <form>
+                                            <div class="input-wrap" style="width: 270px !important;">
+                                                <input type="text"  value=" " ng-model="Enquiry" class="textdemo" />
+                                                <label class="demo-label" for="Mobile">Enquiry Number</label>
+                                            </div>
+                                            <div class="input-wrap">
+                                                <button class="btn" ng-click="GetPdf()">Get Policy PDF</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

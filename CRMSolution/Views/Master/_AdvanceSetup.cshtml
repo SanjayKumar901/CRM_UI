@@ -1,0 +1,23 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Role Setting</h2>
+                </div>
+                <div class="col-md-12">
+                    Apply IRDA Process
+                    <input type="checkbox" ng-model="NonIRDA" ng-change="NonIrdaCheckCondition()" />
+                </div>
+                <div class="col-md-3">
+                    <label>
+                        <input type="button" value="Apply" ng-disabled="IsNonIRDAChecked"
+                               ng-click="applynonirda()"
+                               class="btn allBtn btn-block" />
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,170 @@
+﻿@{
+    ViewData["Title"] = "BusinessReport";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/MotorBusiness.js"></script>
+
+<div class="page-wrapper open_Main" ng-controller="MotorBusiness">
+    <div class="container-fluid">
+        <section class="mngUserSecond">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="manageUserFLT">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="contnt-div">
+                                    <span class="inquiry-text">Total NoPS</span>
+                                    <span id="totalUser">{{TotalNop}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="contnt-div">
+                                    <span class="inquiry-text">Total Business</span>
+                                    <span id="totalUser">{{TotalBusiness}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="contnt-div">
+                                    <span class="inquiry-text">Today Nops</span>
+                                    <span id="totalUser">{{TodayNop}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="contnt-div">
+                                    <span class="inquiry-text">Today Business</span>
+                                    <span id="totalUser">{{TodayBusiness}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pull-right">
+                    <div class="manageUserFLT">
+                        <div class="alct-data3">
+                            <select class="theFilters ng-pristine ng-valid ng-empty ng-touched" ng-model="BusinessFilter"
+                                    ng-change="Filter(BusinessFilter)">
+                                <option value="">Select Filter</option>
+                                <option value="All">All</option>
+                                @*<option value="TodaySale">Today Sale</option>
+                                    <option value="TotalBusiness">Total Business</option>*@
+                                <option value="Car">Four Wheeler Business</option>
+                                <option value="Two">TwoWheeler Business</option>
+                                <option value="POS">Business By PoS</option>
+                                <option value="BusinessByCommercial">Business By Commercial</option>
+                                @*<option value="SaleByVehicles">Sale By Vehicles</option>*@
+                                <option value="END USER">Direct Business</option>
+                            </select>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="project-tab">
+            <div class="leadDetlsTable margin15_T_B">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="tableHeadRow">
+                                    <div class="row">
+                                        <div class="col-md-6 PadRight">
+                                            @*<h4 class="card-title">No of Record : <span class="ng-binding">0</span>
+                                                    </h4> <h4 class="card-title">Total Business :
+                                                <span class="ng-binding">0</span></h4>*@
+                                        </div>
+
+
+                                        <div class="col-md-6 PadRight text-right">
+                                            <div class="row">
+                                                <div class="col-md-10 text-right">
+                                                    <div class="input-wrap">
+                                                        <input type="text" name="Search" ng-model="FilterModal" ng-change="filterBusiness(FilterModal)" class="textdemo" placeholder="Search..."> <i class="fa fa-search"></i>
+                                                        <label class="demo-label" for="Search"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div id="reportrange" class="theFilters theFiltersClndr">
+                                                        <i class="fa fa-calendar"></i><b class="caret"></b>
+                                                    </div>
+                                                    <div class="ml-auto threeDotted">
+                                                        <div class="dropdown sub-dropdown">
+                                                            <button class="btn btn-link text-muted dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                            </button>
+                                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-134px, 27px, 0px);">
+                                                                <a class="dropdown-item" ng-click="DownloadMotorReport()"
+                                                                   href="javascript:void(0)">
+                                                                    Download
+                                                                </a>
+                                                                <a class="dropdown-item" href="javascript:void(0)">Email</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered MainTable table-light" s>
+                                    <thead>
+                                        <tr>
+
+                                            <th>Contact</th>
+                                            <th>Insurer</th>
+                                            <th>User Name</th>
+                                            <th>User Role</th>
+                                            <th>Customer</th>
+                                            <th>Vehicle Type</th>
+                                            <th>Vehicle</th>
+                                            <th>Variant</th>
+                                            <th>Registration#</th>
+                                            <th>Policy#</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in BusinessReport">
+                                            <td>{{item.mobileNo}}</td>
+                                            <td>{{item.companyName}}</td>
+                                            <td>{{item.userName}}</td>
+                                            <td>{{item.userRole}}</td>
+                                            <td>{{item.name}}</td>
+                                            <td>{{item.motorType}}</td>
+                                            <td>{{item.vehicleName}}</td>
+                                            <td>{{item.variantName}}</td>
+                                            <td>{{item.vehicleNo}}</td>
+                                            <td>{{item.policyNo}}</td>
+                                            <td>{{item.paidAmount}}</td>
+                                            <td>{{item.closeDate}}</td>
+                                            <td>{{item.macid}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-body text-center">
+                        <p>Are you sure you want to take this action?</p>
+
+                        <button class="btn DeRgstrBTN">Yes</button> <button class="btn DeRgstrBTN">No</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

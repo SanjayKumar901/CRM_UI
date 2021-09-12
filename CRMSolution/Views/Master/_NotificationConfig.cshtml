@@ -1,0 +1,61 @@
+﻿
+<div class="row">
+    <div class="col-md-3 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <select ng-model="NotificationModel"
+                    class="theFilters"
+                    ng-change="SelectNotificationMail(NotificationModel)"
+                    ng-options="item.optionName for item in MailserverOptionList">
+                <option value="">Select Mail Option</option>
+            </select>
+            <select ng-model="NotificationRoleType" ng-show="NotificationModel.mailServiceMaster == 'CreateUser'"
+                    ng-change="NotificationRoleTypeConfig(NotificationRoleType)"
+                    class="theFilters"
+                    ng-options="item.rolename for item in RoleTypeList">
+                <option value="">Select Mail Option</option>
+            </select>
+            <div ng-show="NotificationModel.mailServiceMaster == 'WelcomeActivePos'">
+                <input type="file" id="welcomefile" />
+                <input type="button" value="Save" ng-click="uploadWelcomeimage()" />
+                <br />
+                <br />
+                <span>Coppy : {{uploadedwelcomefile}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 MPD03_Box">
+        <div class="MyProfileDet03Cnt createUserBox generateLinkBox">
+            <form>
+                <h2>{{MailServer.optionName}}</h2>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <input type="text" ng-model="NotificationSubject" placeholder="Subject" class="form-control" />
+                    </div>
+                     <div class="col-md-12">
+                         <textarea name="Text1" ng-model="Notificationbody" cols="40" rows="5"></textarea>
+                     </div>
+                     <div class="col-md-12">
+                         <div id="iframecontainer">
+                             <div id="iframe">
+                                 <div id="iframewrapper">
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-3">
+                        <input type="button" ng-click="SaveNotificationbody()" class="btn btn-block" value="Save">
+                        <input type="button" ng-click="priview()" class="btn btn-block" value="Priview">
+                        
+                    </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

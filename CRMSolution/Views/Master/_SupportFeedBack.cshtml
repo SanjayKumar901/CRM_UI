@@ -1,0 +1,35 @@
+﻿<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Feedback Option</h2>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="FeedOpt" class="form-control" placeholder="Enter Option" />
+                </div>
+                <div class="col-md-3">
+                    <input type="button" value="Save" ng-disabled="FeedOpt==null" ng-click="FeedOption()" class="btn allBtn btn-primary">
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Option</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in FeadbackList">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.options}}</td>
+                                <td><a href="javascript:void(0)" ng-click="RemoveOption(item)">Remove</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+select * from enquiry;
+select * from uploadpolicy;
+select * from users;
+
+alter table  users
+add PolicyUrl varchar(90);
+
+INSERT INTO privilegemaster (PrivilegeID, PrivilegeName, Active, CreatedDate, CreatedBy, ModifiedDate, PrivilegeGroupName, is_Active, Url, NavBarMasterMenuID) 
+VALUES (150, 'Offline Business', 'Y', current_timestamp(), 1, current_timestamp(), 'Business Report', 1, 'javascript:void(0)', 3);
+
+alter table  users
+add RcUrl varchar(90);
+
+
+declare v_OfflinePriv int;
+declare v_IsPriv int;
+set v_OfflinePriv = (select PrivilegeID from privilegemaster where PrivilegeName='Offline Business');
+set v_IsPriv = (select id from userprivilegerolemapping where privilegeid=v_OfflinePriv and userid=p_userid);
+
+select C.EnquiryNo as EnqNo,c.EnquiryNo,
+CASE WHEN c.ENQUIRYTYPE='HLT'
+THEN
+	'HLT'
+ELSE
+	Me.MotorType
+END as  'ENQUIRYTYPE',c.MOBILENO,c.LEADSOURCE,c.ENQUIRYDATE,
+CASE WHEN c.ENQUIRYTYPE='HLT'
+THEN
+	coalesce(HPD.Policy_Status,'Quotation Success')
+ELSE
+	coalesce(MD.PolicyStatus,'Quotation Success')
+END as  'PolicyStatus',ifnull(um.username,'End User') as UserName,
+ifnull(rt.RoleName,'N/A') as RoleName
+from Enquiry C
+left Join  MotorEnquiry Me on Me.EnquiryNo  =  C.EnquiryNo
+left Join  MotorPolicyDetails md on Md.Motorid  = Me.Motorid
+left Join  HealthPolicyDetail HPD ON C.EnquiryNo=HPD.EnqueryNo
+left join usermaster um on C.userid=um.userid
+left join roletype rt on um.roleid=rt.roleid
+where c.clientid  = 4 and cast(C.EnquiryDate as date) between '2020-07-01'
+and '2020-07-10' and c.LeadSource in('online',case when v_IsPriv>0 then 'offline'end)
+ORDER BY ENQUIRYDATE DESC;
+
+#Quotation Awaited
+
+select * from Enquiry where Enquiryno='RIWA/ENQ/475620';
+
+
+select * from motorpolicydetails;
+
+select * from insuredvehicles;
+
+drop table OfflineRequest;
+select * from motorpolicydetails;
+
+create table OfflineRequest
+(
+	ID int,
+    ClientID int,
+    Enquiryno varchar(50),
+    MotorType varchar(50),
+    PolicyType varchar(50),
+    BasicOD numeric(18,2),
+    BasicTP numeric(18,2),
+    GrossPremium numeric(18,2), 
+    NetPremium numeric(18,2),
+    TotalPremium numeric(18,2),
+	ServiceTax numeric(18,2),
+    CoverAmount numeric(18,2),
+    Status varchar(30)
+)
+
+# ID, EnqueryNo, Userid, Nomineeid, CompanyID, AddressId, TotalPremium, PolicyNumber, TransactionRefNo, ErroMsg, UWDesc, ProposalNo, Policy_Status, Current_Policy, QuoteNo, PreviousInsurer, PolicyNo, hltEnquiryId, NetPremium, Service_tax, PlanName, CoverAmount, BasePremium, PaymentStatus, CreatedDate, ModifiedDate, Term, PrevPolicyNO
+'1', 'RIWA/ENQ/442936', NULL, NULL, '104', NULL, '8053', NULL, '', NULL, NULL, NULL, 'Quotation Success', NULL, '', NULL, NULL, NULL, '6825', '1228', 'DiabetesInd', '300000', '6825', NULL, '2020-07-18 14:43:53', NULL, '1', NULL
+
+
+select * from healthpolicydetail
+
+# MotorPolicyID, MotorID, UserID, ClientID, AddressID, NomineeID, InsuredVehicleID, MotorType, 
+#PolicyType, Period, BasicOD, BasicTP, DiscountPercentage, DiscountAmount, BasePremium, 
+#GrossPremium, NetPremium, TotalPremium, ServiceTax, PaymentID, PaymentStatus, QuoteNo, 
+#ProposalNo, CompanyID, PolicyNo, PolicyDocUrl, PolicyStatus, Entrydate, EngineNo, 
+#ChesisNo, PrevPolicyNO, PreviousInsurer, VehicleNo, IDV
+'1', '371764', '0', NULL, NULL, NULL, '4173', NULL, NULL, '1', '4374.00', '3221.00', NULL, NULL, NULL, '0.00', '8220.00', '9700.00', '1480.00', NULL, NULL, '', NULL, '103', NULL, NULL, 'Payment Gateway', '2020-06-19 00:00:00', NULL, NULL, NULL, NULL, NULL, '305000.00'

@@ -1,0 +1,42 @@
+﻿
+<div class="row">
+    <div class="col-md-6 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <h2>Branch Setting</h2>
+            <div class="row form-group">
+                <div class="col-md-9">
+                    <select ng-model="SelectRegion" ng-change="ChangeRegion(SelectRegion)" ng-options="rz.region for rz in RegionList">
+                        <option value="">Select Region</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label><input type="button" class="btn btn-primary" value="Save" ng-click="SaveBranch()" /></label>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <div class="tableContainer">
+                        <table id="branchRegionList" class="table table-bordered table-light">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Branch ID</th>
+                                    <th>Region ID</th>
+                                    <th>Branch Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in BranchList">
+                                    <td><input type="checkbox" class="checkitem" value="{{item.cityID}}" /></td>
+                                    <td>{{item.cityID}}</td>
+                                    <td>{{item.regionID}}</td>
+                                    <td>{{item.cityName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

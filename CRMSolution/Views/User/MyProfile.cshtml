@@ -1,0 +1,361 @@
+﻿
+@{
+    ViewData["Title"] = "MyProfile";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/MyProfile.js"></script>
+@*<script src="/js/Users/MyProfile.js"></script>*@
+<div ng-controller="Profile" id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <div class="page-wrapper ng-scope open_Main" style="display: block;">
+        <div class="container">
+            <section class="MyProfileDet01 mngUserfirst">
+                <div class="MyProfileDet01Head">
+
+                    <h3>Profile Details: <span>{{RoleName}}/{{userid}}</span></h3>
+                    <h3 ng-show="PoSAssociateCode>0">Pos Code: <span>{{PosPrifix}}{{PoSAssociateCode}}</span></h3>
+                    <h3 ng-show="ReferCode>0">Refer Code: <span>{{ReferPrifix}}{{ReferCode}}</span></h3>
+                    <div ng-show="AlternetCode!=null" class="input-wrap m-0 mb-2">
+                        Alternate Code: <input type="text" class="theFilters w-auto" ng-model="AlternetCode" />
+                        <input ng-show="CheckUpdation" type="button" class="border-0 rounded allBtn" value="Update" ng-click="UpdateAlternetCode()" />
+                    </div>
+                </div>
+                <div class="MyProfileDet02">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="MyProfileDet02Img">
+                                <img src={{ProfileImage}} />
+                                @if (ViewData["userid"] == null) { }
+                                <label class="changeLogo">
+                                    Change Image
+                                    <button class="addfiles" ng-click="addfile()">Add Files</button>
+                                    <input id="fileupload" type="file"
+                                           onchange="angular.element(this).scope().fileNameChanged(this)"
+                                           style="display:none;" name="myImage" accept="image/*" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="MyProfileDet02Cnt">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>
+                                            <span>User Name</span>
+                                            <input type="text" autocomplete="off" maxlength="100" ng-model="UserName" value="{{UserName}}" />
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>
+                                            <span>Mobile No</span>
+                                            <input type="text" autocomplete="off" maxlength="10"
+                                                   ng-readonly="IsPos==true && Ismyprofile==true"
+                                                   ng-model="MobileNum" value="+91 {{MobileNum}}" />
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>
+                                            <span>Email ID</span>
+                                            <input type="text" maxlength="100"
+                                                   ng-readonly="IsPos==true && Ismyprofile==true"
+                                                   ng-model="Email" />
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>
+                                            <span>PAN Number</span>
+                                            <input type="text"
+                                                   ng-model="PanNum" readonly="readonly" />
+                                            @*<input type="text" maxlength="12" readonly="readonly" value="{{PinCode}}" />*@
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>
+                                            <span>Aadhar Number</span>
+                                            <input type="text" maxlength="12"
+                                                   ng-readonly="IsPos==true && Ismyprofile==true"
+                                                   ng-model="Adhaar" />
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label ng-repeat="item in RegionList">
+                                            <span>Region Name</span>
+                                            <input type="text" maxlength="12" readonly value="{{item.region}}" />
+                                            <span>Branch Name</span>
+                                            <input type="text" maxlength="12" readonly value="{{item.cityName}}" />
+                                        </label>
+                                    </div>
+                                    <div class="col-md-4" ng-show="IsShowUnblock">
+                                        <input type="button" class="border-0 rounded allBtn" ng-click="Unlock()" value="Unlock" />
+                                    </div>
+                                    <div class="col-md-4" ng-show="(IsPos==true && Ismyprofile==false)
+                                         || (IsPos==false && Ismyprofile==true)|| (IsPos==false && Ismyprofile==false)">
+
+                                        <input type="button" value="Update Info" class="border-0 rounded allBtn"
+                                               ng-click="UpdateInfo()" ng-disabled="IsNoEdit" />
+                                    </div>
+                                    <div class="col-md-4" ng-show="IsShowPosCer">
+                                        <input type="button" value="Get Pos Certificate" class="border-0 rounded allBtn" ng-click="DownloadCertificate()" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="MyProfileDet03">
+                    <div class="row">
+                        <div class="col-md-3 MPD03_Box">
+                            <div class="MyProfileDet03Cnt">
+                                <h2>Personal Details</h2>
+                                <label>
+                                    <span>Date of Birth</span>
+                                    <input type="text" ng-model="DOB" />
+                                </label>
+                                <label class="textArea">
+                                    <textarea placeholder="Communication Address"
+                                              ng-readonly="IsComaddress"
+                                              ng-model="ComAddress" rows="5">{{ComAddress}}</textarea>
+                                </label>
+                                <label>
+                                    <span>PIN Code</span>
+                                    <input type="text" maxlength="6"
+                                           ng-readonly="IsPin" ng-change="checkPincode(PinCode)"
+                                           ng-model="PinCode" />
+                                </label>
+                                <label ng-show="(CheckUpdation==true || (IsComaddress==false ||IsPin==false))">
+                                    <input type="button" class="border-0 rounded allBtn"
+                                           ng-click="personaldetails()"
+                                           value="Update" ng-disabled="IsNoEdit">
+                                </label>
+                                <label ng-show="CheckUpdation==true && IsAllowConfigPinCode==true">
+                                    <input type="button" class="border-0 rounded allBtn"
+                                           ng-click="ConfigPinCode()"
+                                           value="Configure PinCode">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 MPD03_Box">
+                            <div class="MyProfileDet03Cnt">
+                                <h2>Payout Details</h2>
+                                <label>
+                                    <span>BeneFiciary Name</span>
+                                    <input type="text"
+                                           ng-readonly="IsBenificiaryName"
+                                           ng-model="BenificiaryName" />
+                                </label>
+                                <label>
+                                    <span>Saving Account Number</span>
+                                    <input type="text"
+                                           ng-readonly="IsAccountNum"
+                                           ng-model="AccountNum" />
+                                </label>
+                                <label>
+                                    <span>Bank Name</span>
+                                    <input type="text"
+                                           ng-readonly="IsBankName"
+                                           ng-model="BankName" />
+                                </label>
+                                <label>
+                                    <span>Bank Branch</span>
+                                    <input type="text"
+                                           ng-readonly="IsBankBranch"
+                                           ng-model="BankBranch" />
+                                </label>
+                                <label>
+                                    <span>IFSC Code</span>
+                                    <input type="text"
+                                           ng-readonly="IsIFSC"
+                                           ng-model="IFSC" />
+                                </label>
+                                <label>
+                                    <span>PAN Number</span>
+                                    <input type="text"
+                                           ng-readonly="IsPanNum"
+                                           ng-model="PanNum" />
+                                </label>
+                                <label ng-show="(CheckUpdation==true || (IsPanNum==false ||IsIFSC==false || IsBankBranch==false
+                                       ||IsBankName==false||IsAccountNum==false
+                                       ||IsBenificiaryName==false))">
+                                    <input type="button" class="border-0 rounded allBtn"
+                                           ng-click="payoutdata()" value="Update" ng-disabled="IsNoEdit">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 MPD03_Box">
+                            <div class="MyProfileDet03Cnt">
+                                <h2>File Accept Only(.jpg,.jpeg,.pdf) : Max File Size(2 MB)</h2>
+                                <ul>
+
+                                    <li>
+                                        <span class="w-50">Highest Education Certificate</span>
+                                        <span class="upload-btn-wrapper w-auto UPL_File">
+                                            <input type="file" id="EducationCertificate" />
+                                            <button for="file" class="btn AddFile"
+                                                    ng-show="Certificate!=null?CheckUpdation:true"
+                                                    ng-disabled="IsNoEdit">
+                                                Add
+                                            </button>
+                                        </span>
+                                        <input type="button" class="btn w-25 btn-block"
+                                               ng-show="Certificate!=null?CheckUpdation:true"
+                                               ng-click="UploadDoc('Certificate')" value="Upload" ng-disabled="IsNoEdit" />
+                                        <a href="{{Certificate}}" class="btn w-25 text-right" target="_blank">View({{CertificateDate}})</a>
+                                    </li>
+                                    <li>
+                                        <span class="w-50">Cancelled Cheque</span>
+                                        <span class="upload-btn-wrapper w-auto UPL_File">
+                                            <input type="file" id="CancelledCheque" />
+                                            <button for="file" class="btn AddFile"
+                                                    ng-show="CancelCheque!=null?CheckUpdation:true"
+                                                    ng-disabled="IsNoEdit">
+                                                Add
+                                            </button>
+                                        </span>
+                                        <input type="button" class="btn w-25 btn-block"
+                                               ng-click="UploadDoc('Cheque')" value="Upload"
+                                               ng-show="CancelCheque!=null?CheckUpdation:true"
+                                               ng-disabled="IsNoEdit" />
+
+                                        <a href="{{CancelCheque}}" class="btn w-25 text-right" target="_blank">View({{CancelChequeDate}})</a>
+                                    </li>
+                                    <li>
+                                        <span class="w-50">PAN Card Document</span>
+                                        <span class="upload-btn-wrapper w-auto UPL_File">
+                                            <input type="file" id="PANCardDocument" />
+                                            <button for="file" class="btn AddFile"
+                                                    ng-show="PaN!=null?CheckUpdation:true"
+                                                    ng-disabled="IsNoEdit">
+                                                Add
+                                            </button>
+                                        </span>
+                                        <input type="button" class="btn w-25 btn-block"
+                                               ng-show="PaN!=null?CheckUpdation:true"
+                                               ng-click="UploadDoc('PANCard')" value="Upload" ng-disabled="IsNoEdit" />
+                                        <a href="{{PaN}}" class="btn w-25 text-right" target="_blank">View({{PanDate}})</a>
+                                    </li>
+                                    <li>
+                                        <span class="w-50">Aadhar Card Front</span>
+                                        <span class="upload-btn-wrapper w-auto UPL_File">
+                                            <input type="file" id="AadharCardFront" />
+                                            <button for="file" class="btn AddFile"
+                                                    ng-show="AdhaarFront!=null?CheckUpdation:true"
+                                                    ng-disabled="IsNoEdit">
+                                                Add
+                                            </button>
+                                        </span>
+                                        <input type="button" class="btn w-25 btn-block"
+                                               ng-show="AdhaarFront!=null?CheckUpdation:true"
+                                               ng-click="UploadDoc('AadharCardFront')" value="Upload" ng-disabled="IsNoEdit" />
+                                        <a href="{{AdhaarFront}}" class="btn w-25 text-right" target="_blank">View({{AdharFrontDate}})</a>
+                                    </li>
+                                    <li>
+                                        <span class="w-50">Aadhar Card Back</span>
+                                        <span class="upload-btn-wrapper w-auto UPL_File">
+                                            <input type="file" id="AadharCardBack" />
+                                            <button for="file" class="btn AddFile"
+                                                    ng-show="AdhaarBack!=null?CheckUpdation:true"
+                                                    ng-disabled="IsNoEdit">
+                                                Add
+                                            </button>
+                                        </span>
+                                        <input type="button" class="btn w-25 btn-block"
+                                               ng-show="AdhaarBack!=null?CheckUpdation:true"
+                                               ng-click="UploadDoc('AadharCardBack')" value="Upload" ng-disabled="IsNoEdit" />
+                                        <a href="{{AdhaarBack}}" class="btn w-25 text-right" target="_blank">View({{AdharBackDate}})</a>
+                                    </li>
+                                    <li>
+                                        <span class="w-50">Terms & Conditions</span>
+                                        <span class="upload-btn-wrapper w-auto UPL_File">
+                                            <input type="file" id="TandC" />
+                                            <button for="file" class="btn AddFile"
+                                                    ng-show="TearnAndCondition!=null?CheckUpdation:true"
+                                                    ng-disabled="IsNoEdit">
+                                                Add
+                                            </button>
+                                        </span>
+                                        <input type="button" class="btn w-25 btn-block"
+                                               ng-show="TearnAndCondition!=null?CheckUpdation:true"
+                                               ng-click="UploadDoc('TandC')" value="Upload" ng-disabled="IsNoEdit" />
+                                        <a href="{{TearnAndCondition}}" class="btn w-25 text-right" target="_blank">View({{TermConditionDate}})</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 MPD03_Box">
+                            <div class="MyProfileDet03Cnt">
+                                <h2>Other Details (Optional)</h2>
+                                <label>
+                                    <span>GSTIN (Optional)</span>
+                                    <input type="text" ng-model="GSTIN" />
+                                </label>
+                                <ul>
+                                    <li>
+                                        GST Certificate
+                                        <span class="upload-btn-wrapper">
+                                            <input type="file" id="GSTFile" />
+                                            <button for="file" class="btn AddFile">Add</button>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <label ng-show="(CheckUpdation==true || (IsPanNum==false ||IsIFSC==false || IsBankBranch==false
+                                       ||IsBankName==false||IsAccountNum==false
+                                       ||IsBenificiaryName==false))">
+                                    <input type="button" class="btn btn-block" value="Update"
+                                           ng-click="gstCertificate('GSTFile')"
+                                           ng-disabled="IsNoEdit">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-3 MPD03_Box">
+                            <!--<div class="MyProfileDet03Cnt">
+                        <h2>Payout Configuration</h2>
+                        <ul>
+                            <li>
+                                <input type="checkbox">
+                                Instant Payout Enabled?
+                            </li>
+                        </ul>
+                        <label>
+                            <input type="button" class="btn btn-block" value="Update"
+                                   ng-disabled="IsNoEdit">
+                        </label>
+                    </div>-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="Createdmodal ConfigPincode" style="display:none;">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-body text-center">
+                            <div class="close closeBtn resetClose" id="CloseMessages"></div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div class="createUserBox">
+                                        <h3><span>Update Pincode</span></h3>
+                                        <form ng-submit="SavePincodeCityState()">
+                                            <div class="input-wrap input-wrapBtn">
+                                                <label class="w-100">
+                                                    <input type="text" class="theFilters" autocomplete="off" required placeholder="PinCode" ng-model="UpdatedPinCode" />
+                                                </label>
+                                                <label class="w-100">
+                                                    <input type="text" class="theFilters" autocomplete="off" required ng-model="PinState" placeholder="State" />
+                                                </label>
+                                                <label class="w-100">
+                                                    <input type="text" class="theFilters" autocomplete="off" required ng-model="PinCity"  placeholder="City" />
+                                                </label>
+                                                <label >
+                                                    <input type="submit" class="border-0 rounded allBtn" value="Update" />
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

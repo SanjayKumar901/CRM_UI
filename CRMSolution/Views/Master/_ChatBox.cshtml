@@ -1,0 +1,47 @@
+﻿@*
+
+*@
+@{
+}
+
+
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Chat Box Script Configuration</h2>
+                </div>
+                <div class="col-md-12">
+                    <textarea ng-model="Script" class="form-control" placeholder="Add chat script"></textarea>
+                </div>
+                <div class="col-md-12">
+                    <input type="button" value="Save"
+                           ng-click="savePagewithscript()"
+                           class="btn allBtn btn-primary" />
+                    <input type="button" value="Delete Script"
+                           ng-click="Delscript()"
+                           class="btn allBtn btn-primary" />
+                </div>
+                <div class="col-md-12">
+                    <table class="table" id="pageTable">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Page Name</th>
+                                <th>Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in PageUrls">
+                                <td>{{item.srNo}}</td>
+                                <td>{{item.privilegename}}</td>
+                                <td><input type="checkbox" ng-checked="item.isChecked" value="{{item.url}}" /> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

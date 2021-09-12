@@ -1,0 +1,71 @@
+﻿<div class="CreatUser CreatUser02">
+    <div class="container-fluid">
+        <div class="close closeBtn" ng-click="CloseEnquiryInfo()"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="parivaar-GetFullDetails">
+                        <div class="row proposalBox03">
+
+                            <div class="col-md-8 offset-md-2">
+                                <div class="GF_DetBoxMain">
+                                    <div class="GF_DetBoxMainHead text-center">
+                                        <h3>Lead Details</h3>
+                                        <input type="button" ng-show="IsOnline" value="Goto Proposal" ng-click="GotoProposal(EnquiryInfo.enquiryNo)" />
+                                        <input type="button" ng-show="IsOnline==false" value="Process to Proposal" ng-click="GotoFillOfflineProposal(EnquiryInfo.enquiryNo,'HLT')" />
+                                    </div>
+                                    <div class="GF_DetBox">
+                                        <div class="GF_DetBox3">
+                                            <ul>
+                                                <li class="enqueryNumber">
+                                                    <label>Leads#</label>
+                                                    <span>{{EnquiryInfo.enquiryNo}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Gender</label>
+                                                    <span>{{EnquiryInfo.gender}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Policy Type</label>
+                                                    <span>{{EnquiryInfo.policyType}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Adult Count</label>
+                                                    <span>{{EnquiryInfo.adultCount}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Child Count</label>
+                                                    <span>{{EnquiryInfo.childcount}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Enquiry Date</label>
+                                                    <span>{{EnquiryInfo.enquiryDate}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Mobile#</label>
+                                                    <span>{{EnquiryInfo.mobileNo}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>User Name</label>
+                                                    <span>{{EnquiryInfo.username}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Role Name</label>
+                                                    <span>{{EnquiryInfo.rolename}}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

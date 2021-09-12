@@ -1,0 +1,120 @@
+﻿<div class="CreatUser CreatUser02">
+    <div class="container-fluid">
+        <div class="close closeBtn" ng-click="CloseEnquiryInfo()"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="parivaar-GetFullDetails">
+                        <div class="row proposalBox03">
+                            <div class="col-md-8 offset-md-2">
+                                <div class="GF_DetBoxMain">
+                                    <div class="GF_DetBoxMainHead text-center">
+                                        <h3>Lead Details</h3>
+                                    </div>
+                                    <div class="GF_DetBox">
+                                        <div class="row form-group">
+                                            <div class="col-md-2">
+                                                Enquiry no
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" ng-model="Enquiryno" readonly />
+                                            </div>
+                                            <div class="col-md-2">
+                                                Motor Type
+                                            </div>
+                                            <div class="col-md-4">
+                                                <span>{{CheckComeFrom.enquirytype}}</span>
+                                            </div>
+                                            <div class="col-md-2">
+                                                Policy Type
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select ng-model="SelectPolicyType">
+                                                    <option value="New">New</option>
+                                                    <option value="Renew">Roll Over</option>
+                                                    <option value="Expired">Expired</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                {{CheckComeFrom.enquirytype}} List
+                                            </div>
+                                            <div class="col-md-4">
+
+                                                <select ng-model="SelectMake"
+                                                        ng-change="GetFuels(SelectMake)"
+                                                        ng-options="item.Manu_Vehicle for item in SelectMakeList">
+                                                    <option value="">Select Manufacturer</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                Fules
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select ng-model="SelectFuel"
+                                                        ng-change="variants(SelectMake,SelectFuel)"
+                                                        ng-options="item.FuelName for item in  SelectFuelList">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                Variant
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select ng-model="SelectVariant"
+                                                        ng-change="GetRtos(SelectVariant)"
+                                                        ng-options="item.VariantName for item  in VariantList">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                Registration Year
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select ng-model="SelectRegistration"
+                                                        ng-options="item.text for item  in RegistrationList">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                Rtos
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select ng-model="Rto"
+                                                        ng-options="item.RTOName for item in Rtos">
+                                                    <option value="">Select</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                Remarks
+                                            </div>
+                                            <div class="col-md-4">
+                                                <input type="text" ng-model="Remarks" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row" ng-repeat="item in InsurerList">
+                                                    <div class="col-md-2">
+                                                        Insurer {{item.text}}
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <input type="file" id="{{item.text}}" />
+                                                        <input type="button" value="Upload Quotation"
+                                                               ng-click="uploadQuote(item)" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="button" value="Save Quotation" ng-click="SaveOfflineMotorQuote()" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "RequestaAndResponse";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Products/RequestaAndResponse.js"></script>
+
+<div class="page-wrapper ng-scope mappedUser open_Main" ng-controller="ReqRes" style="display: block;">
+    <div class="container">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Get Request Response</h3>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <section class="mngUserfirst mngUserfirstMapping">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="manageUserFLT">
+                                <div class="row getResponseMain">
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select class="theFiltersBulk theFilters" ng-model="Product"
+                                                    ng-options="item.fullName for item in Products">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select class="theFiltersBulk theFilters" ng-model="PolicyType"
+                                                    ng-options="item.OptionText for item in PolicyTypes">
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 createUserBox GetRequest_Response01 text-left">
+                                        <div class="input-wrap">
+                                            <input type="text" value="" placeholder="Enquiry Number/Reg# etc" ng-model="EqnquiryFilter" class="textdemo" />
+                                        </div>
+                                        <div class="input-wrap">
+                                            <button class="btn" ng-click="GetData()">
+                                                Get Request Response
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Request</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Response</p>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="item in ReqResList">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="col-md-12">
+                                        <h3>{{item.companyname}}</h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{item.req}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="col-md-12">
+                                        <h3>{{item.companyname}}</h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{item.res}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

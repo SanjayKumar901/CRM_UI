@@ -1,0 +1,47 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <h2>POS Health Quote Setup</h2>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <input type="button" ng-click="SaveHltData()" value="Active" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <table class="table HLTtable">
+                        <thead>
+                            <tr>
+                                <th>Choose Insurer</th>
+                                <th>Select Only POS</th>
+                                <th>Select Only End User</th>
+                                <th>Both</th>
+                                <th>Suminsured</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in HLTtblList">
+                                <td>
+                                    <select class="HLTins form-control">
+                                        <option value="">Select Insurer</option>
+                                        <option ng-repeat="item in HLTInsurerList" value="{{item.id}}">{{item.brokerName}}</option>
+                                    </select>
+                                </td>
+                                <td><input type="checkbox" ng-click="SelectCheck('.hltenduser','.hltboth',$index)" class="hltpos" /></td>
+                                <td><input type="checkbox" ng-click="SelectCheck('.hltpos','.hltboth',$index)" class="hltenduser" /></td>
+                                <td><input type="checkbox" ng-click="SelectCheck('.hltpos','.hltenduser',$index)" class="hltboth" /></td>
+                                <td><input type="text" class="hltsuminsured" placeholder="Suminsured" /></td>
+                                <td><a href="javascript:void(0)" ng-click="RemoveRow('HLTtblList',$index)">Remove</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <input type="button" class="btn btn-primary" value="Add More" ng-click="AddMore('HLTtblList')" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

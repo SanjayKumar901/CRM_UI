@@ -1,0 +1,106 @@
+﻿
+<section class="mngUserSecond">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="manageUserFLT">
+
+            </div>
+        </div>
+        <div class="col-md-4 pull-right">
+            <div class="manageUserFLT">
+                <div class="alct-data3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="project-tab">
+    <div class="leadDetlsTable margin15_T_B">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tableHeadRow">
+                            <div class="row">
+                                
+                                <div class="col-md-12 PadRight text-right">
+                                    <div class="row">
+                                        <div class="col-md-3 text-left BR_ShowingData">
+                                            <span>Showing NOP : </span>
+                                            <span>{{ManualOfflineHLTBusinessList.length}}</span>
+                                        </div>
+                                        <div class="col-md-3 text-left BR_ShowingData">
+                                            <span>Showing Total Business : </span>
+                                            <span>{{sumbusiness}}</span>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+                                            <div class="input-wrap">
+                                                <input type="text" name="Search" ng-model="FilterOfflineHLT"
+                                                       ng-change="filterManualOfflineHLTBusiness(FilterOfflineHLT)" class="textdemo"
+                                                       placeholder="Customer Name, Registration & Policy No."> <i class="fa fa-search"></i>
+                                                <label class="demo-label" for="Search"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+
+                                            <div class="theFilters theFiltersClndr reportrange">
+                                                <span class="DateRangeShow BR"></span>
+                                                <i class="fa fa-calendar"></i><b class="caret"></b>
+                                            </div>
+
+                                            <div class="ml-auto threeDotted">
+                                                <div class="dropdown sub-dropdown">
+                                                    <button class="btn btn-link text-muted dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                    </button>
+                                                    <div ng-show="IsDownload" class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-134px, 27px, 0px);">
+                                                        <a class="dropdown-item" ng-click="DownloadMotorReport()"
+                                                           href="javascript:void(0)">
+                                                            Download
+                                                        </a>
+                                                        <a class="dropdown-item" href="javascript:void(0)">Email</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tableContainer">
+                            <span class="Tableloader"></span>
+                            <table class="table table-bordered MainTable table-light">
+                                <thead>
+                                    <tr>
+                                        <th>Mobile No</th>
+                                        <th>User Name</th>
+                                        <th>Customer Name</th>
+                                        <th>Policy Type</th>
+                                        <th>Vehicle No</th>
+                                        <th>Policy No</th>
+                                        <th>Total Premium</th>
+                                        <th>Entry Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in ManualOfflineHLTBusinessList">
+                                        <td><a href="javascript:void(0)">{{item.mobileNo}}</a></td>
+                                        <td>{{item.userName}}</td>
+                                        <td>{{item.customerName}}</td>
+                                        <td>{{item.policyType}}</td>
+                                        <td>{{item.planName}}</td>
+                                        <td><a href="javascript:void(0)" ng-click="DownloadofflinemanualHLTreport(item.policyNo)">{{item.policyNo}}</a></td>
+                                        <td>{{item.totalPremium}}</td>
+                                        <td>{{item.createdDate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

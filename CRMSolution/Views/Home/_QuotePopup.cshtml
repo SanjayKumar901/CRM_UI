@@ -1,0 +1,91 @@
+﻿<div class="CreatUser CreatUser02">
+    <div class="container-fluid">
+        <div class="close closeBtn" ng-click="CloseEnquiryInfo()"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="parivaar-GetFullDetails">
+                        <div class="row proposalBox03">
+
+                            <div class="col-md-8 offset-md-2">
+                                <div class="GF_DetBoxMain">
+                                    <div class="GF_DetBoxMainHead text-center">
+                                        <h3>Lead Details</h3>
+                                        <input type="button" ng-show="IsOnline" value="Goto Proposal" ng-click="GotoProposal(EnquiryInfo.enquiryNo)" />
+                                        <input type="button" ng-show="IsOnline==false" value="Process to Proposal" ng-click="GotoFillOfflineProposal(EnquiryInfo.enquiryNo,'MOT')" />
+                                    </div>
+
+
+                                    <div class="GF_DetBox">
+                                        <div class="GF_DetBox3">
+
+                                            <ul>
+                                                <li class="enqueryNumber">
+                                                    <label>Leads#</label>
+                                                    <span>{{EnquiryInfo.enquiryNo}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Variant</label>
+                                                    <span>{{EnquiryInfo.variantname}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Lead Type</label>
+                                                    <span>{{EnquiryInfo.motortype}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>RTO</label>
+                                                    <span>{{EnquiryInfo.rtoname}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Policy Type</label>
+                                                    <span>{{EnquiryInfo.policytype}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Enquiry Date</label>
+                                                    <span>{{EnquiryInfo.enquiryDate}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Vehicle</label>
+                                                    <span>{{EnquiryInfo.manufacturername}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Mobile#</label>
+                                                    <span>{{EnquiryInfo.mobileno}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Fuel </label>
+                                                    <span>{{EnquiryInfo.fuelname}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>User Name</label>
+                                                    <span>{{EnquiryInfo.username}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>Role Name</label>
+                                                    <span>{{EnquiryInfo.rolename}}</span>
+                                                </li>
+                                                <li>
+                                                    <label>RM</label>
+                                                    <span>{{EnquiryInfo.reportingManager}}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div ng-show="IsOnline==false">
+                                        <a href="{{EnquiryInfo.policyUrl}}" target="_blank">PolicyUrl</a>
+                                        <br />
+                                        <a href="{{EnquiryInfo.rcUrl}}" target="_blank">RC Url</a>
+                                    </div>
+                                    <div ng-show="IsOnline==false">
+                                        <input type="text" placeholder="Related Query" ng-model="RelatedQuery">
+                                        <input type="button" value="Send" ng-click="SendQuery()" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

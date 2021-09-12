@@ -1,0 +1,188 @@
+﻿@{
+    ViewData["Title"] = "End User Page";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/UserPolicyControl/Index.js"></script>
+    @*<script src="/js/UserPolicyControl/Index.js"></script>*@
+<div class="page-wrapper EndUserPage open_Main" ng-controller="EndUserControl">
+    <div class="container-fluid project-tab">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Customer Policy Details</h3>
+                </div>
+                <div class="col-md-6 text-right">
+                </div>
+            </div>
+        </section>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active"
+                   id="nav-Car-tab" data-toggle="tab" href="#nav-Car" 
+                   role="tab" aria-controls="nav-Car" ng-click="CallProductData('Car')" aria-selected="true">Car</a>
+                <a class="nav-item nav-link" id="nav-Bike-tab" 
+                   data-toggle="tab" href="#nav-Bike" role="tab" aria-controls="nav-Bike" 
+                   aria-selected="false" ng-click="CallProductData('Two')">Bike</a>
+                <a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" 
+                   href="#nav-Health" role="tab" aria-controls="nav-Health" 
+                   aria-selected="false" ng-click="CallProductData('Health')">Health</a>
+                <a class="nav-item nav-link" id="nav-Travel-tab" data-toggle="tab" href="#nav-Travel" role="tab" aria-controls="nav-Travel" aria-selected="false">Travel</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-Car" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                <section class="project-tab">
+                    <div class="leadDetlsTable margin15_T_B">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table table-bordered MainTable table-light" style="margin-bottom:0;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Contact</th>
+                                                    <th>Insurer</th>
+                                                    <th>User Name</th>
+                                                    <th>vahicle Type</th>
+                                                    <th>Vehicle</th>
+                                                    <th>Registration#</th>
+                                                    <th>Policy Type</th>
+                                                    <th>Policy#</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in listProduct">
+                                                    <td class="ng-binding">{{item.mobile}}</td>
+                                                    <td class="ng-binding">{{item.companyname}}</td>
+                                                    <td class="ng-binding">{{item.userName}}</td>
+                                                    <td class="ng-binding">{{item.motorType}}</td>
+                                                    <td class="ng-binding">{{item.vehicle}}</td>
+                                                    <td class="ng-binding">{{item.vehicleNo}}</td>
+                                                    <td class="ng-binding">{{item.policyType}}</td>
+                                                    <td class="ng-binding">{{item.pOlicyno}}</td>
+                                                    <td class="ng-binding">{{item.totalPremium}}</td>
+                                                    <td class="ng-binding">{{item.entryDate}}</td>
+                                                    <td class="ng-binding">
+                                                        <a href="javascript:void(0)" 
+                                                           ng-click="GetPolicyPDF(item,'Motor')">Download</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="nav-Bike" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <section class="project-tab">
+                    <div class="leadDetlsTable margin15_T_B">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table table-bordered MainTable table-light" style="margin-bottom:0;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Contact</th>
+                                                    <th>Insurer</th>
+                                                    <th>User Name</th>
+                                                    <th>vahicle Type</th>
+                                                    <th>Vehicle</th>
+                                                    <th>Registration#</th>
+                                                    <th>Policy Type</th>
+                                                    <th>Policy#</th>
+                                                    <th>Amount</th>
+                                                    <th>Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in listProduct">
+                                                    <td class="ng-binding">{{item.mobile}}</td>
+                                                    <td class="ng-binding">{{item.companyname}}</td>
+                                                    <td class="ng-binding">{{item.userName}}</td>
+                                                    <td class="ng-binding">{{item.motorType}}</td>
+                                                    <td class="ng-binding">{{item.vehicle}}</td>
+                                                    <td class="ng-binding">{{item.vehicleNo}}</td>
+                                                    <td class="ng-binding">{{item.policyType}}</td>
+                                                    <td class="ng-binding">{{item.pOlicyno}}</td>
+                                                    <td class="ng-binding">{{item.totalPremium}}</td>
+                                                    <td class="ng-binding">{{item.entryDate}}</td>
+                                                    <td class="ng-binding">
+                                                        <a href="javascript:void(0)"
+                                                           ng-click="GetPolicyPDF(item,'Motor')">Download</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="nav-Health" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <section class="project-tab">
+                    <div class="leadDetlsTable margin15_T_B">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table table-bordered MainTable table-light" style="margin-bottom:0;">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>Contact</th>
+                                                    <th>Insurer</th>
+                                                    <th>User Name</th>
+                                                    <th>PolicyType</th>
+                                                    <th>Policy#</th>
+                                                    <th>TotalPremium</th>
+                                                    <th>CreatedDate</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in listProduct">
+                                                    <td class="ng-binding">{{item.mobile}}</td>
+                                                    <td class="ng-binding">{{item.companyname}}</td>
+                                                    <td class="ng-binding">{{item.userName}}</td>
+                                                    <td class="ng-binding">{{item.policyType}}</td>
+                                                    <td class="ng-binding">{{item.policyNumber}}</td>
+                                                    <td class="ng-binding">{{item.totalPremium}}</td>
+                                                    <td class="ng-binding">{{item.createdDate}}</td>
+                                                    <td class="ng-binding">
+                                                        <a href="javascript:void(0)"
+                                                           ng-click="GetPolicyPDF(item,'Health')">Download</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <p>Are you sure you want to take this action?</p>
+                        <button class="btn DeRgstrBTN">Yes</button> <button class="btn DeRgstrBTN">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

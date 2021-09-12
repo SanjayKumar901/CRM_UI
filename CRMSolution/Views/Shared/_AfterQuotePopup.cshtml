@@ -1,0 +1,190 @@
+﻿<div class="CreatUser CreatUser02 page-wrapper LeadDetailsPage open_Main">
+    <div class="container-fluid">
+        <div class="close closeBtn" ng-click="CloseEnquiryInfo()"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="parivaar-GetFullDetails">
+                            <div class="row proposalBox03">
+                                <div class="col-md-4">
+                                    <div class="proDetailsMM">
+                                        <div class="rowDetailsMM">
+                                            @*<img id="companylogo" ng-src="https://i.ibb.co/YkJdBVX/hdfc-logo.png" src="https://i.ibb.co/YkJdBVX/hdfc-logo.png">*@
+                                            <span id="CompanyName">{{AfterQuoteEnquiryInfo.companyName}} </span>
+                                            <span id="manufacturevehicleName">{{AfterQuoteEnquiryInfo.manufacturername}} </span>
+                                            <b><span id="FuelData"></span></b>
+                                            <span id="manufacturevehiclevariant">{{AfterQuoteEnquiryInfo.variantname}}</span>
+                                            <p>Fuel : Petrol </p>
+                                            <h4 class="enqueryNumber">
+                                                Enquiry#
+                                                <span id="EnquiryNo">{{AfterQuoteEnquiryInfo.enquiryno}}</span>
+                                            </h4>
+                                        </div>
+                                        <div class="rowDetailsMM rowDetailsMM01">
+                                            <img id="companylogo" ng-src="{{complogo}}">
+                                            <p>
+                                                Premium
+                                                <span id="netPremium">{{AfterQuoteEnquiryInfo.netPremium}}</span>
+                                            </p>
+                                            <p>
+                                                + GST (18%)
+                                                <span id="serviceTax">{{AfterQuoteEnquiryInfo.serviceTax}}</span>
+                                            </p>
+                                            <p class="totalP">
+                                                Total Premium
+                                                <span id="TotalPremium">{{AfterQuoteEnquiryInfo.totalPremium}}</span>
+                                            </p>
+
+
+                                        </div>
+                                        <div class="rowDetailsMM">
+                                            <p>
+                                                IDV
+                                                <span id="IDVData">{{AfterQuoteEnquiryInfo.idv}}</span>
+                                            </p>
+                                            <p>
+                                                Registration Date
+                                                <span id="RegistrationDate">{{AfterQuoteEnquiryInfo.registartionYear}}</span>
+                                            </p>
+                                            <p>
+                                                Policy Type
+                                                <span id="policyType">
+                                                    {{AfterQuoteEnquiryInfo.policytype}}
+                                                </span>
+                                            </p>
+                                            @*<p>
+                                                    Previous Policy Expiry Date
+                                                    <span id="previusPolicyExpiryDateProposal">21-Apr-2020</span>
+                                                </p>*@
+                                            <p>
+                                                Registration no :
+                                                <span id="vehicleno">
+                                                    {{AfterQuoteEnquiryInfo.vehicleNo}}
+                                                </span> <span id="rtocode">
+                                                    {{AfterQuoteEnquiryInfo.rtoname}}
+                                                </span>
+                                            </p>
+                                            <h4 class="enqueryNumber">
+                                                Role
+                                                <span id="fname" class="pull-right">{{AfterQuoteEnquiryInfo.rolename}}</span>
+                                            </h4>
+                                            <h4 class="enqueryNumber">
+                                                Role Name :
+                                                <span id="fname" class="pull-right"> {{AfterQuoteEnquiryInfo.userName}}</span>
+                                            </h4>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-8">
+                                    <div class="GF_DetBoxMain">
+                                        <div class="GF_DetBoxMainHead">
+                                            <h4><span id="enquiryno">Lead Details</span></h4>
+                                            <input type="button" value="Goto Payment" ng-show="IsNotPayment" 
+                                                   ng-click="GotoPayment()"/>
+                                        </div>
+                                        <div class="GF_DetBox">
+                                            <div class="GF_DetBox1">
+                                                <div class="GF_DetBoxHead">
+                                                    <h5 class="parivar">Personal Details</h5>
+                                                </div>
+                                                <ul>
+
+                                                    <li>
+                                                        <label>Full Name :</label>
+                                                        <span id="fname">{{AfterQuoteEnquiryInfo.firstname}}</span>&nbsp;
+                                                        <span id="lname">{{AfterQuoteEnquiryInfo.lastname}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label> EmailID : </label>
+                                                        <span id="email">{{AfterQuoteEnquiryInfo.email}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label>  ContactNo : </label>
+                                                        <span id="mobile">{{AfterQuoteEnquiryInfo.mobile}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label> Nominee Name : </label>
+                                                        <span id="nomineename">{{AfterQuoteEnquiryInfo.nomineename}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label>  DOB :</label>
+                                                        <span id="dob">{{AfterQuoteEnquiryInfo.dob}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label> Address: </label>
+                                                        <span id="addressLine1">{{AfterQuoteEnquiryInfo.addressline1}}</span>&nbsp;
+                                                        <span id="addressLine2">{{AfterQuoteEnquiryInfo.addressline2}}</span>&nbsp;
+                                                        <span id="addressLine3">{{AfterQuoteEnquiryInfo.addressline3}}</span>
+                                                    </li>
+                                                    @*<li>
+                                                        <label> City : </label>
+                                                        <span id="city">Delhi</span>
+                                                    </li>
+                                                    <li>
+                                                        <label> State : </label>
+                                                        <span id="statename">Delhi</span>
+                                                    </li>*@
+                                                    <li>
+                                                        <label> Pincode :</label>
+                                                        <span id="pin">{{AfterQuoteEnquiryInfo.pincode}}</span>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="GF_DetBox">
+                                            <div class="GF_DetBox3">
+                                                <div class="GF_DetBoxHead">
+                                                    <h5 class="parivar">Policy Details</h5>
+                                                </div>
+                                                <ul>
+
+
+                                                    @*<li>
+                                                        <label> PolicyExpiry Date : </label>
+                                                        <span id="policyenddate"></span>
+                                                    </li>*@
+                                                    <li>
+                                                        <label>  Policy For :</label>
+                                                        <span id="typeofmotor">{{AfterQuoteEnquiryInfo.motortype}}</span>
+                                                    </li>
+
+                                                    <li>
+                                                        <label>Product Type :</label>
+                                                        <span id="engineno">{{AfterQuoteEnquiryInfo.motortype}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label>Proposal# :</label>
+                                                        <span id="engineno">{{AfterQuoteEnquiryInfo.proposalNo}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label>Qoute# :</label>
+                                                        <span id="engineno">{{AfterQuoteEnquiryInfo.quoteNo}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label>  Engine# :</label>
+                                                        <span id="engineno">{{AfterQuoteEnquiryInfo.engineNo}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <label>  Chassis# :</label>
+                                                        <span id="engineno">{{AfterQuoteEnquiryInfo.chesisno}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

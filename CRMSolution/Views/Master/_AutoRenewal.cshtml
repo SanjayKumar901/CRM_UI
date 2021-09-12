@@ -1,0 +1,41 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <h2>Automatically Send Notification</h2>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <span>Mail Notification Setup :</span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2" ng-repeat="item in Renewaldaylist">
+                            <input type="checkbox" name="renewalsEmail" ng-checked="item.IsChecked" value="{{item.dayval}}" />{{item.day}}
+                            <input type="text" name="renewalsEmailMessage" value="{{item.Body}}" placeholder="{{item.day}} Message" />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3">
+                            <span>SMS Notification Setup :</span>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-2" ng-repeat="item in RenewaldaylistSMS">
+                            <div class="SMS_MSG_Box">
+                                <input type="checkbox" class="CheckMsg" name="renewalsSMS" ng-checked="item.IsChecked" value="{{item.dayval}}" />{{item.day}}
+                                <input type="text" class="Msg" name="renewalsSMSMessage" value="{{item.Body}}" placeholder="{{item.day}} Message" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="button" value="Save" ng-click="SaveNotificationSetup()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

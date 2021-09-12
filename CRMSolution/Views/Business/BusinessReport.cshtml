@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewData["Title"] = "HealthBusinessReport";
+}
+
+@*<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/BusinessReports.js"></script>*@
+<script src="/js/Business/BusinessReports.js"></script>
+
+
+<div class="page-wrapper open_Main" ng-controller="BusinessMaster">
+    <div class="container-fluid project-tab">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Business Report</h3>
+                </div>
+                <div class="col-md-6 text-right">
+
+                </div>
+            </div>
+        </section>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-Car-tab" data-toggle="tab"
+                   href="#nav-Motor" role="tab" aria-controls="nav-Motor" aria-selected="true"
+                   ng-click="tab('Motor')">
+                    Motor
+                </a>
+                <a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" href="#nav-Health"
+                   role="tab" aria-controls="nav-Health" aria-selected="false"
+                   ng-click="tab('Heath')">
+                    Health
+                </a>
+                <a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" href="#nav-Life"
+                   role="tab" aria-controls="nav-Life" aria-selected="false"
+                   ng-click="tab('Life')">
+                    Term Life
+                </a>
+                @*<a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" href="#nav-manualOffline"
+                   role="tab" aria-controls="nav-Health" aria-selected="false"
+                   ng-click="tab('manualOffline')">
+                    Manual Offline Motor
+                </a>
+                <a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" href="#nav-manualOfflineHLT"
+                   role="tab" aria-controls="nav-Health" aria-selected="false"
+                   ng-click="tab('manualOfflinehlt')">
+                    Manual Offline Health
+                </a>
+                <a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" href="#nav-GCVPCV"
+                   role="tab" aria-controls="nav-Health" aria-selected="false"
+                   ng-click="tab('GCVPCV')">
+                    GCV PCV
+                </a>
+                <a class="nav-item nav-link" href="/myaccount/Business/ConsolidateReport">
+            Goto Consolidate Report
+        </a>*@
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-Motor" role="tabpanel" aria-labelledby="nav-home-tab">
+                <partial name="_Motor" />
+            </div>
+            <div class="tab-pane fade" id="nav-Health" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <partial name="_Health" />
+            </div>
+            <div class="tab-pane fade" id="nav-Life" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <partial name="_OfflineLife" />
+            </div>
+            @*<div class="tab-pane fade" id="nav-GCVPCV" role="tabpanel" aria-labelledby="nav-home-tab">
+            <partial name="_GCVPCV" />
+        </div>
+        <div class="tab-pane fade" id="nav-manualOffline" role="tabpanel" aria-labelledby="nav-home-tab">
+            <partial name="_manualOffline" />
+        </div>
+        <div class="tab-pane fade" id="nav-manualOfflineHLT" role="tabpanel" aria-labelledby="nav-home-tab">
+            <partial name="_manualOfflineHLT" />
+        </div>*@
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <p>Are you sure you want to take this action?</p>
+                        <button class="btn DeRgstrBTN">Yes</button> <button class="btn DeRgstrBTN">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="IsAfterQuotePopup">
+        <partial name="_AfterQuotePopup" />
+    </div>
+    <div ng-show="IsHltAfterQuotePopup">
+        <partial name="_HLTAfterQuotePopup" />
+    </div>
+</div>
+

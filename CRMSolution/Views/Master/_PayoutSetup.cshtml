@@ -1,0 +1,117 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Payout Setting</h2>
+                </div>
+                @*<div class="col-md-2">
+                    <select ng-model="IrdaOrNonIrda" class="form-control">
+                        <option value="IRDA">IRDA</option>
+                        <option value="NonIRDA">Non IRDA</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select ng-model="payoutInsurer" class="form-control"
+                            ng-options="item.companyName for item in payoutInsurerlist"
+                            ng-change="SelectInsurerForPayout(payoutInsurer)">
+                        <option value="">Select Insurer</option>
+                    </select>
+                </div>*@
+                <div class="col-md-12">
+                    <div class="tableContainer">
+                        <table id="payouttable" class="table table-bordered table-light">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th width="120">IRDA</th>
+                                    <th>Insurer</th>
+                                    <th>Product</th>
+                                    <th>Range From</th>
+                                    <th>Range To</th>
+                                    <th>Payout</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in PayOutList">
+                                    <td>
+                                        <select name="User" class="theFilters">
+                                            <option ng-repeat="item in PayOutUserList" value="{{item.userid}}">{{item.userName}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="IRDA" class="theFilters">
+                                            <option value="IRDA">IRDA</option>
+                                            <option value="NonIRDA">Non IRDA</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="Insurer" class="theFilters" ng-model="temp[$index]" ng-change="SelectInsurerForPayout(temp[$index],$index)">
+                                            <option ng-repeat="item in payoutInsurerlist" value="{{item.companyID}}">{{item.companyName}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="Product" class="theFilters"  ng-model="tempopt[$index]" ng-change="SelectProductOption(tempopt[$index],$index)">
+                                            <option ng-repeat="item in PayOutProductList" value="{{item.ID}}">{{item.Name}}</option>
+                                        </select>
+                                            <select name="ProductOption" class="theFilters IsProductOption" style="display:none">
+                                                <option value="">Select Option</option>
+                                                <option value="STP">STP</option>
+                                                <option value="SOD">SOD</option>
+                                            </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="Range From" class="theFilters" name="RangeFrom" />
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="Range To" class="theFilters" name="RangeTo" />
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="Range To" class="theFilters" maxlength="2" name="Payout" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <input type="button" ng-click="GetpayoutRecord()" value="Get Payout Saved Data" class="btn btn-primary" />
+                    <input type="button" ng-click="addmorepayout()" value="Add Row" class="btn btn-primary" />
+                    <input type="button" ng-click="Savepayout()" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tableContainer">
+                        <table class="table table-bordered table-light">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Company Name</th>
+                                    <th>Product</th>
+                                    <th>From Range</th>
+                                    <th>To Range</th>
+                                    <th>Payout</th>
+                                    <th>Type Of Payout</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in CreatedPayoutList">
+                                    <td>{{item.userName}}</td>
+                                    <td>{{item.companyName}}</td>
+                                    <td>{{item.product}}</td>
+                                    <td>{{item.fromRange}}</td>
+                                    <td>{{item.toRange}}</td>
+                                    <td>{{item.payout}}</td>
+                                    <td>{{item.typeOfPayout}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

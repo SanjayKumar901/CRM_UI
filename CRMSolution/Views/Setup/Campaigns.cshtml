@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Campaigns";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/Campaigns.js"></script>
+<div class="page-wrapper mappedUser open_Main" ng-controller="campaign">
+    <div class="container-fluid">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Bulk Campaigns</h3>
+                </div>
+            </div>
+        </section>
+        <div class="MyProfileDet03Cnt createUserBox generateLinkBox">
+            <form>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <select ng-model="SelectRole" ng-options="item.roleName for item in RoleList"
+                                ng-change="changeRole(SelectRole)"
+                                class="theFilters">
+                            <option value="">Select Role</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <input type="text" ng-model="Subject" placeholder="Subject" name="textdemo" class="theFilters text-dark" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <textarea type="text" rows="4" ng-model="Message" placeholder="Message" class="theFilters h-auto text-dark" ></textarea>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-8">
+                        <label>
+                            <input type="button" ng-click="SendNotification()"
+                                   value="Submit"
+                                   class="btn allBtn" />
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div class="row form-group">
+            <div class="col-md-12">
+                <table id="tblusers" class="table table-bordered MainTable text-left table-light" s>
+                    <thead>
+                        <tr>
+                            <th>
+                                Slect All
+                                <input type="checkbox" ng-model="allcheckUser" />
+                            </th>
+                            <th>User Name</th>
+                            <th>User Email</th>
+                            <th>User Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in UserList">
+                            <td><input type="checkbox" ng-checked="allcheckUser" value="{{item.emailAddress}}" /></td>
+                            <td>{{item.userName}}</td>
+                            <td>{{item.emailAddress}}</td>
+                            <td>{{item.userType}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewData["Title"] = "Consolidate Report";
+}
+
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/Consolidate.js"></script>
+@*<script src="/js/Business/Consolidate.js"></script>*@
+
+
+
+<div class="container" ng-controller="Consolidate">
+    <section class="mngUserfirst">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Get upload missing policy</h3>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link w-auto active" id="nav-home-tab" data-toggle="tab" href="#Consolidate" role="tab" aria-controls="nav-home" aria-selected="false">Consolidate Report</a>
+            <a class="m-0 nav-item nav-link w-auto" id="nav-profile-tab" ng-click="tabOption('UserProgress')" data-toggle="tab" href="#UserProgress" role="tab" aria-controls="nav-profile" aria-selected="true">User Progress Report</a>
+        </div>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade active show" id="Consolidate" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="row">
+                <div class="col-md-4 mb-2">
+                    <select ng-model="SelectCons" class="form-control" ng-change="ChangeSection()">
+                        <option value="CurrentMonth">Current Month</option>
+                        <option value="TillDate">Till Date Inspection</option>
+                    </select>
+                </div>
+            </div>
+            <!--Current Month Report-->
+            <div class="row" ng-show="SelectCons=='CurrentMonth'">
+                <div class="col-md-4">
+                    <select ng-model="SelectmonthYear" class="form-control" ng-options="item.text for item in YearList" ng-change="ChangeMonthYearForMonthConsolidate()">
+                        <option value="">Select Year</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select ng-model="Selectmonthmonth" class="form-control" ng-options="item.text for item in MonthList" ng-change="ChangeMonthYearForMonthConsolidate()">
+                        <option value="">Select Year</option>
+                    </select>
+                </div>
+                <div class="col-md-12 text-center">
+                    <span class="Tableloader"></span>
+                    <section class="mngUserfirst mngUserfirstMapping">
+                        <div class="row">
+                            <div class="tableContainer">
+                                <table id="tblConsolidate" class="table table-striped table-bordered table-sm">
+                                    <thead class="thead-light"></thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!--End Current Month Report-->
+            <!--Current Year Report-->
+            <div class="row" ng-show="SelectCons=='TillDate'">
+                <div class="col-md-4">
+                    <select ng-model="SelectYear" class="form-control" ng-options="item.text for item in YearList" ng-change="ChangeSectedYear(SelectYear)">
+                        <option value="">Select Year</option>
+                    </select>
+                </div>
+                <div class="col-md-12 text-center">
+                    <span class="Tableloader"></span>
+                    <section class="mngUserfirst mngUserfirstMapping">
+                        <div class="tableContainer">
+                            <table id="tblyearConsolidate" class="table table-striped table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Region</th>
+                                        <th ng-repeat="item in monthList">{{item}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!--End Current Year Report-->
+            <div class="row">
+                
+                <table id="tblInfo" class="table table-bordered table-light">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Enquiry No</th>
+                            <th>Motor Type</th>
+                            <th>Policyno</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="UserProgress" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="row">
+                <div class="col-md-4">
+                    <select ng-model="SelectUserProgessYear" class="form-control" 
+                            ng-options="item.text for item in YearList" 
+                            ng-change="ChangeUserProgessConsolidate()">
+                        <option value="">Select Year</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <select ng-model="SelectUserProgessmonth" class="form-control"
+                            ng-options="item.text for item in MonthList" 
+                            ng-change="ChangeUserProgessConsolidate()">
+                        <option value="">Select Year</option>
+                    </select>
+                </div>
+                <div class="col-md-12 text-center">
+                    <section class="mngUserfirst mngUserfirstMapping">
+                        <span class="Tableloader"></span>
+                            <div class="tableContainer">
+                                <table class="table table-striped table-bordered table-sm">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Email Address</th>
+                                            <th>User Name</th>
+                                            <th>Role Name</th>
+                                            <th>Progress Report</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in UserProgresive">
+                                            <td>{{item.emailAddress}}</td>
+                                            <td>{{item.userName}}</td>
+                                            <td>{{item.roleName}}</td>
+                                            <td>
+                                                {{item.totalPremium}}
+                                                <span style="display:none">{{$index}}</span>
+                                                <div class="progress-barBox">
+                                                    <div class="ProgressBar" ng-init="configure($index,item.totalPremium)"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

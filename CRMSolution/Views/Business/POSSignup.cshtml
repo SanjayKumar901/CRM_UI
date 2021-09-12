@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Offline Update Policy";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/PosSignup.js"></script>
+@*<script src="/js/Business/PosSignup.js"></script>*@
+<div class="page-wrapper open_Main" ng-controller="PosSignup">
+    <div class="container-fluid">
+        <section class="mngUserSecond offlineUpdatePG">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" data-toggle="tab"
+                       href="#OfflinePolicy" role="tab" aria-controls="nav-Motor"
+                       aria-selected="true">
+                        Upload POS
+                    </a>
+                    <a id="manual" class="nav-item nav-link" data-toggle="tab" href="#ManualPolicyUpload"
+                       role="tab" aria-controls="nav-Health" aria-selected="false"
+                       ng-click="GetPosList()">
+                        POS List
+                    </a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="OfflinePolicy" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="file" class="theFilters" id="file" name="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                        </div>
+                        <div class="col-md-4">
+                            <input type="button" ng-click="UploadPosFile()" value="upload" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <br />
+                        <label id="lblSuccess" class="label alert-success"></label>
+                        <label id="lblError" class="label alert-danger"></label>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="ManualPolicyUpload" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    @*<div class="tableHeadRow">
+                                        <div class="row">
+                                            <div class="col-md-12 PadRight text-right">
+                                                <div class="row">
+
+                                                    <div class="col-md-2 right">
+                                                        <div class="theFilters theFiltersClndr reportrange">
+                                                            <span class="DateRangeShow BR"></span>
+                                                            <i class="fa fa-calendar"></i><b class="caret"></b>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="tableContainer">
+                                        <span class="Tableloader"></span>
+                                        <table class="table table-bordered MainTable table-light">
+                                            <thead>
+                                                <tr>
+                                                    <th>POS Code</th>
+                                                    <th>POS Name</th>
+                                                    <th>Sign Date</th>
+                                                    <th>Stamp ID</th>
+                                                    <th ng-show="IsEditDelRight">Setting</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="item in PosList">
+                                                    <td>{{item.posCode}}</td>
+                                                    <td>{{item.userName}}</td>
+                                                    <td>{{item.signDate | date:'MM/dd/yyyy'}}</td>
+                                                    <td>{{item.stampID}}</td>
+                                                    <td ng-show="IsEditDelRight">
+                                                        <div>
+                                                            <a href="javascript:void(0)" ng-click="Edit(item.userID)">Edit</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" tabindex="-1" id="loginModal"
+                 data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form ng-submit="UpdatePos()">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">
+                                    ×
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @*<form ng-submit="UpdatePos()">*@
+                                    <div class="form-group">
+                                        <label for="posCode">
+                                            POS Code
+                                        </label>
+                                        <input class="form-control" ng-model="viewPos.posCode" type="text"
+                                               placeholder="POS Code" disabled />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userName">
+                                            POS Name
+                                        </label>
+                                        <input class="form-control" ng-model="viewPos.userName" placeholder="POS Name"
+                                               type="text" disabled />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="signDate">
+                                            Sign Date
+                                        </label>
+                                        <input class="form-control" ng-model="viewPos.signDate" placeholder="Sign Date"
+                                               type="date" value="{{viewPos.signDate| date:'yyyy-MM-dd'}}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stampID">
+                                            Stamp ID
+                                        </label>
+                                        <input class="form-control" ng-model="viewPos.stampID" placeholder="Stamp Id"
+                                               type="text" />
+                                    </div>
+                                @*</form>*@
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary button button4">Save</button>
+                                <button type="button" id="btnHideModal" class="btn btn-primary button button4" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                            </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

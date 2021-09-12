@@ -1,0 +1,246 @@
+﻿@{
+    ViewData["Title"] = "Offline Update Policy";
+}
+<script src="~/js/assets/SelectDropdown/slick.js"></script>
+<script src="~/js/assets/SelectDropdown/select2.min.js"></script>
+<link href="~/js/assets/SelectDropdown/select2.min.css" rel="stylesheet" />
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/OfflineUpdateLifePolicy.js"></script>
+@*<script src="/js/Business/OfflineUpdateLifePolicy.js"></script>*@
+<div class="page-wrapper open_Main" ng-controller="OfflineBusiness">
+    <div class="container-fluid">
+        <section class="mngUserSecond offlineUpdatePG">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" data-toggle="tab"
+                       href="#OfflinePolicy" role="tab" aria-controls="nav-Motor"
+                       aria-selected="true">
+                        Offline Policy
+                    </a>
+                    <a id="manual" class="nav-item nav-link" data-toggle="tab" href="#ManualPolicyUpload"
+                       role="tab" aria-controls="nav-Health" aria-selected="false"
+                       ng-click="selectTab('ManualOffline')">
+                        Manual Policy Upload
+                    </a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="OfflinePolicy" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <select ng-model="selectPolicy"
+                                    class="theFilters"
+                                    ng-options="item.enquiryNo for item in PayProcessList"
+                                    ng-change="selectedPolicy(selectPolicy)">
+                                <option value="">Select Offline Policy</option>
+                            </select>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="theFilters" ng-model="PlanName" placeholder="PlanName" />
+                            <input type="text" class="theFilters" ng-model="BasePremium" placeholder="BasePremium" />
+                            <input type="text" class="theFilters" ng-model="TotalPremium" placeholder="TotalPremium" />
+                            <input type="text" class="theFilters" ng-model="CoverAmount" placeholder="CoverAmount" />
+                            <input type="text" class="theFilters" ng-model="PolicyNo" placeholder="PolicyNo" />
+                            <input type="text" class="theFilters" ng-model="Term" maxlength="1" placeholder="Term" />
+                        </div>
+                        <div class="col-md-12">
+                            <input type="button" ng-click="SuccessPolicy()" value="Save" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="ManualPolicyUpload" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    <form ng-submit="SaveManualPolicy()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select ng-model="SelectedUser" class="theFilters select2" id="UserActive" required=""
+                                        ng-options="item.emailAddress +' - '+ item.username for item in UserList">
+                                    <option value="">Select User</option>
+                                </select>
+                                <select ng-model="SelectedInsurer" class="theFilters" required=""
+                                        ng-options="item.companyName for item in InsurerList">
+                                    <option value="">Select Insurer</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="DetailsGroup">
+                                    <span class="GroupTitle">Personal Details</span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="POSCode" required="" maxlength="50" placeholder="POS Code" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="POSName" required="" maxlength="100" placeholder="POS Name" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="POSSource" required="" maxlength="100" placeholder="POS Source" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="ReportingManagerName" required="" maxlength="100" placeholder="Reporting Manager Name" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="RegionalManagerName" required="" maxlength="100" placeholder="Regional Manager Name" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="100" ng-model="CustName" placeholder="Customer Name" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="200" ng-model="Address" placeholder="Address" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            @*<small>State</small>*@
+                                            <select ng-model="SelectedState" class="theFilters" required=""
+                                                    ng-change="BindCities(SelectedState)"
+                                                    ng-options="item.statename for item in StateList">
+                                                <option value="">Select State</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            @*<small>City</small>*@
+                                            <select ng-model="SelectedCity" class="theFilters" required=""
+                                                    ng-options="item.cityName for item in CityList">
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="6" onkeypress="return OnlyNumAccept(event)"
+                                                   ng-model="Pin" placeholder="Pin Code" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="tel" class="theFilters" required="" maxlength="15" onkeypress="return OnlyNumAccept(event)"
+                                                   ng-model="PhoneNo" placeholder="Phone No" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="tel" class="theFilters" required="" maxlength="10" onkeypress="return OnlyNumAccept(event)"
+                                                   ng-model="MobileNo" placeholder="Mobile No" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="email" class="theFilters" required="" maxlength="100" ng-model="Email" placeholder="Email Id" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <small>Date of Birth</small>
+                                            <input type="date" class="theFilters" ng-model="DOB" required="" max="{{MaxDOB}}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="DetailsGroup">
+                                    <span class="GroupTitle">Policy Details</span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @*<small>Product Type</small>*@
+                                            <select ng-model="ProductType" class="theFilters" required="">
+                                                <option value="">Product Type</option>
+                                                <option value="Term">Term</option>
+                                                <option value="Investment">Investment</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="5" ng-model="Product" placeholder="Product" disabled />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="50" ng-model="ProductName" placeholder="Product Name" disabled />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="PolicyTerm" required="" placeholder="Policy Term" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="PremiumPayingTerm" required="" placeholder="Premium Paying Term" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            @*<small>Premium Paying Frequency</small>*@
+                                            <select ng-model="PremiumPayingFrequency" class="theFilters" required="">
+                                                <option value="">Premium Paying Frequency</option>
+                                                <option value="One Time">One Time</option>
+                                                <option value="Annual">Annual</option>
+                                                <option value="Half Yearly">Half Yearly</option>
+                                                <option value="Quarterly">Quarterly</option>
+                                                <option value="Monthly">Monthly</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                           @* <small>Business Type</small>*@
+                                            <select ng-model="BusinessType" class="theFilters" required="">
+                                                <option value="">Business Type</option>
+                                                <option value="New">New</option>
+                                                <option value="Renewal">Renewal</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="PolicyNumber"
+                                                   onkeypress="return NotSpecialCharAccept(event)" required="" maxlength="50" placeholder="Policy No" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <small>Start Date</small><br />
+                                            <input type="date" class="theFilters" ng-model="StartDate" required="" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <small>End Date</small><br />
+                                            <input type="date" class="theFilters" ng-model="EndDate" required="" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <small>Policy Issue Date</small><br />
+                                            <input type="date" class="theFilters" ng-model="PolicyIssueDate" required="" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="SumAssured" required="" placeholder="Sum Assured" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="NetPremium" required="" placeholder="Net Premium" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="GST" required="" maxlength="7" placeholder="GST" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="TotalPremium" required="" placeholder="Total Premium" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            @*<small>Product Issuance Type</small>*@
+                                            <select ng-model="ProductIssuanceType" class="theFilters" required="">
+                                                <option value="">Product Issuance Type</option>
+                                                <option value="B2B">B2B</option>
+                                                <option value="B2C">B2C</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            @*<small>POSP Product</small>*@
+                                            <select ng-model="POSPProduct" class="theFilters" required="">
+                                                <option value="">POSP Product</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <input type="file" class="theFilters" id="manualfile" accept="application/pdf"/>
+                                            <small class="fileUpload">Upload Policy Copy</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="DetailsGroup DetailsGroupPay">
+                                    <span class="GroupTitle">Bulk Option</span>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="file" class="theFilters" id="Bulkfile" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="button" ng-click="uploadbulkData()" value="Upload Data in Bulk" class="btn btn-primary btn-block" />
+                                        </div>
+                                        <div class="col-md-12">
+                                            <a href="/Download/ManualOfflineLifePolicy.csv" target="_blank">Get Sample File</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Save" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

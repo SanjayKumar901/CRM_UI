@@ -1,0 +1,175 @@
+﻿
+<div class="row">
+    <div class="col-md-3 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <select ng-model="MailServer"
+                    class="theFilters"
+                    ng-change="SelectMailServer(MailServer)"
+                    ng-options="item.optionName for item in MailserverOptionList">
+                <option value="">Select Mail Option</option>
+            </select>
+            <select ng-model="RoleType" ng-show="MailServer.mailServiceMaster == 'CreateUser'"
+                    ng-change="SelectedRoleTypeConfig(RoleType)"
+                    class="theFilters"
+                    ng-options="item.rolename for item in RoleTypeList">
+                <option value="">Select Mail Option</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-6 MPD03_Box">
+        <div class="MyProfileDet03Cnt createUserBox generateLinkBox">
+            <form>
+                <h2>{{MailServer.optionName}}</h2>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-5">
+                        <label class="demo-label" for="textdemo">Host Name :</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="input-wrap">
+                            <input type="text" name="textdemo" ng-model="HostName" size="20" value="" class="textdemo textdemo2">
+                        </div>
+                    </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-5">
+                        <label class="demo-label" for="textdemo">Port :</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="input-wrap">
+                            <input type="number" name="textdemo" ng-model="Port" maxlength="6" value="" class="textdemo textdemo2">
+                        </div>
+                    </div>
+                </div>
+                @*<div class="row MyProfileDet03CntServer">
+                        <div class="col-md-5">
+                            <label class="demo-label" for="textdemo">Sender E-Mail Address :</label>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="input-wrap">
+                                <input type="text" name="textdemo"  value="" class="textdemo textdemo2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row MyProfileDet03CntServer">
+                        <div class="col-md-5">
+                            <label class="demo-label" for="textdemo"> Access URL :</label>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="input-wrap">
+                                <input type="text" name="textdemo" size="20" value="" class="textdemo textdemo2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row MyProfileDet03CntServer">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <ul>
+                                <li>
+                                    <input type="checkbox" class="MailServerSetting">
+                                    Required Authentication
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row MyProfileDet03CntServer">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <ul>
+                                <li>
+                                    <input type="radio" class="MailServerSetting">
+                                    Specify a Ussername & Password Manually
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row MyProfileDet03CntServer">
+                        <div class="col-md-5">
+
+                        </div>
+                        <div class="col-md-7">
+                            <ul>
+                                <li>
+                                    <input type="radio" class="MailServerSetting">
+                                    Use an Account Stored in Password Manager Pro !
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-5">
+                        <label class="demo-label" for="textdemo"> From Email :</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="input-wrap">
+                            <input type="text" name="textdemo" ng-model="FromEmail" size="70" value="" class="textdemo textdemo2">
+                        </div>
+                    </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-5">
+                        <label class="demo-label" for="textdemo"> User Name :</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="input-wrap">
+                            <input type="text" name="textdemo" ng-model="UserName" size="70" value="" class="textdemo textdemo2">
+                        </div>
+                    </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-5">
+                        <label class="demo-label" for="textdemo"> Password :</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="input-wrap">
+                            <input type="text" name="textdemo" ng-model="Password" size="30" value="" class="textdemo textdemo2">
+                        </div>
+                    </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-5">
+                        <label class="demo-label" for="textdemo"> Use Secure Connection :</label>
+                    </div>
+                    <div class="col-md-7">
+                        <ul>
+                            @*<li>
+                                    <input type="radio" class="MailServerSetting">
+                                    Never
+                                </li>
+                                <li>
+                                    <input type="radio" class="MailServerSetting">
+                                    TLC
+                                </li>*@
+                            <li>
+                                <input type="checkbox" ng-model="EnableSsl" class="MailServerSetting">
+                                SSL
+                            </li>
+                            <li>
+                                <input type="checkbox" ng-model="UseDefaultCredential" class="MailServerSetting">
+                                Default Credential
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-5">
+
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" ng-click="TestMailServer()" class="btn btn-block" value="Test Connection">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="button" ng-click="SaveMailServer()" ng-disabled="IsSaveMailserver" class="btn btn-block" value="Save">
+                    </div>
+                </div>
+                <div class="row MyProfileDet03CntServer">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,332 @@
+﻿<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/MasterVehicleSetup.js"></script>
+<div ng-controller="mastervehicle">
+    
+    <!-- ============================================================== -->
+    <div class="page-wrapper ng-scope mappedUser open_Main">
+        <div class="container-fluid">
+            <section class="mngUserfirst">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Master Manufacturer</h3>
+                    </div>
+                </div>
+            </section>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="Manufacturer-tab" data-toggle="tab" href="#Manufacturer" role="tab" aria-controls="nav-Car" aria-selected="true">Manufacturer</a>
+                    <a class="nav-item nav-link" id="Vehicle-tab" data-toggle="tab" 
+                       ng-click="CallVehicle()"
+                       href="#Vehicle" role="tab" aria-controls="nav-Bike" aria-selected="false">Vehicle</a>
+                    <a class="nav-item nav-link" id="Variant-tab" data-toggle="tab" href="#Variant" 
+                       ng-click="CallVariants()"
+                       role="tab" aria-controls="nav-Bike" aria-selected="false">Variant</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="Manufacturer" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <section class="mngUserfirst mngUserfirstMapping">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="manageUserFLT">
+                                            <div class="row">
+                                                <div class="col-md-3 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <input type="text" 
+                                                               ng-model="ManufacturerName"
+                                                               placeholder="Manufacturer" 
+                                                               class="theFiltersBulk theFilters"
+                                                               style="border:1px solid #666;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <label><input type="checkbox" ng-model="IsPc" />Car<br /></label>
+                                                        <label><input type="checkbox" ng-model="IsBike" />Bike</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="ActiveCase MasterMnfBox">
+                                                        <label>
+                                                            <input type="radio" name="Active" value="true" /> <span>Active</span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="Active" value="false" /> <span>InActive</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 text-left">
+                                                    <div class="input-wrap MasterMnfBox ActiveCaseBtn">
+                                                        <button class="btn" ng-click="saveManufacture()">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="leadDetlsTable margin15_T_B">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="tableContainer">
+                                                <table class="table table-bordered MainTable text-left table-light" s>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Manufacture</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="item in ManufacturerList">
+                                                            <td>{{item.manufacturername}}</td>
+                                                            <td>{{item.isActive}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Vehicle" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <section class="mngUserfirst mngUserfirstMapping">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="manageUserFLT">
+                                            <div class="row">
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <select ng-model="selectvehilceType"
+                                                                class="theFiltersBulk theFilters">
+                                                            <option value="">Vehicle Type</option>
+                                                            <option value="PrivateCar">Private Car</option>
+                                                            <option value="TwoWheeler">Two Wheeler</option>
+                                                            <option value="GCV">Goods Carrying</option>
+                                                            <option value="PCV">Passenger Carrying</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <select id="ChooseBulk" class="theFiltersBulk theFilters"
+                                                                ng-model="selectManufacturer"
+                                                                ng-options="item.manufacturername for item in ManufacturerList">
+                                                            <option value="">Manufacturer</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <input type="text" placeholder="Vehicle" 
+                                                               ng-model="VehicleName"
+                                                               class="theFiltersBulk theFilters" style="border:1px solid #666;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="ActiveCase MasterMnfBox">
+                                                        <label>
+                                                            <input type="radio" name="VActive" value="true" /> <span>Active</span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="VActive" value="false" /> <span>InActive</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 text-left">
+                                                    <div class="input-wrap MasterMnfBox ActiveCaseBtn">
+                                                        <button class="btn" ng-click="saveVehicle()">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="leadDetlsTable margin15_T_B">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="tableContainer">
+                                                <table class="table table-bordered MainTable text-left table-light" s>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Vehicle Type</th>
+                                                            <th>Manufacturer</th>
+                                                            <th>Vehicle</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="item in VehicleList">
+                                                            <td>{{item.vehicleType}}</td>
+                                                            <td>{{item.manufacturername}}</td>
+                                                            <td>{{item.vehicleName}}</td>
+                                                            <td>{{item.isActive}}</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Variant" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <section class="mngUserfirst mngUserfirstMapping">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="manageUserFLT">
+                                            <div class="row">
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <select ng-model="selectvehilceTypevar"
+                                                                class="theFiltersBulk theFilters">
+                                                            <option value="">Vehicle Type</option>
+                                                            <option value="PrivateCar">Private Car</option>
+                                                            <option value="TwoWheeler">Two Wheeler</option>
+                                                            <option value="GCV">Goods Carrying</option>
+                                                            <option value="PCV">Passenger Carrying</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <select class="theFiltersBulk theFilters"
+                                                                ng-model="selectManufacturervar"
+                                                                ng-change="changeselectManufacturer(selectManufacturervar)"
+                                                                ng-options="item.manufacturername for item in ManufacturerList">
+                                                            <option value="">Manufacturer</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <select class="theFiltersBulk theFilters"
+                                                                ng-model="selectVehilcevar"
+                                                                ng-options="item.vehicleName for item in selectedVehilceList">
+                                                            <option value="">Vehicle</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <select id="ChooseBulk"
+                                                                ng-model="selectFuel"
+                                                                ng-options="item.fuelName for item in FuelList"
+                                                                class="theFiltersBulk theFilters">
+                                                            <option value="">Fuel</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <input type="text" placeholder="Variant"
+                                                               ng-model="VariantName"
+                                                               class="theFiltersBulk theFilters" style="border:1px solid #666;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <input type="text" placeholder="Variant CC" class="theFiltersBulk theFilters"
+                                                               ng-model="VariantCC"
+                                                               style="border:1px solid #666;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <input type="text" placeholder="Seating Capacity" class="theFiltersBulk theFilters"
+                                                               ng-model="SeatingCapacity"
+                                                               style="border:1px solid #666;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox">
+                                                        <input type="text" placeholder="ExShowroom Price" class="theFiltersBulk theFilters"
+                                                               ng-model="ExShowroomPrice"
+                                                               style="border:1px solid #666;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 PadRight">
+                                                    <div class="MasterMnfBox ActiveCase">
+                                                        <label>
+                                                            <input type="radio" name="varActive" /> <span>Active</span>
+                                                        </label>
+                                                        <label>
+                                                            <input type="radio" name="varActive" /> <span>InActive</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 text-left">
+                                                    <div class="input-wrap MasterMnfBox ActiveCaseBtn">
+                                                        <button class="btn" ng-click="SaveVariant()">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="leadDetlsTable margin15_T_B">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="tableContainer">
+                                                <table class="table table-bordered MainTable text-left table-light" s>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Vehicle Type</th>
+                                                            <th>Manufacturer</th>
+                                                            <th>Vehicle</th>
+                                                            <th>Fuel</th>
+                                                            <th>Variant</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="item in VariantList">
+                                                            <td>{{item.vehicleType}}</td>
+                                                            <td>{{item.manufacturerName}}</td>
+                                                            <td>{{item.vehicleName}}</td>
+                                                            <td>{{item.fuelName}}</td>
+                                                            <td>{{item.variantName}}</td>
+                                                            <td>{{item.isActive}}</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <script type="text/javascript">
+
+
+        $('#City').hide();
+        $('#roleType').change(function () {
+            debugger;
+            if ($('#roleType').val() == '25') {
+                $('#City').show();
+            } else {
+                $('#City').hide();
+            }
+        });
+    </script>
+</div>

@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "LifePolicy";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/LifePolicy.js"></script>
+<div ng-controller="LifePolicy">
+    <div class="page-wrapper ng-scope mappedUser open_Main">
+        <div class="container-fluid">
+            <div class="MyProfileDet03Cnt createUserBox generateLinkBox">
+                <form>
+                    <div class="row">
+                        <input type="text" ng-model="FilterwithMobile" placeholder="Search With Mobile Number" ng-blur="Filter(FilterwithMobile)" class="textdemo" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select ng-model="EnquiryNo"
+                                    class="theFilters"
+                                    ng-options="item.enquiryNo for item in EnquiryList">
+                                <option value="">Select Enquiry</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="AddressLine1" class="textdemo">
+                            <label class="demo-label" for="textdemo">AddressLine1</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="AddressLine2" class="textdemo">
+                            <label class="demo-label" for="textdemo">AddressLine2</label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="AddressLine3" class="textdemo">
+                            <label class="demo-label" for="textdemo">AddressLine3</label>
+                        </div>
+                        <div class="col-md-3">
+                            <select ng-model="Cityid"
+                                    ng-options="item.CityName for item in CityList"
+                                    class="theFilters">
+                                <option value="">Select City</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select ng-model="StateID"
+                                    ng-options="item.StateName for item in StateList"
+                                    ng-change="BindCIties(StateID)"
+                                    class="theFilters">
+                                <option value="">Select State</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PinCode" class="textdemo">
+                            <label class="demo-label" for="textdemo">PinCode </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="ProposalNo" class="textdemo">
+                            <label class="demo-label" for="textdemo">ProposalNo </label>
+                        </div>
+                        <div class="col-md-3">
+                            <select ng-model="CompanyID"
+                                    class="theFilters"
+                                    ng-options="item.companyName for item in CompList">
+                                <option value="">Select Company</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="date" name="textdemo" placeholder="YourAge" ng-model="YourAge" class="textdemo">
+                        </div>
+                        <div class="col-md-3">
+                            <select ng-model="Gender"
+                                    class="theFilters">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="SmokeStaus" class="textdemo">
+                            <label class="demo-label" for="textdemo">SmokeStaus </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="AnnualInCome" class="textdemo">
+                            <label class="demo-label" for="textdemo">AnnualInCome </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PreferredCover" class="textdemo">
+                            <label class="demo-label" for="textdemo">PreferredCover </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="CoverageAge" class="textdemo">
+                            <label class="demo-label" for="textdemo">CoverageAge </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PolicyType" class="textdemo">
+                            <label class="demo-label" for="textdemo">PolicyType </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PaymentID" class="textdemo">
+                            <label class="demo-label" for="textdemo">PaymentID </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="SumAsured" class="textdemo">
+                            <label class="demo-label" for="textdemo">SumAsured </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="BasePremium" class="textdemo">
+                            <label class="demo-label" for="textdemo">BasePremium </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="GrossPremium" class="textdemo">
+                            <label class="demo-label" for="textdemo">GrossPremium </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="TaxAmount" class="textdemo">
+                            <label class="demo-label" for="textdemo">TaxAmount </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="TotalPremium " class="textdemo">
+                            <label class="demo-label" for="textdemo">TotalPremium </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="Discount" class="textdemo">
+                            <label class="demo-label" for="textdemo">Discount </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="DiscountPercentage" class="textdemo">
+                            <label class="demo-label" for="textdemo">DiscountPercentage </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PolicyTerm" class="textdemo">
+                            <label class="demo-label" for="textdemo">PolicyTerm </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PolicyNo" class="textdemo">
+                            <label class="demo-label" for="textdemo">PolicyNo </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PolicyDocUrl" class="textdemo">
+                            <label class="demo-label" for="textdemo">PolicyDocUrl </label>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="textdemo" placeholder=" " ng-model="PolicyRemark" class="textdemo">
+                            <label class="demo-label" for="textdemo">PolicyRemark </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="button" value="Submit" ng-click="Submit()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

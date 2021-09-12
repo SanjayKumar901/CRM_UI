@@ -1,0 +1,277 @@
+﻿@{
+    ViewData["Title"] = "MyRenewal";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/ManageUsers.js"></script>
+
+
+
+<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
+    <!-- ============================================================== -->
+    <div class="page-wrapper ng-scope open_Main" id="main" ng-controller="CRMIndex" style="display: block;">
+        <div class="container">
+            <section class="mngUserfirst">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Renewals Dashboard</h3>
+                    </div>
+                    <div class="col-md-6 text-right">
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="project-tab">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-Car-tab" data-toggle="tab" href="#nav-Car" role="tab" aria-controls="nav-Car" aria-selected="true">Car</a>
+                        <a class="nav-item nav-link" id="nav-Bike-tab" data-toggle="tab" href="#nav-Bike" role="tab" aria-controls="nav-Bike" aria-selected="false">Bike</a>
+                        <a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" href="#nav-Health" role="tab" aria-controls="nav-Health" aria-selected="false">Health</a>
+                        <a class="nav-item nav-link" id="nav-Travel-tab" data-toggle="tab" href="#nav-Travel" role="tab" aria-controls="nav-Travel" aria-selected="false">Travel</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-Car" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="leadDetlsTable margin15_T_B">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="tableHeadRow">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="manageUserFLT">
+                                                            <select class="theFilters DisplayBlock" ng-model="Region" ng-options="item.region for item in Regions" ng-change="changeRegion(Region)">
+                                                                <option selected="selected" value="0">Please Select</option>
+                                                                <option value="TodaySale">Employee Name</option>
+                                                                <option value="TotalBusiness">Employee Name</option>
+                                                                <option value="MotorBusiness">Employee Name</option>
+                                                                <option value="TwoWheelerBusiness">Employee Name</option>
+                                                                <option value="SaleByPoS">Employee Name</option>
+                                                                <option value="BusinessByCommercial">Employee Name</option>
+                                                                <option value="SaleByVehicles">Employee Name</option>
+                                                                <option value="DirectBusiness">Employee Name</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div id="reportrange" ng-click="getDateRangeValue('LeadReport')" class="theFilters RenewalDate">
+                                                            <i class="fa fa-calendar"></i> <span>May 25, 2020 - May 25, 2020</span><b class="caret"></b>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <button class="btn RenewalDateBtn">Get Data</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-Bike" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="leadDetlsTable margin15_T_B">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="tableHeadRow">
+                                                <div class="row">
+                                                    <div class="col-md-6 PadRight">
+                                                        <div class="manageUserFLT">
+                                                            <div class="alct-data3">
+                                                                <select class="theFilters ng-pristine ng-valid ng-empty ng-touched" ng-model="Region" ng-options="item.region for item in Regions" ng-change="changeRegion(Region)">
+                                                                    <option selected="selected" value="0">Please Select</option>
+                                                                    <option value="TodaySale">Today Sale</option>
+                                                                    <option value="TotalBusiness">Total Business</option>
+                                                                    <option value="MotorBusiness">Four Wheeler Business</option>
+                                                                    <option value="TwoWheelerBusiness">TwoWheeler Business</option>
+                                                                    <option value="SaleByPoS">Business By PoS</option>
+                                                                    <option value="BusinessByCommercial">Business By Commercial</option>
+                                                                    <option value="SaleByVehicles">Sale By Vehicles</option>
+                                                                    <option value="DirectBusiness">Direct Business</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 PadRight text-right">
+                                                        <div id="reportrange" ng-click="getDateRangeValue('LeadReport')" class="pull-right theFilters">
+                                                            <i class="fa fa-calendar"></i> <span>May 25, 2020 - May 25, 2020</span><b class="caret"></b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-Health" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="leadDetlsTable margin15_T_B">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="tableHeadRow">
+                                                <div class="row">
+                                                    <div class="col-md-6 PadRight">
+                                                        <div class="manageUserFLT">
+                                                            <div class="alct-data3">
+                                                                <select class="theFilters ng-pristine ng-valid ng-empty ng-touched" ng-model="Region" ng-options="item.region for item in Regions" ng-change="changeRegion(Region)">
+                                                                    <option selected="selected" value="0">Please Select</option>
+                                                                    <option value="TodaySale">Today Sale</option>
+                                                                    <option value="TotalBusiness">Total Business</option>
+                                                                    <option value="MotorBusiness">Four Wheeler Business</option>
+                                                                    <option value="TwoWheelerBusiness">TwoWheeler Business</option>
+                                                                    <option value="SaleByPoS">Business By PoS</option>
+                                                                    <option value="BusinessByCommercial">Business By Commercial</option>
+                                                                    <option value="SaleByVehicles">Sale By Vehicles</option>
+                                                                    <option value="DirectBusiness">Direct Business</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 PadRight text-right">
+                                                        <div id="reportrange" ng-click="getDateRangeValue('LeadReport')" class="pull-right theFilters">
+                                                            <i class="fa fa-calendar"></i> <span>May 25, 2020 - May 25, 2020</span><b class="caret"></b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-Travel" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <div class="leadDetlsTable margin15_T_B">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="tableHeadRow">
+                                                <div class="row">
+                                                    <div class="col-md-6 PadRight">
+                                                        <div class="manageUserFLT">
+                                                            <div class="alct-data3">
+                                                                <select class="theFilters ng-pristine ng-valid ng-empty ng-touched" ng-model="Region" ng-options="item.region for item in Regions" ng-change="changeRegion(Region)">
+                                                                    <option selected="selected" value="0">Please Select</option>
+                                                                    <option value="TodaySale">Today Sale</option>
+                                                                    <option value="TotalBusiness">Total Business</option>
+                                                                    <option value="MotorBusiness">Four Wheeler Business</option>
+                                                                    <option value="TwoWheelerBusiness">TwoWheeler Business</option>
+                                                                    <option value="SaleByPoS">Business By PoS</option>
+                                                                    <option value="BusinessByCommercial">Business By Commercial</option>
+                                                                    <option value="SaleByVehicles">Sale By Vehicles</option>
+                                                                    <option value="DirectBusiness">Direct Business</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 PadRight text-right">
+                                                        <div id="reportrange" ng-click="getDateRangeValue('LeadReport')" class="pull-right theFilters">
+                                                            <i class="fa fa-calendar"></i> <span>May 25, 2020 - May 25, 2020</span><b class="caret"></b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="project-tab">
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="tableHeadRow">
+                                        <div class="row">
+                                            <div class="col-md-6 PadRight">
+                                                <div class="contnt-div">
+                                                    <span class="inquiry-text">Total Renewal</span>
+                                                    <span id="totalUser">2615</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 text-right">
+                                                <div class="row">
+                                                    <div class="col-md-12 text-right">
+                                                        <div class="input-wrap">
+                                                            <input type="text" name="Search" class="textdemo" placeholder="Search..."> <i class="fa fa-search"></i>
+                                                            <label class="demo-label" for="Search"></label>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered MainTable table-light" s>
+                                        <thead>
+                                            <tr>
+
+                                                <th>Employee Name</th>
+                                                <th>Name</th>
+                                                <th>Mobile</th>
+                                                <th>Email</th>
+                                                <th>Vehicle</th>
+                                                <th>Reg. No.</th>
+                                                <th>Insurer</th>
+                                                <th>Premium</th>
+                                                <th>Policy Date</th>
+                                                <th colspan="2">Policy No.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- ngRepeat: lead in LeadDetailGrid -->
+                                            <tr>
+
+                                                <td class="ng-binding">Pankaj Kumar</td>
+                                                <td class="ng-binding">Pankaj Kumar</td>
+                                                <td class="ng-binding">8787878787</td>
+                                                <td class="ng-binding">example.info@stargroupindia.com</td>
+                                                <td class="ng-binding">Hoyundai Creta CRDIS Plus</td>
+                                                <td class="ng-binding">HR25AD4545</td>
+                                                <td class="ng-binding">HDFC</td>
+                                                <td class="ng-binding">1000000</td>
+                                                <td class="ng-binding">05-25-2020</td>
+                                                <td class="ng-binding">MJ4454547</td>
+                                                <td class="ng-binding"><a href="#">Renew</a></td>
+
+                                            </tr><!-- end ngRepeat: lead in LeadDetailGrid -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+
+                        <div class="modal-body text-center">
+                            <p>Are you sure you want to take this action?</p>
+
+                            <button class="btn DeRgstrBTN">Yes</button> <button class="btn DeRgstrBTN">No</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

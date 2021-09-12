@@ -1,0 +1,43 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Replace User</h2>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <select ng-model="SelectExistRole" ng-options="item.rolename for item in ExistRoleList"
+                            ng-change="BindUserList()">
+                        <option value="">Select Role</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select ng-model="SelectExistUser" ng-options="item.userName for item in ExistUserList"
+                            ng-change="selectedExistUser()">
+                        <option value="">Select User</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <input type="text" ng-model="ReplaceUserName" placeholder="Replace Email" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="ReplaceEmail" placeholder="Replace Email" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="ReplaceMobileNo" placeholder="Replace MobileNo" />
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="ReplaceRmCode" placeholder="Replace RmCode" />
+                </div>
+            </div>
+            <div class="row">
+                <input type="button" value="Save Data" ng-click="UpdateExistingUser()" />
+            </div>
+        </div>
+    </div>
+</div>

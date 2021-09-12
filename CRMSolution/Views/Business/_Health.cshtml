@@ -1,0 +1,167 @@
+﻿
+
+<section class="mngUserSecond">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="manageUserFLT">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="contnt-div">
+                            <span class="inquiry-text">Total NoPS</span>
+                            <span id="totalUser">{{HealthHeaderBusinessHeader[0].totalNoPs}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="contnt-div">
+                            <span class="inquiry-text">Total Business</span>
+                            <span id="totalUser">{{HealthHeaderBusinessHeader[0].totalCollection}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="contnt-div">
+                            <span class="inquiry-text">Today Nops</span>
+                            <span id="totalUser">{{HealthHeaderBusinessHeader[0].todayNoPs}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="contnt-div">
+                            <span class="inquiry-text">Today Business</span>
+                            <span id="totalUser">{{HealthHeaderBusinessHeader[0].todayCollection}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-4 pull-right">
+            <div class="manageUserFLT">
+                <div class="alct-data3">
+                    <select class="theFilters" ng-model="HealthBusinessFilter"
+                            ng-change="HealthFilter(HealthBusinessFilter)">
+                        <option selected="selected" value="">Please Select</option>
+                    </select>
+                </div>
+            </div>
+        </div>*@
+    </div>
+</section>
+<section class="project-tab">
+    <div class="leadDetlsTable margin15_T_B">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tableHeadRow">
+                            <div class="row">
+                                <div class="col-md-12 PadRight text-right">
+                                    <div class="row">
+                                        <div class="col-md-3 text-left BR_ShowingData">
+                                            <span>Showing NOP : </span>
+                                            <span>{{HealthBusinessReport.length}}</span>
+                                        </div>
+                                        <div class="col-md-3 text-left BR_ShowingData">
+                                            <span>Showing Total Business : </span>
+                                            <span>{{sumbusiness}}</span>
+                                        </div>
+                                        <div class="col-md-4 text-right">
+                                            <div class="input-wrap">
+                                                <input type="text" ng-model="HealthBusinessFilterTXT"
+                                                       ng-change="HealthFilter(HealthBusinessFilterTXT)"
+                                                       name="Search" class="textdemo" placeholder="Search...">
+                                                <i class="fa fa-search"></i>
+                                                <label class="demo-label" for="Search"></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="theFilters theFiltersClndr reportrange">
+                                                <span class="DateRangeShow BR"></span>
+                                                <i class="fa fa-calendar"></i><b class="caret"></b>
+                                            </div>
+                                            <div class="ml-auto threeDotted">
+                                                <div class="dropdown sub-dropdown">
+                                                    <button class="btn btn-link text-muted dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+                                                    </button>
+                                                    <div ng-show="IsDownload" class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-134px, 27px, 0px);">
+                                                        <a class="dropdown-item" ng-click="DownloadMotorReport()"
+                                                           href="javascript:void(0)">Download</a>
+                                                        <a class="dropdown-item" href="javascript:void(0)">Email</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tableContainer">
+                            <span class="Tableloader"></span>
+
+                            <table class="table table-bordered MainTable table-light" s>
+                                <thead>
+                                    <tr>
+                                        <th>Mobile</th>
+                                        <th>UserName</th>
+                                        <th>CustomerName</th>
+                                        <th>Role name</th>
+                                        <th>Company Name</th>
+                                        <th>PolicyType</th>
+                                        <th>AdultCount</th>
+                                        <th>ChildCount</th>
+                                        <th>PlanName</th>
+                                        <th>Lead Source</th>
+                                        @*<th>Policy</th>*@
+                                        <th>Referal Code</th>
+                                        <th>Policy Number</th>
+                                        <th>TotalPremium</th>
+                                        <th>CreatedDate</th>
+                                        <th>Lead Source</th>
+                                        <th>Setting</th>
+                                        @*<th>Path</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in HealthBusinessReport">
+                                        <td><a href="javascript:void(0)" ng-click="ShowDetails('HLT',item.enquiryNo)">{{item.mobile}}</a></td>
+                                        <td><a href="javascript:void(0)" ng-click="ShowDetails('HLT',item.enquiryNo)">{{item.userName}}</a></td>
+                                        <td>{{item.customerName}}</td>
+                                        <td>{{item.rolename}}</td>
+                                        <td>{{item.companyName}}</td>
+                                        <td>{{item.policyType}}</td>
+                                        <td>{{item.adultCount}}</td>
+                                        <td>{{item.childCount}}</td>
+                                        <td>{{item.planName}}</td>
+                                        <td>{{item.leadSource}}</td>
+                                        @*<td>{{item.proposalNo}}</td>*@
+                                        <td>{{item.referCode}}</td>
+                                        <td>
+                                            <div ng-show="item.leadSource!='Manual Offline'">
+                                                <a href="javascript:void(0)" ng-click="GetPolicyPDF(item,'Health')">{{item.policyNumber}}</a>
+                                            </div>
+                                            <div ng-show="item.leadSource=='Manual Offline'">
+                                                <a href="javascript:void(0)" ng-click="Downloadofflinemanualreport(item.policyNumber,'hlt')">{{item.policyNumber}}</a>
+                                            </div>
+                                        </td>
+                                        <td>{{item.totalPremium}}</td>
+                                        <td>{{item.createdDate}}</td>
+                                        <td>{{item.leadSource}}</td>
+                                        <td ng-show="IsEditDelRight">
+                                            <div ng-show="item.leadSource=='Manual Offline'">
+                                                <a href="javascript:void(0)" ng-click="EditDelete(item.policyNumber,'Edit','HLT')">Edit</a> /
+                                                <a href="javascript:void(0)" ng-click="EditDelete(item.policyNumber,'Del','HLT')">Delete</a>
+                                            </div>
+                                            <div ng-show="item.leadSource!='Manual Offline'">
+                                                N/A
+                                            </div>
+                                        </td>
+                                        @*<td>{{item.path}}</td>*@
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
