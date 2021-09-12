@@ -1,0 +1,39 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Role Setting</h2>
+                </div>
+                <div class="col-md-11">
+                    <label>
+                        <input type="button" value="Save" class="btn btn-primary" ng-click="MapRole()" />
+                    </label>
+                </div>
+            </div>
+            <div class="row MyProfileDet03CntServer">
+                <div class="col-md-12">
+                    <div class="tableContainer">
+                        <table id="roleMaptbl" class="table table-bordered table-light">
+                            <thead>
+                                <tr>
+                                    <th>RoleID</th>
+                                    <th>Rolename</th>
+                                    <th>Isactive</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in RoleDataList">
+                                    <td>{{item.roleid}}</td>
+                                    <td>{{item.rolename}}</td>
+                                    <td><input type="checkbox" ng-checked="item.isactive" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

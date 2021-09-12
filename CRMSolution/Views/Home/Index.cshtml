@@ -1,0 +1,194 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Home/Index.js"></script>
+    @*<script src="/js/Home/Index.js"></script>*@
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper" ng-controller="CRMIndex">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <div ng-show="IsUserActive==true">
+            <partial name="_IndexActiveView" />
+        </div>
+        <div ng-show="IsUserActive==false">
+            <partial name="_IndexPendingActive" />
+        </div>
+        @*<div ng-switch-when="false">
+                <partial name="_IndexPendingActive" />
+            </div>
+            <div ng-defaule>
+
+            </div>*@
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center text-muted">
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+
+    <div id="graphic1"></div>
+    <div id="IsAfterQuotePopup" ng-show="IsAfterQuotePopup">
+        <partial name="_AfterQuotePopup" />
+    </div>
+    <div id="IsQuotePopup" ng-show="IsQuotePopup">
+        <partial name="_QuotePopup" />
+    </div>
+    <div id="IsHLTAfterQuotePopup" ng-show="IsHLTAfterQuotePopup">
+        <partial name="_HLTAfterQuotePopup" />
+    </div>
+    <div id="IsHLTQuotePopup" ng-show="IsHLTQuotePopup">
+        <partial name="_HLTQuotePopup" />
+    </div>
+    <div id="IsMotOfflineQuotePopup" ng-show="IsMotOfflineQuotePopup">
+        <partial name="_ProcessMotorProposal" />
+    </div>
+    <div id="IsMotOfflineSelectInsure" ng-show="IsMotOfflineSelectInsure">
+        <partial name="_SelectInsurer" />
+    </div>
+    <div id="IsHLTOfflineQuotePopup" ng-show="IsHLTOfflineQuotePopup">
+        <partial name="_ProcessHLTProposal" />
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+<!-- Full width modal content -->
+<div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="fullWidthModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="fullWidthModalLabel">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="tableHeadRow">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <h4 class="card-title">Lead Details #<span>{{leadCounter}}</span></h4>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="pull-left">
+                                                    <select id="leadStatusId" class="theFilters">
+                                                        <option value="All" selected="selected">Region Wise</option>
+                                                        <option value="Quotation Success">Delhi</option>
+                                                        <option value="Proposal Success">Mumbai</option>
+                                                        <option value="Payment Success">UP</option>
+                                                        <option value="Payment Gateway">Rajasthan</option>
+                                                        <option value="Payment Fail">MP</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="pull-left">
+                                                    <select class="theFilters" ng-model="leadStatusId" ng-change="leadsChange(leadStatusId)">
+                                                        <option value="" selected="selected">Product Wise</option>
+                                                        <option value="All">All</option>
+                                                        <option value="TW">Two Wheeler</option>
+                                                        <option value="GCV">GCV</option>
+                                                        <option value="PCV">PCV</option>
+                                                        <option value="TL">Term Life</option>
+                                                        <option value="HLT">Health</option>
+                                                        <option value="TRV">Travel</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="pull-left">
+                                                    <select id="leadStatusId" class="theFilters">
+                                                        <option value="All" selected="selected">Lead Status</option>
+                                                        <option value="Quotation Success">Quotation</option>
+                                                        <option value="Proposal Success">Proposal</option>
+                                                        <option value="Payment Success">Success</option>
+                                                        <option value="Payment Gateway">Payment Gateway</option>
+                                                        <option value="Payment Fail">Fail</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div id="reportrange" class="pull-right theFilters theFiltersClndr">
+                                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                    <span>October 24, 2018 - November 22, 2018</span> <b class="caret"></b>
+                                                </div>
+                                                <div class="ml-auto threeDotted">
+                                                    <div class="dropdown sub-dropdown">
+                                                        <button class="btn btn-link text-muted dropdown-toggle" type="button"
+                                                                id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                            <i data-feather="more-vertical"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                                            <a class="dropdown-item" href="#">Download</a>
+                                                            <a class="dropdown-item" href="#">Email</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <table class="table table-bordered table-responsive table-light" style="overflow: auto;height: 350px;">
+                                        <thead>
+                                            <tr>
+                                                <th class="serial">Lead#</th>
+                                                <th>Type</th>
+                                                <th>Contact</th>
+                                                <th>User</th>
+                                                <th>Role</th>
+                                                <th>Region</th>
+                                                <th>Source</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="lead in LeadDetailGrid">
+                                                <td>{{lead.enqNo}}</td>
+                                                <td>{{lead.enquirytype}}</td>
+                                                <td>{{lead.mobileno}}</td>
+                                                <td>{{lead.username}}</td>
+                                                <td>{{lead.rolename}}</td>
+                                                <td>{{lead.region}}</td>
+                                                <td>{{lead.leadsource}}</td>
+                                                <td>{{lead.enquirydate}}</td>
+                                                <td>{{lead.policyStatus}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light"
+                        data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Long Content Scroll Modal -->

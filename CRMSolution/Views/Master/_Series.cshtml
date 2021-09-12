@@ -1,0 +1,59 @@
+﻿
+<div class="leadDetlsTable margin15_T_B">
+    <div class="row">
+        <div class="col-md-3 MPD03_Box">
+            <div class="MyProfileDet03Cnt">
+                <select ng-model="SelectRoleID"
+                        class="theFilters"
+                        ng-options="item.roleName for item in RoleList"
+                        ng-change="changeRole(SelectRoleID)">
+                    <option value="">Select Role</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3 MPD03_Box" ng-show="IsChoseOption">
+            <input type="checkbox" ng-model="IsParent" />
+            <span>Code will be parent or unique.</span>
+        </div>
+    </div>
+    <div class="row" ng-show="IsSeriesSelect">
+        <div class="col-md-3 MPD03_Box" ng-show="IsPos">
+            <div class="MyProfileDet03Cnt createUserBox generateLinkBox">
+                <h2>POS Series</h2>
+                <form>
+                    <div class="input-wrap">
+                        <input type="text" name="textdemo" ng-model="Prifix" size="20" placeholder=" " value="" class="textdemo textdemo2">
+                        <label class="demo-label" for="textdemo">Pos Prefix</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="number" name="textdemo" ng-model="CodeVal" max="7"
+                               size="20" placeholder=" " value="" class="textdemo textdemo2">
+                        <label class="demo-label" for="textdemo">Number</label>
+                    </div>
+                    <label>
+                        <input type="button" class="btn btn-block" value="Update" ng-click="AddUpdatePosRefer('POS')">
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3 MPD03_Box">
+            <div class="MyProfileDet03Cnt createUserBox generateLinkBox">
+                <h2>Refer Series</h2>
+                <form>
+                    <div class="input-wrap">
+                        <input type="text" name="textdemo" ng-model="RefPrifix" size="20" placeholder=" " value="" class="textdemo textdemo2">
+                        <label class="demo-label" for="textdemo">Refer Prefix</label>
+                    </div>
+                    <div class="input-wrap">
+                        <input type="number" name="textdemo" ng-model="RefCodeVal" size="20" placeholder=" "  max="7"
+                               value="" class="textdemo textdemo2">
+                        <label class="demo-label" for="textdemo">Number</label>
+                    </div>
+                    <label>
+                        <input type="button" class="btn btn-block" value="Update" ng-click="AddUpdatePosRefer('REFER')">
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

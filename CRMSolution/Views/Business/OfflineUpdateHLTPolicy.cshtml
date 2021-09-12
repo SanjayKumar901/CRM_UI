@@ -1,0 +1,235 @@
+﻿@{
+    ViewData["Title"] = "Offline Update Policy";
+}
+<script src="~/js/assets/SelectDropdown/slick.js"></script>
+<script src="~/js/assets/SelectDropdown/select2.min.js"></script>
+<link href="~/js/assets/SelectDropdown/select2.min.css" rel="stylesheet" />
+@*<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/OfflineUpdateHLTPolicy.js"></script>*@
+<script src="/js/Business/OfflineUpdateHLTPolicy.js"></script>
+<div class="page-wrapper open_Main" ng-controller="OfflineBusiness">
+    <div class="container-fluid">
+        <section class="mngUserSecond offlineUpdatePG">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" data-toggle="tab"
+                       href="#OfflinePolicy" role="tab" aria-controls="nav-Motor"
+                       aria-selected="true">
+                        Offline Policy
+                    </a>
+                    <a class="nav-item nav-link" data-toggle="tab" id="manual" href="#ManualPolicyUpload"
+                       role="tab" aria-controls="nav-Health" aria-selected="false"
+                       ng-click="selectTab('ManualOffline')">
+                        Manual Policy Upload
+                    </a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="OfflinePolicy" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <select ng-model="selectPolicy"
+                                    class="theFilters"
+                                    ng-options="item.enquiryNo for item in PayProcessList"
+                                    ng-change="selectedPolicy(selectPolicy)">
+                                <option value="">Select Offline Policy</option>
+                            </select>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="theFilters" ng-model="PlanName" placeholder="PlanName" />
+                            <input type="text" class="theFilters" ng-model="BasePremium" placeholder="BasePremium" />
+                            <input type="text" class="theFilters" ng-model="TotalPremium" placeholder="TotalPremium" />
+                            <input type="text" class="theFilters" ng-model="CoverAmount" placeholder="CoverAmount" />
+                            <input type="text" class="theFilters" ng-model="PolicyNo" placeholder="PolicyNo" />
+                            <input type="text" class="theFilters" ng-model="Term" maxlength="1" placeholder="Term" />
+                        </div>
+                        <div class="col-md-12">
+                            <input type="button" ng-click="SuccessPolicy()" value="Save" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="ManualPolicyUpload" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    <form ng-submit="SaveManualPolicy()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select ng-model="ManualselectUser" class="theFilters select2" id="UserActive" required=""
+                                        ng-options="item.emailAddress +' - '+ item.username for item in UserList">
+                                    <option value="">Select User</option>
+                                </select>
+                                <select ng-model="ManualInsurer" class="theFilters" required=""
+                                        ng-options="item.companyName for item in InsurerList">
+                                    <option value="">Select Insurer</option>
+                                </select>
+
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="DetailsGroup">
+                                    <span class="GroupTitle">Personal Details</span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select ng-model="ManualPolicytype" class="theFilters" required="">
+                                                <option value="">Select Policy</option>
+                                                <option value="FamilyFlooter">Family Flooter</option>
+                                                <option value="Individual">Individual</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="ManualPlanName" required="" maxlength="80" placeholder="Plan Name" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="ManualAdultCount" required="" maxlength="1" placeholder="Adult Count" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="ManualChildCount" required="" maxlength="1" placeholder="Child Count" />
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="ManualCustomerName" required="" maxlength="70" placeholder="Customer Name" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="email" class="theFilters" required="" maxlength="70" ng-model="ManualCustomerEmail" placeholder="Customer Email" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="10" onkeypress="return OnlyNumAccept(event)" ng-model="ManualCustomerMobile" placeholder="Customer Mobile No." />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="200" ng-model="ManualCustomerAddress" placeholder="Address" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select ng-model="ManualSelectState" class="theFilters" required=""
+                                                    ng-change="ManualSelectedStateData(SelectState)"
+                                                    ng-options="item.statename for item in ManualSelectStateList">
+                                                <option value="">Select State</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select ng-model="ManualSelectCity" class="theFilters" required=""
+                                                    ng-options="item.cityName for item in ManualSelectCityList">
+                                                <option value="">Select City</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="6" onkeypress="return OnlyNumAccept(event)"
+                                                   ng-model="ManualPincode" placeholder="PinCode" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span>Customer DOB</span>
+                                            <input type="date" class="theFilters" ng-model="ManualCustomerDOB" value="{{ManualCustomerDOB | date:'yyyy-MM-dd'}}" required="" min="{{MinDOB| date:'yyyy-MM-dd'}}" max="{{MaxDOB| date:'yyyy-MM-dd'}}" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="40" ng-model="ManualProductName" placeholder="ProductName" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" maxlength="40" ng-model="ManualProductType" placeholder="ProductType" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select ng-model="ManualSelectBusinessType" class="theFilters" required="">
+                                                <option value="">Select Business Type</option>
+                                                <option value="New">New</option>
+                                                <option value="Renewal">Renewal</option>
+                                                <option value="Portability">Portability</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select ng-model="ManualSelectPolicyTerm" class="theFilters" required="">
+                                                <option value="">Select Policy Term</option>
+                                                <option value="1">Term 1</option>
+                                                <option value="2">Term 2</option>
+                                                <option value="3">Term 3</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span>Start Date</span><br />
+                                            <input type="date" class="theFilters" ng-model="ManualStartDate" value="{{ManualStartDate | date:'yyyy-MM-dd'}}" required="" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span>End Date</span><br />
+                                            <input type="date" class="theFilters" ng-model="ManualEndDate" value="{{ManualEndDate | date:'yyyy-MM-dd'}}" required="" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span>Policy Issue Date</span><br />
+                                            <input type="date" class="theFilters" ng-model="ManualPolicyIssueDate" value="{{ManualPolicyIssueDate | date:'yyyy-MM-dd'}}" required="" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="checkbox" ng-model="ManualIsPospProduct" />
+                                            <span>Is POSp Product</span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select ng-model="ManualInsuranceType" class="theFilters">
+                                                <option value="">Select Insurance Type</option>
+                                                <option value="B2B">B2B</option>
+                                                <option value="B2C">B2C</option>
+                                                <option value="B2E">B2E</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="DetailsGroup">
+                                    <span class="GroupTitle">Payment Details</span>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="ManualTotalPremium" required="" maxlength="7" placeholder="TotalPremium" />
+                                        </div>
+                                        @*<div class="col-md-4">
+                                                <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="ManualNetPremium" required="" maxlength="7" placeholder="NetPremium" />
+                                            </div>*@
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="ManualServiceTax" required="" maxlength="7" placeholder="GST" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="ManualCoverAmount" required="" maxlength="7" placeholder="CoverAmount" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" onkeypress="return OnlyNumAccept(event)" ng-model="ManualBasePremium" required="" maxlength="7" placeholder="BasePremium" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" ng-model="ManualPolicyNo"
+                                                   onkeypress="return NotSpecialCharAccept(event)" required="" maxlength="30" placeholder="PolicyNo" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="date" class="theFilters" required="" ng-model="ManualChecqueDate" value="{{ManualChecqueDate | date:'yyyy-MM-dd'}}" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" maxlength="7" ng-model="ManualChecqueNo" required="" placeholder="Cheque No." />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="theFilters" required="" ng-model="ManualChecqueBank" placeholder="Cheque Bank" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="file" class="theFilters" id="manualfile" accept="application/pdf"  />
+                                            <small class="fileUpload">Upload Policy Copy</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="DetailsGroup DetailsGroupPay">
+                                    <span class="GroupTitle">Bulk Option</span>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="file" class="theFilters" id="Bulkfile" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="button" ng-click="uploadbulkData()" value="Upload Data in Bulk" class="btn btn-primary btn-block" />
+                                        </div>
+                                        <div class="col-md-12">
+                                            <a href="/myaccount/Download/ManualHealthOffline.csv" target="_blank">Get Sample File</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Save" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+    </div>
+</div>

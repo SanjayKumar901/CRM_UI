@@ -1,0 +1,18 @@
+﻿<div class="topTextBox">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <span>Reporting Manager : </span><span>{{RmModel.rmName}}</span><br />
+            <span>Mobile Number : </span><span>{{RmModel.mobileNo}}</span><br />
+            <span ng-show="RmModel.dOcStatus!=''">Document Status : </span><span>{{RmModel.dOcStatus}}</span>
+            <div class="VerifyDocumentMain">
+                <div class="VerifyDocumentBox" ng-repeat="item in RmModel.userDocWithStatus">
+                    <span class="">{{item.docName}}</span>
+                    <div ng-class="item.flag==1?'VerifyDocument VerifyDocumentGreen':item.flag==3?'VerifyDocument VerifyDocumentGray':'VerifyDocument VerifyDocumentOrange'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <partial name="_ProcessBeforeActivatePOS" />
+</div>

@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/AngularJS/angular.js"></script>
+    <link href="~/js/dist/css/style.css" rel="stylesheet" />
+    <link href="~/Content/customStyle.css" rel="stylesheet" />
+    <script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/UserPolicyControl/EndUserLogin.js"></script>
+    @*<script src="/js/UserPolicyControl/EndUserLogin.js"></script>*@
+</head>
+<body ng-app="EndLogin" ng-controller="Endlogincontroll">
+    <div class="page-wrapper ng-scope open_Main" style="display: block;">
+        <div class="container-fluid">
+            <div class="row form-group">
+                <div class="col-md-12 text-center">
+                    <div class="createUserBox">
+                        <img src="{{LOGO}}">
+                        <h3>Login to Your Account</h3>
+                        <form name="loginform" ng-submit="loginform.$valid && sumbit()">
+                            <div ng-show="!IsShowOTP" class="input-wrap" id="EnterID">
+                                <input type="text" class="textdemo" ng-model="Email" name="Email" placeholder=" " required="required">
+                                <label class="demo-label" for="Mobile">Enter Mobile/Email</label>
+                                <span ng-show="loginform.Email.$touched && loginform.Email.$error.required" class="text-danger">Email Address/Mobile number is Required</span>
+                            </div>
+                            <div ng-show="IsShowOTP" class="input-wrap" id="EnterPass">
+                                <input type="password" class="textdemo" ng-model="Password" name="Password" placeholder=" ">
+                                <label class="demo-label" for="Mobile">OTP</label>
+                                <span ng-show="loginform.Password.$touched && loginform.Password.$error.required" class="danger">Password Required</span>
+                            </div>
+                            <div class="input-wrap input-wrapBtn">
+                                <input type="submit" class="btn btn-block" value="Login" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row form-group">
+                <div class="col-md-4">
+                    <input type="text" placeholder="Your Past Policy Number" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                   <input type="button" ng-click="Renew()" value="Renew" class="btn btn-primary"/>
+                </div>
+        </div>*@
+        </div>
+    </div>
+</body>
+</html>

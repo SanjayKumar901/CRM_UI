@@ -1,0 +1,58 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Pos Exam Doc Summary</h2>
+                </div>
+                <div class="col-md-12">
+                    Upload PDF Files
+                    <table id="tableList">
+                        <thead>
+                            <tr>
+                                <th>Upload File</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="file" class="PosExamfiledata" /></td>
+                                <td><input type="text" class="FileSummary" placeholder="File Name" maxlength="40" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <input type="button" value="Add More" class="btn btn-primary" ng-click="AddMoreRow()" />
+                </div>
+                <div class="col-md-3">
+                    <label>
+                        <input type="button" value="Upload"
+                               ng-click="UploadPosExamfiledata()"
+                               class="btn allBtn btn-block" />
+                    </label>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SrNo.</th>
+                                <th>File Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in PosDocSummaryDocList">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.name}}</td>
+                                <td><a href="javascript:void(0)" ng-click="RemovePosExamDoc(item)">Remove</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

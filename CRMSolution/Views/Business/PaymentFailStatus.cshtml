@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "PaymentFailStatus";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/PaymentFails.js"></script>
+<div class="page-wrapper mappedUser open_Main" id="main" ng-controller="failcontroller">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <section class="mngUserfirst mngUserfirstMapping">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="createUserBox generateLinkBox">
+                                <h3> Payment Fail Status</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="text" placeholder="Search.." ng-model="FilterText" ng-change="Filter(FilterText)" />
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-bordered EndUserMapp MainTable text-left table-light" s>
+                                        <thead>
+                                            <tr>
+                                                <th>UserID</th>
+                                                <th>RoleName</th>
+                                                <th>TotalPremium</th>
+                                                <th>VehicleNo</th>
+                                                <th>ResponsePaymentXml</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in FailedList">
+                                                <td>{{item.userid}}</td>
+                                                <td>{{item.roleName}}</td>
+                                                <td>{{item.totalPremium}}</td>
+                                                <td>{{item.vehicleNo}}</td>
+                                                <td>{{item.responsePayment}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

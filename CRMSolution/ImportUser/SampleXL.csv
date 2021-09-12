@@ -1,0 +1,3 @@
+UserName,Active,EmailAddress,MobileNo,Address,RoleId,AdhaarNumber,PANNumber,KeyAccountManager,BankAccountNo,IFSC_Code,PinCode,DOB,Gender,ReferPrifix,ReferVal,PosPrifix,PosVal ,RegionId, BranchID
+Ziaur,Y,ziaur21@gmail.com,9876743210,delhi,8,1.32157E+14,dfgdf531ss,info@riskoveryinsurance.com,1.23457E+12,sdf35sd,110014,4-Dec-90,1,EMA,100001,POS,10001,1,893
+Ziaur,Y,ziaur12@gmail.com,9876593210,delhi,8,1.32157E+14,dfgdf531ss,virendra.kumar@riskoveryinsurance.com,1.23457E+12,sdf35sd,110014,4-Dec-90,1,EMA,100001,POS,10001,1,893

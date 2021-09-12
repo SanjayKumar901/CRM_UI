@@ -1,0 +1,44 @@
+﻿<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <h2>POS Quote Setup</h2>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <input type="button" ng-click="SaveData()" value="Active" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <table class="table Mottable">
+                        <thead>
+                            <tr>
+                                <th>Choose Insurer</th>
+                                <th>Select Only POS</th>
+                                <th>Select Only End User</th>
+                                <th>Both</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in MOTtblList">
+                                <td>
+                                    <select class="Motins form-control">
+                                        <option value="">Select Insurer</option>
+                                        <option ng-repeat="item in MOTInsurerList" value="{{item.id}}">{{item.brokerName}}</option>
+                                    </select>
+                                </td>
+                                <td><input type="checkbox" ng-click="SelectCheck('.motenduser','.both',$index)" class="motpos" /></td>
+                                <td><input type="checkbox" ng-click="SelectCheck('.motpos','.both',$index)" class="motenduser" /></td>
+                                <td><input type="checkbox" ng-click="SelectCheck('.motpos','.motenduser',$index)" class="both" /></td>
+                                <td><a href="javascript:void(0)" ng-click="RemoveRow('MOTtblList',$index)">Remove</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12">
+                    <input type="button" class="btn btn-primary" value="Add More" ng-click="AddMore('MOTtblList')" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

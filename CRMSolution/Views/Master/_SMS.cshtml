@@ -1,0 +1,65 @@
+﻿
+<div class="row">
+    <div class="col-md-3 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <select ng-model="SMSServer"
+                    ng-options="item.optionName for item in MailserverOptionList"
+                    ng-change="SelectSMSServer(SMSServer)"
+                    class="form-control">
+                <option value="">Select Option</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-9 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <h2>{{SMSServer.optionName}}</h2>
+            <div class="row MyProfileDet03CntServer">
+                <div class="col-md-12">
+                    <label class="demo-label" for="textdemo">API URL</label>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-wrap">
+                        <input autocomplete="off" type="text" name="textdemo" ng-model="APIURL"
+                               placeholder="API Url"
+                               value="" class="form-control textdemo textdemo2">
+                        <br />
+                        <span>EX : http://www.smsgateway.com?userid=***&pass=****&to=<span style="color:red;">[to]</span>&message=<span style="color:red;">[message]</span> </span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row mt-3">
+                        <div class="col-md-3 p-0">
+                            <span>Test Mobile Number</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="number" ng-model="TestSmsMobile" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-3 p-0">
+                            <span>Test Message</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" ng-model="TestSmsMessage" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row MyProfileDet03CntServer mt-3">
+                <div class="col-md-3 p-0">
+
+                </div>
+                <div class="col-md-3">
+                        <input type="button" ng-click="Testsms()" class="btn allBtn btn-block" value="{{TestSMSbtn}}">
+                </div>
+                <div class="col-md-3">
+                        <input type="button" ng-click="SaveSMSServer()" ng-disabled="IsSmsDisable" class="btn allBtn btn-block" value="Save">
+                </div>
+            </div>
+            <div class="row MyProfileDet03CntServer">
+                <div class="col-md-12">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

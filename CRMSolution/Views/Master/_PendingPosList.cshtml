@@ -1,0 +1,43 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <h2>Inactive POS List</h2>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <input type="button" ng-click="makeActiveList()" value="Active" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" ng-model="checkallchecked" />
+                                    Select
+                                </th>
+                                <th>Sr No.</th>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>User Email</th>
+                                <th>Pos Code</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in InactivePosList">
+                                <td><input type="checkbox" ng-checked="checkallchecked" class="checklist" value="{{item.userid}}" /></td>
+                                <td>{{$index+1}}</td>
+                                <td>{{item.userid}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.emailAddress}}</td>
+                                <td>{{item.posCode}}</td>
+                                <td>{{item.passOrFail}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </div>
+</div>

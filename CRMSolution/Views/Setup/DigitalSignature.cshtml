@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Digital Signature";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/DigitalSign.js"></script>
+<div ng-controller="digitalsign" class="SignWreper">
+    <div class="SignatureBox">
+        <canvas id="can" width="auto" height="auto">
+        </canvas>
+        <img id="canvasimg" style="display:none;" draggable="true" ondragstart="drag(event)">
+        <div class="DragBtn">
+            <input type="button" value="save" class="btn" id="btn" onclick="save()">
+            <input type="button" value="clear" class="btn" id="clr" onclick="erase()">
+        </div>
+    </div>
+    <ul class="chooseColor">
+        <li>Choose Color</li>
+        <li style="background:green;" id="green" onclick="color(this)"></li>
+        <li style="background:blue;" id="blue" onclick="color(this)"></li>
+        <li style="background:red;" id="red" onclick="color(this)"></li>
+        <li style="background:yellow;" id="yellow" onclick="color(this)"></li>
+        <li style="background:orange;" id="orange" onclick="color(this)"></li>
+        <li style="background:black;" id="black" onclick="color(this)"></li>
+    </ul>
+    <ul class="chooseColor">
+        <li>Eraser</li>
+        <li style="background:white;border:2px solid;" id="white" onclick="color(this)"></li>
+    </ul>
+    <div class="DragFileBox" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="aboutContent">
+            <div class="ShadowMain">
+                {{digitalsign}}
+            </div>
+        </div>
+    </div>
+
+</div>

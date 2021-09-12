@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Campaigns";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/LICRedirection.js"></script>
+    @*<script src="~/js/Users/LICRedirection.js"></script>*@
+<div class="page-wrapper mappedUser open_Main" ng-controller="licredirection">
+    <div class="container-fluid">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Access to LIC</h3>
+                </div>
+            </div>
+        </section>
+        <div class="MyProfileDet03Cnt createUserBox generateLinkBox">
+            <form method="post" target="_blank">
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <input type="text" name="agencycode" value="{{AgencyCode}}" class="theFilters" placeholder="Agency Code" />
+                        <input type="hidden" name="checksum" value="{{Checksum}}" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <input type="text" name="spcode" value="{{SpCode}}" placeholder="SP Code" class="theFilters" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <input type="button" ng-click="submitform()" value="Submit" class="border-0 rounded allBtn d-block" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

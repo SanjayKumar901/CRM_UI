@@ -1,0 +1,55 @@
+﻿<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Manage Branch</h2>
+                </div>
+                <div class="col-md-3">
+                    <select ng-model="RegionModel"
+                            ng-options="item.region for item in RegionList"
+                            ng-change="SelectedBranch(RegionModel)"
+                            class="form-control">
+                        <option value="">Select Region</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" ng-model="BranchName" ng-change="manageName(BranchName,'BranchName')" placeholder="Branch Name" class="form-control" />
+                </div>
+            </div>
+            <div class="row mt-3 mb-3 form-group">
+                <div class="col-md-3">
+                    <input type="button" class="btn allBtn btn-block" ng-click="SaveRegionBranch()" value="{{BranchbtnSave}}" />
+                </div>
+                <div class="col-md-3">
+                    <input type="button" class="btn allBtn btn-block" ng-click="AddNew('BranchName','BranchbtnSave')" value="Add New" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Branch ID</th>
+                                <th>Region Name</th>
+                                <th>Branch Name</th>
+                                <th>Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in RegionBranchList">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.branchID}}</td>
+                                <td>{{item.region}}</td>
+                                <td>{{item.cityName}}</td>
+                                <td><a href="javascript:void(0)" ng-click="EditRegionBranch(item,'BranchName','BranchbtnSave')">Edit</a> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

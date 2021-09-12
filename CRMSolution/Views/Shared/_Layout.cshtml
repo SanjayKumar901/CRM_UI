@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CRMSolution</title>
+
+    <link href="../js/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+    <link href="../js/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="../js/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
+    <link href="../js/dist/css/style.min.css" rel="stylesheet">
+    <link href="~/js/assets/libs/morris.js/morris.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/customStyle.css" />
+
+    <!-- Datepicker-->
+    <link href="~/js/dist/css/bootstrap-daterangepicker.css" rel="stylesheet" />
+
+    <!-- DatepickerEnd -->
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/AngularJS/angular.js"></script>
+
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+</head>
+<body ng-app="app">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin6">
+            <nav class="navbar top-navbar navbar-expand-md">
+                <div class="navbar-header navbar-headerMobile" data-logobg="skin6">
+                    <a href="/myaccount/home/index" class="HeadLogo"><img src="##" class="logoimage" /></a>
+                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
+                       data-toggle="collapse" data-target="#navbarSupportedContent"
+                       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="ti-menu ti-close"></i>
+                    </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse collapsemobileMenu" id="navbarSupportedContent">
+
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav crmHeadMenu float-right">
+                        <li id="isSupport" class="nav-item" style="display:none">
+                            <a class="nav-link text-dark" href="" target="_blank">
+                                Support
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="ml-2 d-lg-inline-block">
+                                    <span class="text-dark ng-binding">Manage Account</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down svg-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </a>
+                            <partial name="_NavBar" />
+                        </li>
+
+
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a id="loadMessages" class="nav-link dropdown-toggle" href="javascript:void(0)"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="ml-2 d-lg-inline-block">
+                                    <span class="text-dark ng-binding">Message<span class="notification"></span> </span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down svg-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </a>
+                            <div id="LoadingMessageList" class="dropdown-menu dropdown-menu-right myaccountBox user-dd animated flipInY">
+
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="~/js/assets/Images/profile-pic.jpg" alt="user" class="rounded-circle" width="40">
+                                <span class="ml-2 d-lg-inline-block">
+                                    <span id="WelcomeText" class="ng-binding"></span> <span id="userName" class="text-dark ng-binding"></span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down svg-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right myaccountBox user-dd animated flipInY">
+                                <a class="dropdown-item" href="javascript:void(0)" id="gotoMypro">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user svg-icon mr-2 ml-1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    My Profile
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:void(0)" id="AccountSettingShow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings svg-icon mr-2 ml-1"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                                    Reset Password
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" id="logOut" href="javascript:void(0)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power svg-icon mr-2 ml-1"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+                                    Logout
+                                </a>
+
+                            </div>
+                        </li>
+
+                        @*<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)" id="bell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell svg-icon"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></span>
+                                    <span class="badge badge-primary notify-no rounded-circle">5</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
+                                    <ul class="list-style-none">
+                                        <li>
+                                            <div class="message-center notifications position-relative ps-container ps-theme-default" data-ps-id="1dc48b64-5b9c-ae76-074c-f93f91a9eef9">
+
+                                                <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                    <div class="btn btn-danger rounded-circle btn-circle">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay text-white"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg>
+                                                    </div>
+                                                    <div class="w-75 d-inline-block v-middle pl-2">
+                                                        <h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
+                                                        <span class="font-12 text-nowrap d-block text-muted">
+                                                            Just see
+                                                            the my new
+                                                            admin!
+                                                        </span>
+                                                        <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
+                                                    </div>
+                                                </a>
+
+                                                <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                    <span class="btn btn-success text-white rounded-circle btn-circle">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar text-white"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                                    </span>
+                                                    <div class="w-75 d-inline-block v-middle pl-2">
+                                                        <h6 class="message-title mb-0 mt-1">Event today</h6>
+                                                        <span class="font-12 text-nowrap d-block text-muted text-truncate">
+                                                            Just
+                                                            a reminder that you have event
+                                                        </span>
+                                                        <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
+                                                    </div>
+                                                </a>
+
+                                                <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                    <span class="btn btn-info rounded-circle btn-circle">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings text-white"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                                                    </span>
+                                                    <div class="w-75 d-inline-block v-middle pl-2">
+                                                        <h6 class="message-title mb-0 mt-1">Settings</h6>
+                                                        <span class="font-12 text-nowrap d-block text-muted text-truncate">
+                                                            You
+                                                            can customize this template
+                                                            as you want
+                                                        </span>
+                                                        <span class="font-12 text-nowrap d-block text-muted">9:08 AM</span>
+                                                    </div>
+                                                </a>
+
+                                                <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
+                                                    <span class="btn btn-primary rounded-circle btn-circle">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box text-white"><path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"></path><polyline points="2.32 6.16 12 11 21.68 6.16"></polyline><line x1="12" y1="22.76" x2="12" y2="11"></line></svg>
+                                                    </span>
+                                                    <div class="w-75 d-inline-block v-middle pl-2">
+                                                        <h6 class="message-title mb-0 mt-1">Pavan kumar</h6> <span class="font-12 text-nowrap d-block text-muted">
+                                                            Just
+                                                            see the my admin!
+                                                        </span>
+                                                        <span class="font-12 text-nowrap d-block text-muted">9:02 AM</span>
+                                                    </div>
+                                                </a>
+                                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
+                                                <strong>Check all notifications</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>*@
+                        <!-- End Notification -->
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        @*<partial name="_NavBar" />*@
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        @RenderBody()
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+
+        <div class="Createdmodal ShowAccount" style="display:none;">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <div class="modal-body text-center">
+                        <div class="close closeBtn resetClose" id="CloseAccountSetting"></div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="createUserBox">
+                                    <h3>Are you sure you want to take this action?</h3>
+                                    <form>
+                                        <div class="input-wrap" id="EnterPass">
+                                            <input type="text" id="OldPass" name="Mobile" class="textdemo" autocomplete="off" />
+                                            <label class="demo-label" for="Mobile">Old Password</label>
+                                        </div>
+                                        <div class="input-wrap" id="EnterPass">
+                                            <input type="text" id="NewPass" class="textdemo" autocomplete="off" />
+                                            <label class="demo-label" for="Mobile">New Password </label>
+                                        </div>
+                                        <div class="input-wrap" id="EnterPass">
+                                            <input type="text" id="ConfirmPass" class="textdemo" autocomplete="off" />
+                                            <label class="demo-label" for="Mobile">Confirm Password </label>
+                                        </div>
+                                        <div class="input-wrap input-wrapBtn">
+                                            <input type="button" class="btn btn-block" value="Change" id="ChangePass" />
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Createdmodal ShowMessages" style="display:none;">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <div class="close closeBtn resetClose" id="CloseMessages"></div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="createUserBox">
+                                    <h3><span id="messageSubject"></span></h3>
+                                    <form>
+                                        <div class="input-wrap input-wrapBtn">
+                                            <label id="singleOfflineMessage"></label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="maybescript">
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- apps -->
+    <!-- apps -->
+    <script src="../js/dist/js/app-style-switcher.js"></script>
+    <script src="../js/dist/js/feather.min.js"></script>
+    <script src="../js/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../js/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="../js/dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="../js/assets/extra-libs/c3/d3.min.js"></script>
+    <script src="../js/assets/extra-libs/c3/c3.min.js"></script>
+    <script src="../js/assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="../js/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="../js/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="../js/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../js/dist/js/pages/dashboards/dashboard1.min.js"></script>
+    <script src="../js/assets/libs/raphael/raphael.min.js"></script>
+    <script src="../js/assets/libs/morris.js/morris.min.js"></script>
+    <script src="../js/dist/js/pages/morris/morris-data.js"></script>
+    <!-- Datepicker-->
+    <script src="~/js/dist/js/moment.min.js"></script>
+    <script src="~/js/dist/js/bootstrap-daterangepicker.js"></script>
+    @*<script src="~/js/dist/js/jquery-ui.min.js"></script>*@
+    <!-- DatepickerEnd -->
+    @*<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/site.js" asp-append-version="true"></script>*@
+    <script src="/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    <script>
+        jQuery(function ($) {
+            $("#openNav").click(function () {
+                $('#mySidenav').toggleClass("open_mySidenav");
+                $('#main').toggleClass("open_Main");
+            });
+        })
+                    //function openNav() {
+                    //    debugger
+                    //    document.getElementById("mySidenav").style.width = "250px";
+                    //    document.getElementById("main").style.marginLeft = "250px";
+                    //}
+
+                    //function closeNav() {
+                    //    document.getElementById("mySidenav").style.width = "0";
+                    //    document.getElementById("main").style.marginLeft = "0";
+                    //}
+    </script>
+
+
+</body>
+</html>

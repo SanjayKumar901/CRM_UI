@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "DocumentVerification";
+}
+<script src="~/js/assets/SelectDropdown/slick.js"></script>
+<script src="~/js/assets/SelectDropdown/select2.min.js"></script>
+<link href="~/js/assets/SelectDropdown/select2.min.css" rel="stylesheet" />
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/DocumentVerification.js"></script>
+@*<script src="/js/Users/DocumentVerification.js"></script>*@
+
+<div class="page-wrapper ng-scope open_Main" ng-controller="DocumentVerification">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link w-auto active" id="nav-home-tab" ng-click="tabOption('InActive')" data-toggle="tab" href="#unvarified" role="tab" aria-controls="nav-home" aria-selected="true">Pending Verification</a>
+        <a class="m-0 nav-item nav-link w-auto" id="nav-profile-tab" ng-click="tabOption('Active')" data-toggle="tab" href="#varified" role="tab" aria-controls="nav-profile" aria-selected="false">Verified</a>
+    </div>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="unvarified" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container-fluid project-tab">
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        <select class="form-control select2" id="User" ng-model="User"
+                                ng-options="item.userName for item in UserList"
+                                ng-change="SelectedUser(User)">
+                            <option value="">Select User</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" ng-model="Message" placeholder="Share Message to selected user" />
+                    </div>
+                    <div>
+                        <input type="button" value="Send Message" ng-click="ShareMessage()" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <input type="button" value="Make Verfied Selected User" class="btn btn-primary" ng-click="MakeActive()" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <ul>
+                            <li ng-repeat="message in MessageList">
+                                {{$index+1}}. {{message.message}} ({{message.messageDate}})
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ImageURL}}" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Sr NO.</th>
+                                    <th>Document Checked</th>
+                                    <th>Documents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in Doclist">
+                                    <td>{{$index+1}}</td>
+                                    <th><input type="checkbox" ng-checked="item.IsCheck" ng-click="CheckOrNotDoc($index,item.Name)" /></th>
+                                    <td><a href="{{item.Link}}" target="_blank">{{item.Name}}</a> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="varified" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container-fluid project-tab">
+                <div class="row form-group">
+                    <div class="col-md-3">
+                        <select class="theFilters select2" id="UserActive" ng-model="UserActive"
+                                ng-options="item.userName for item in UserList"
+                                ng-change="SelectedUser(UserActive)">
+                            <option value="">Select User</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-6">
+                        <ul>
+                            <li ng-repeat="message in MessageList">
+                                {{$index+1}}. {{message.message}} ({{message.messageDate}})
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ImageURL}}" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <table class="table table-bordered MainTable text-left table-light">
+                            <thead>
+                                <tr>
+                                    <th>Sr NO.</th>
+                                    @*<th>Document Checked</th>*@
+                                    <th>Documents</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in Doclist">
+                                    <td>{{$index+1}}</td>
+                                    @*<th><input type="checkbox" ng-checked="false" /></th>*@
+                                    <td><a href="{{item.Link}}" target="_blank">{{item.Name}}</a> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

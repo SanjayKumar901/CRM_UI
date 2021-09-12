@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Priv";
+}
+    <script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/Priv.js"></script>
+    <div ng-controller="UserPriv">
+        <div class="page-wrapper ng-scope open_Main" style="display: block;">
+            <div class="container">
+                <section class="mngUserfirst">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Privileges</h3>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="outer-form">
+                                <p>Below is the insurer configuration which you can use</p>
+                                <p>{{UserName}}</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="m-0 mb-2">
+                                            <input type="button" class="border-0 rounded allBtn" value="Assign" ng-click="SaveRecord()" />
+                                            <input type="button" class="border-0 rounded allBtn" value="Remove" ng-click="DeleteRecord()" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <label class="switch"><input type="checkbox" ng-model="IsSelectAll" ng-click="selectall(IsSelectAll)"><span class="slider round"></span></label> Select All
+                                    </div>
+                                </div>
+                                <table id="PrvTable" class="table-striped ConfigDetails table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>General</th>
+                                            <th>Add</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                            <th ng-show="PermisionValid">As Admin</th>
+                                            <th ng-show="PermisionValid">Download Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="prv in PrivilegeList">
+                                            <td>{{prv.privilegeName}} ({{prv.groupName}})</td>
+                                            <td>
+                                                <input class="AddPerm" type="checkbox" ng-checked="prv.add" />
+                                            </td>
+                                            <td><input class="EditPerm" type="checkbox" ng-checked="prv.edit" /></td>
+                                            <td><input class="DeletetPerm" type="checkbox" ng-checked="prv.delete" /></td>
+                                            <td ng-show="PermisionValid"><input class="AsAdmin" type="checkbox" ng-checked="prv.asAdmin" /></td>
+                                            <td ng-show="PermisionValid"><input class="DownloadData" type="checkbox" ng-checked="prv.downloadData" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>

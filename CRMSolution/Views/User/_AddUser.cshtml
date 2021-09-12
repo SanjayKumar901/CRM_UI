@@ -1,0 +1,126 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@*<script src="~/js/Users/AddUser.js"></script>*@
+
+<div ng-controller="AddUser" class="page-wrapper open_Main CreatUser" id="main" style="display: block;">
+    <div class="container-fluid">
+        <div class="close closeBtn"></div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="createUserBox">
+                    <img src="{{LOGO}}">
+                    @*<img src="http://insta-policy.com/Content/PolicyMart/images/InstaPolicy/logo.png">*@
+                    <h3>Create Your Seller User</h3>
+                    <form>
+
+                        <div class="input-wrap">
+                            <select class="form-control textdemo"
+                                    ng-model="RoleType"
+                                    ng-options="item.rolename for item in RoleTypeList"
+                                    ng-change="BindTeam(RoleType)">
+                                <option value="">Select RoleType</option>
+                            </select>
+                        </div>
+                        <div class="input-wrap">
+                            <select class="form-control textdemo"
+                                    ng-model="TeamType"
+                                    ng-options="item.rolename for item in TeamTypeList"
+                                    ng-change="BindUser(TeamType)">
+                                <option value="">Select Team</option>
+                            </select>
+                        </div>
+                        <div class="input-wrap">
+                            <select class="form-control textdemo"
+                                    ng-model="TeamUser"
+                                    ng-options="item.userName+' - '+ item.emailaddress for item in TeamUserList"
+                                    ng-change="SelectedTeamUser(TeamUser)">
+                                <option value="">Select User</option>
+                            </select>
+                        </div>
+
+                        <div ng-show="!IsRoletypeAdmin">
+                            <div class="input-wrap">
+                                <div ng-show="IsMultiselectRegion">
+                                    <div class="form-control textdemo" ng-click="IsRegionshow()">
+                                        <span>Select</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down svg-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                    </div>
+                                    <div class="MultiSelectReg" ng-show="IsRegionList">
+                                        <div ng-repeat="item in RegionList">
+                                            <input type="checkbox" class="RegionModel" value="{{item.id}}" /> <span>{{item.region}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <select ng-show="!IsMultiselectRegion" class="form-control textdemo"
+                                        ng-model="Region"
+                                        ng-options="item.region for item in RegionList"
+                                        ng-change="BindBranchCity(Region)">
+                                    <option value="">Select Zone</option>
+                                </select>
+                            </div>
+                            <div ng-show="!IsMultiselectRegion" class="input-wrap">
+                                <select class="form-control textdemo"
+                                        ng-model="City"
+                                        ng-options="item.cityName for item in CityList">
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="text" ng-model="fullname" name="textdemo" size="20" value="" class="textdemo" />
+                            <label class="demo-label" for="textdemo">Full Name</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input type="text" ng-model="Mobile" name="Mobile" size="10" value="" maxlength="10" class="textdemo" />
+                            <label class="demo-label" for="Mobile">Mobile Number</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input type="text" ng-model="email" name="Email" size=" " value="" maxlength=" " class="textdemo" />
+                            <label class="demo-label" for="Email">Email</label>
+                        </div>
+                        <div class="input-wrap" ng-show="RoleType.roleid==8">
+                            <input type="checkbox" ng-model="IsDocReq" name="IsDocReq" />
+                            <label class="demo-label" for="IsDocReq">Is Document Requred</label>
+                        </div>
+
+                        <div class="input-wrap input-wrapBtn">
+                            <input type="button" ng-click="Register()" class="btn btn-block" value="Register" />
+                        </div>
+                        <div class="input-wrap">
+                            <span>Agree to the <a href="#">Terms and Conditions</a></span>
+                        </div>
+
+                        <div class="createUserBox02">
+                            <div class="input-wrap" id="" ng-show="IsPos">
+                                <input type="text" name="poscode" value="{{ReferAndPosSeries.posPrifix}}{{ReferAndPosSeries.posVal}}" class="textdemo" />
+                                <label class="demo-label" for="poscode">POS Code</label>
+                            </div>
+
+                            <div class="input-wrap" ng-show="IsRefer">
+                                <input type="text" name="refercode" value="{{ReferAndPosSeries.referPrifix}}{{ReferAndPosSeries.referVal}}" class="textdemo" />
+                                <label class="demo-label" for="refercode">Refer Code</label>
+                            </div>
+
+                            <div class="input-wrap" ng-show="IsAlternet">
+                                <input type="text" name="alternatecode" ng-model="Alternatecode" class="textdemo" />
+                                <label class="demo-label" for="alternatecode">Alternate Code</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.multiselect('#testSelect1')
+        .setCheckBoxClick("checkboxAll", function (target, args) {
+            console.log("Checkbox 'Select All' was clicked and got value ", args.checked);
+        })
+        .setCheckBoxClick("1", function (target, args) {
+            console.log("Checkbox for item with value '1' was clicked and got value ", args.checked);
+        });
+</script>

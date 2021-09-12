@@ -1,0 +1,725 @@
+﻿<!-- Start First Cards -->
+<div class="topTextBox" ng-show="IsHeader">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-4 topTextBoxInn no-pdding">
+                    <div class="">
+                        <h6 class="TextBoxtitle">Total Business</h6>
+                        <div class="text-center">
+                            <h2 class="TextPrice" ng-show="IsDashHeaderLoading">
+                                <span>Loading...</span>
+                            </h2>
+                            <h2 class="TextPrice">
+                                <a>{{TotalCollection}}</a>
+                            </h2>
+                            <span class="persentCount">+18.33%</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 text-right no-pdding">
+                                <div>Current Month</div>
+                                <div>
+                                    <a>
+                                        {{TodayCollectionThisMonth}}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 text-left no-pdding">
+                                <div>Previous Month</div>
+                                <div>
+                                    <a>{{TodayCollectionPrevMonth}}</a>
+                                </div>
+                                <!-- Full width modal -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 topTextBoxInn no-pdding">
+                    <div class="">
+                        <h6 class="TextBoxtitle">Today Business</h6>
+                        <div class="text-center">
+                            <h2 class="TextPrice" ng-show="IsDashHeaderLoading">
+                                <span>Loading...</span>
+                            </h2>
+                            <h2 class="TextPrice">{{TodayCollection}}</h2>
+                            <span class="persentCount">+18.33%</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 text-right no-pdding">
+                                <div>YDA NoPs</div>
+                                <div>
+                                    <a>
+                                        {{YDA}}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 text-left no-pdding">
+                                <div>Today NoPs</div>
+                                <div>
+                                    <a>
+                                        {{TodayNop}}
+                                    </a>
+                                </div>
+                                <!-- Full width modal -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 topTextBoxInn no-pdding">
+                    <div class="">
+                        <h6 class="TextBoxtitle">Total NoPs</h6>
+                        <div class="text-center">
+                            <h2 class="TextPrice" ng-show="IsDashHeaderLoading">
+                                <span>Loading...</span>
+                            </h2>
+                            <h2 class="TextPrice">{{TotalNops}}</h2>
+                            <span class="persentCount">+18.33%</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 text-right no-pdding">
+                                <div>Current Month</div>
+                                <div>{{CurrentMonthNops}}</div>
+                            </div>
+                            <div class="col-xl-6 text-left no-pdding">
+                                <div>Previous Month</div>
+                                <div>{{PrevMonthNops}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 topTextBoxInn no-pdding">
+                    <div class="">
+                        <h6 class="TextBoxtitle">User Count</h6>
+                        <div class="text-center">
+                            <h2 class="TextPrice" ng-show="IsDashHeaderLoading">
+                                <span>Loading...</span>
+                            </h2>
+                            <h2 class="TextPrice">{{usertotal}}</h2>
+                            <span class="persentCount">+18.33%</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 text-right no-pdding">
+                                <div>Current Month</div>
+                                <div>{{currentusertotal}}</div>
+                            </div>
+                            <div class="col-xl-6 text-left no-pdding">
+                                <div>Previous Month</div>
+                                <div>{{prevusertotal}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 topTextBoxInn no-pdding">
+                    <div class="">
+                        <h6 class="TextBoxtitle">PoS Count</h6>
+                        <div class="text-center">
+                            <h2 class="TextPrice" ng-show="IsDashHeaderLoading">
+                                <span>Loading...</span>
+                            </h2>
+                            <h2 class="TextPrice">{{CountPos}}</h2>
+                            <span class="persentCount">+18.33%</span>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 text-right no-pdding">
+                                <div>Current Month</div>
+                                <div>{{currentpostotal}}</div>
+                            </div>
+                            <div class="col-xl-6 text-left no-pdding">
+                                <div>Previous Month</div>
+                                <div>{{prevpostotal}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 topTextBoxInn">
+            <div class="row">
+                <div class="col-md-12 no-pdding">
+                    <div class="">
+                        <h6 class="TextBoxtitle"> Today Leads</h6>
+                        <div class="text-center">
+                            <h2 class="TextPrice" ng-show="IsDashHeaderLoading">
+                                <span>Loading...</span>
+                            </h2>
+                            <h2 class="TextPrice">{{Todaylead}}</h2>
+                            <span class="persentCount">+18.33%</span>
+                        </div>
+                        <div class="row marginNone">
+                            <div class="col-xl-6 text-right no-pdding">
+                                <div>Today Proposal</div>
+                                <div>
+                                    <a>
+                                        {{TodayProposal}}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 text-left no-pdding">
+                                <div>Today Quotes</div>
+                                <div>
+                                    <a>
+                                        {{TodayQuotes}}
+                                    </a>
+                                </div>
+                                <!-- Full width modal -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-md-6 topTextBoxInn no-pdding">
+                        <div class="">
+                            <h6 class="TextBoxtitle"> PoS Payout</h6>
+                            <div class="text-center">
+                                <h2 class="TextPrice">{{PosCollection}}</h2>
+                                <span class="persentCount">+18.33%</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6 text-right no-pdding">
+                                    <div>Current Month</div>
+                                    <div>{{PoSThisMonth}}</div>
+                                </div>
+                                <div class="col-xl-6 text-left no-pdding">
+                                    <div>Previous Month</div>
+                                    <div>{{PoSPrevMonth}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End First Cards -->
+<!-- Start Lead Section -->
+<div class="leadDetlsTable margin15_T_B" ng-show="IsLead">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tableHeadRow">
+                        <div class="row">
+                            <div class="col-md-3 PadRight">
+                                <h4 class="card-title">Lead Details #<span>{{leadCounter}}</span></h4>
+                            </div>
+                            <div class="col-md-3 PadRight">
+                                <div class="pull-left">
+                                    <div class="input-wrap HomeSearchBox">
+                                        <input type="text" ng-model="SearchLead"
+                                               ng-change="SearchLeadData(SearchLead)" placeholder="Search..." class="textdemo" />
+                                        <i class="fa fa-search float-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 PadRight">
+                                <div class="pull-left">
+                                    <select class="theFilters" ng-model="Product"
+                                            ng-change="SelectProduct(Product)">
+                                        <option value="All">All</option>
+                                        <option value="Car">Private Car</option>
+                                        <option value="Two">Two Wheeler</option>
+                                        <option value="Car-E">Private Car Break-In Cases</option>
+                                        <option value="Two-E">Two Wheeler Break-In Cases</option>
+                                        <option value="GCV">GCV</option>
+                                        <option value="PCV">PCV</option>
+                                        <option value="TL">Term Life</option>
+                                        <option value="HLT">Health</option>
+                                        <option value="TRV">Travel</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-2 PadRight">
+                                <div class="pull-left">
+                                    <select class="theFilters" ng-model="leadStatusId" ng-change="leadsChange(leadStatusId)">
+                                        <option value="">Lead Status</option>
+                                        <option value="Quotation Success">Quotation</option>
+                                        <option value="Proposal Success">Proposal</option>
+                                        <option value="Payment Success">Success</option>
+                                        <option value="Payment Gateway">Payment Gateway</option>
+                                        <option value="Payment Fail">Payment Fail</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 PadRight text-right">
+                                <div id="reportrange" ng-click="getDateRangeValue('LeadReport')" class="pull-right theFilters theFiltersClndr">
+                                    <span class="DateRangeShow"></span>
+                                    <i class="fas fa-calendar-alt"></i><b class="caret"></b>
+                                </div>
+                                <div class="ml-auto threeDotted">
+                                    <div class="dropdown sub-dropdown">
+                                        <button class="btn btn-link text-muted" type="button"
+                                                id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i data-feather="more-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                            <a class="dropdown-item" href="javascript:void(0)" ng-click="DownloadMotorReport()">Download</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">Email</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Chart Implemenation, Date: 2021/08/06-->
+                                <div class="col-md-1">
+                                    <span ng-click="chartclick()" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-eye"></i> Chart</span>
+                                </div>
+
+                                <div class="modal fade ProductChart" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Lead Details</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModel2">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="MainChart">
+                                                    <ul>
+                                                        <li ng-repeat="item in chartList track by $index">
+                                                            <input type="checkbox" ng-model="chartList[$index].selected" ng-change="chartItemChecked($index)" />
+                                                            <span class="{{item.class}}"></span>
+                                                            <p>{{item.name}}</p>
+                                                        </li>
+                                                    </ul>
+                                                    <canvas id="myChart"></canvas>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModel2">Close</button>
+                                                @*<button type="button" class="btn btn-primary">Send message</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Chart Implemenation, Date: 2021/08/06-->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableContainer">
+                        <span class="Tableloader"></span>
+
+                        <table class="table table-bordered table-light" style="overflow: auto;height: 350px;">
+                            <thead>
+                                <tr>
+                                    <th class="serial">Lead#</th>
+                                    <th>Type</th>
+                                    <th>Contact</th>
+                                    <th>User</th>
+                                    <th>Role</th>
+                                    @*<th>Region</th>*@
+                                    <th>Source</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Lead From</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in LeadDetailGrid">
+                                    <td><a href="javascript:void(0)" ng-click="GetEnquiryInfo(lead.enqNo,lead.policyStatus,lead.enquirytype)">{{lead.enqNo}}</a></td>
+                                    <td>{{lead.enquirytype}}</td>
+                                    <td>{{lead.mobileno}}</td>
+                                    <td>{{lead.userName}}</td>
+                                    <td>{{lead.roleName}}</td>
+                                    @*<td>{{lead.region}}</td>*@
+                                    <td>{{lead.leadsource}}</td>
+                                    <td>{{lead.enquirydate}}</td>
+                                    <td>{{lead.policyStatus}}</td>
+                                    <td ng-init="opt=lead.macid==null?'Web':lead.macid">{{opt}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Lead Section -->
+<!--Start Offline Policies-->
+<div class="leadDetlsTable margin15_T_B" ng-show="IsOfflineLead">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tableContainer">
+                        <span class="Tableloader"></span>
+                        <table class="table table-bordered table-light" style="overflow: auto;height: 350px;">
+                            <thead>
+                                <tr>
+                                    <th>Enquiry No</th>
+                                    <th>Response Companies</th>
+                                    <th>Reporting Manager</th>
+                                    <th>KeyManager Code</th>
+                                    <th>Reporting Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in OfflineLeadDetailGrid">
+                                    <td>
+                                        <a href="javascript:void(0)"
+                                           ng-click="GotoSelectInsurer(lead)">{{lead.enquiryNo}} </a>
+                                    </td>
+                                    <td>{{lead.insurerFiles}}</td>
+                                    <td>{{lead.userName}}</td>
+                                    <td>{{lead.rmCode}}</td>
+                                    <td>{{lead.keyAccountManager}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Offline Policies-->
+<!-- Start PosReqLead Section -->
+<div class="leadDetlsTable margin15_T_B" ng-show="IsPosReq">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tableHeadRow">
+                        <div class="row">
+                            <div class="col-md-4 PadRight">
+                                <h4 class="card-title">Total POS Request #<span>{{PosReqCounter}}</span></h4>
+                            </div>
+                            <div class="col-md-8 PadRight text-right">
+                                <div id="RegisterAsPos" class="pull-right theFilters theFiltersClndr">
+                                    <span class="DateRangeShow"></span>
+                                    <i class="fas fa-calendar-alt"></i><b class="caret"></b>
+
+                                </div>
+                                <div class="ml-auto threeDotted">
+                                    <div class="dropdown sub-dropdown">
+                                        <button class="btn btn-link text-muted" type="button"
+                                                id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i data-feather="more-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                            <a class="dropdown-item" href="javascript:void(0)" ng-click="DownloadPOSRequest()">Download</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">Email</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableContainer">
+                        <span class="Tableloader"></span>
+
+                        <table class="table table-bordered table-light" style="overflow: auto;height: 350px;">
+                            <thead>
+                                <tr>
+                                    <th class="serial">Name</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>AadhaarNo</th>
+                                    <th>PAN No</th>
+                                    <th>DOB</th>
+                                    <th>Request Date</th>
+                                    <th>Address</th>
+                                    <th>ActiveUser</th>
+                                    <th>Role Name</th>
+                                    <th>User Info</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in PosReqGrid">
+                                    <td>
+                                        <div ng-show="lead.isDuplicate==null || lead.isDuplicate==true">
+                                            <span>{{lead.firstName}} {{lead.lastName}}</span>
+                                        </div>
+                                        <div ng-show="lead.isDuplicate!=null && lead.isDuplicate==false">
+                                            <a href="/myaccount/user/users" ng-click="GotoCreate(lead)">{{lead.firstName}} {{lead.lastName}} </a>
+                                        </div>
+                                    </td>
+                                    <td>{{lead.email}}</td>
+                                    <td>{{lead.mobile}}</td>
+                                    <td>{{lead.aadhaarNo}}</td>
+                                    <td>{{lead.panNo}}</td>
+                                    <td>{{lead.dob}}</td>
+                                    <td>{{lead.createdDate}}</td>
+                                    <td>{{lead.address}}</td>
+                                    <td>{{lead.activeUser}}</td>
+                                    <td>{{lead.rolename}}</td>
+                                    <td>{{lead.userInfo}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End PosReqLead Section -->
+<!-- Start ClaimDetails and Share Section -->
+<div class="leadDetlsTable margin15_T_B">
+    <div class="row">
+        <div class="col-md-6" ng-show="IsClaim">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tableHeadRow">
+                        <div class="row">
+                            <div class="col-md-4 PadRight">
+                                <h4 class="card-title">Total Claim #<span>{{ClaimCount}}</span></h4>
+                            </div>
+                            <div class="col-md-8 PadRight text-right">
+                                <div id="ClaimCal" class="pull-right theFilters theFiltersClndr">
+                                    <span class="DateRangeShow"></span>
+                                    <i class="fas fa-calendar-alt"></i><b class="caret"></b>
+                                </div>
+                                <div class="ml-auto threeDotted">
+                                    <div class="dropdown sub-dropdown">
+                                        <button class="btn btn-link text-muted" type="button"
+                                                id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i data-feather="more-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                            <a class="dropdown-item" href="javascript:void(0)">Download</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">Email</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableContainer">
+                        <span class="Tableloader"></span>
+
+                        <table class="table table-bordered table-light" style="overflow: auto;height: 350px;">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Contact</th>
+                                    <th>Create Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in ClaimList">
+                                    <td>{{lead.name}}</td>
+                                    <td>{{lead.email}}</td>
+                                    <td>{{lead.mobileNo}}</td>
+                                    <td>{{lead.createdDate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" ng-show="IsShared">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tableHeadRow">
+                        <div class="row">
+                            <div class="col-md-4 PadRight">
+                                <h4 class="card-title">Shared Details #<span>{{SharedListCount}}</span></h4>
+                            </div>
+                            <div class="col-md-8 PadRight text-right">
+                                <div id="Shared" class="pull-right theFilters theFiltersClndr">
+                                    <span class="DateRangeShow"></span>
+                                    <i class="fas fa-calendar-alt"></i><b class="caret"></b>
+                                </div>
+                                <div class="ml-auto threeDotted">
+                                    <div class="dropdown sub-dropdown">
+                                        <button class="btn btn-link text-muted" type="button"
+                                                id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i data-feather="more-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                            <a class="dropdown-item" href="javascript:void(0)">Download</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">Email</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableContainer">
+                        <span class="Tableloader"></span>
+
+                        <table class="table table-bordered table-light" style="overflow: auto;height: 350px;">
+                            <thead>
+                                <tr>
+                                    <th>EnquiryNo</th>
+                                    <th>ShareType</th>
+                                    <th>ProductType</th>
+                                    <th>SharedVia</th>
+                                    <th>To </th>
+                                    <th>Create Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in SharedList">
+                                    <td>{{lead.enquiryNo}}</td>
+                                    <td>{{lead.shareType}}</td>
+                                    <td>{{lead.productType}}</td>
+                                    <td>{{lead.sharedVia}}</td>
+                                    <td>{{lead.toMail}}</td>
+                                    <td>{{lead.createdDate}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End ClaimDetails  and Share Section -->
+<div class="leadDetlsTable margin15_T_B">
+    <div class="row">
+        <!-- Start Login History and Share Section -->
+        <div class="col-md-6" ng-show="IsLoginHis">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tableHeadRow">
+                        <div class="row">
+                            <div class="col-md-4 PadRight">
+                                <h4 class="card-title">BI Report #{{LoginList.length}}</h4>
+                            </div>
+                            <div class="col-md-4 PadRight">
+                                <div class="pull-right">
+                                    <select ng-model="roleModel"
+                                            class="theFilters"
+                                            ng-options="item.rolename for item in RoleList"
+                                            ng-change="filterRoleType(roleModel)">
+                                        <option value="">All</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4 PadRight mb-3 mt-3 text-right">
+                                <div id="LogHis" class="pull-right theFilters theFiltersClndr">
+                                    <span class="DateRangeShow DateRangeShowLast1"></span>
+                                    <i class="fas fa-calendar-alt"></i><b class="caret"></b>
+                                </div>
+                                <div class="ml-auto threeDotted">
+                                    <div class="dropdown sub-dropdown">
+                                        <button class="btn btn-link text-muted" type="button"
+                                                id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i data-feather="more-vertical"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                            <a class="dropdown-item" href="javascript:void(0)" ng-click="DownloadLoginHis()">Download</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">Email</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableContainer">
+                        <span class="Tableloader"></span>
+
+                        <table class="table table-bordered table-light" style="overflow: auto;height: 350px;">
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Role Name</th>
+                                    <th>Login Time</th>
+                                    <th>LogOut Time</th>
+                                    <th>Login Device</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in LoginList">
+                                    <td>{{lead.userName}}</td>
+                                    <td>{{lead.roleName}}</td>
+                                    <td>{{lead.loginTimeHis}}</td>
+                                    <td>{{lead.logOutTimeHis==null?'--':lead.logOutTimeHis}}</td>
+                                    <td>{{lead.loginDevice}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start END History and Share Section -->
+        <!-- Start BirthdayUserList Section -->
+        <div class="col-md-6" ng-show="IsBirthdayWish">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tableHeadRow">
+                        <div class="row">
+                            <div class="col-md-4 PadRight">
+                                <h4 class="card-title">Users Birthday #{{BirthdayUserList.length}}</h4>
+                            </div>
+                            <div class="col-md-4 PadRight">
+                                <input type="button" value="Send Wishes" ng-click="ShowWishForm()" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableContainer">
+                        <span class="Tableloader"></span>
+                        <table id="tblBirthday" class="table table-bordered table-light" style="overflow: auto;height: 350px;">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>User Name</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="lead in BirthdayUserList">
+                                    <td><input type="checkbox" value="{{lead.userID}}" /></td>
+                                    <td>{{lead.userName}}</td>
+                                    <td>{{lead.roleName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start END BirthdayUserList Section -->
+    </div>
+</div>
+
+<!--Birthday Notification Start-->
+<div class="container" ng-show="BirthdayPopup">
+    <div class="Createdmodal">
+        <div class="modal-dialog BirthdayBox">
+            <div class="modal-content">
+                <input type="button" value="Close" ng-click="CLoseWishesBirth()" />
+                <div class="modal-body">
+                    <div class="BirthdayBoxTop">
+                        <i class="fas fa-birthday-cake"></i>
+                        <h3>Share your Wishes!</h3>
+                    </div>
+
+                    <div class="Birthform">
+                        <form ng-submit="SHareBirthdayMessage()">
+                            <textarea rows="3" class="form-control" ng-model="BirthdayMessage" maxlength="100" placeholder="Massage"></textarea>
+                            <button class="btn birthBtn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Birthday Notification END-->
+
+<!--Chart Implementation; Date: 2021/08/06 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="~/js/Home/LeadChart.js"></script>
+<!--End Chart Implementation; Date: 2021/08/06 -->

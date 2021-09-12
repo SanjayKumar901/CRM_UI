@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Offline Policy";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Business/OfflineModules.js"></script>
+<div id="grd">
+    <div class="page-wrapper open_Main">
+        <div class="container-fluid">
+            <div id="options"></div>
+        </div>
+    </div>
+
+
+    @switch (ViewBag.pagesection)
+    {
+        case "Offline Update Policy":
+            <partial name="OfflineUpdatePolicy" />
+            break;
+        case "Offline HLTPolicy":
+            <partial name="OfflineUpdateHLTPolicy" />
+            break;
+    }
+</div>

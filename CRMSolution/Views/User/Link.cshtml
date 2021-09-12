@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Link";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/Link.js"></script>
+<div ng-controller="linkcontroll">
+    <div class="container-fluid">
+        <div class="close closeBtn"></div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="createUserBox generateLinkBox generateLinkBoxLinks">
+                    <form>
+                        @if ((ViewData["Linktype"] as string) == "POS")
+                        {
+                            <h3> Generate Dynamic POS Link</h3>
+                        }
+                        else
+                        {
+                            <h3> Generate Dynamic Affiliate Link</h3>
+                            <div class="input-wrap">
+                                <select id="AffiliateList" class="form-control textdemo" ng-model="selectAffiliate"
+                                        ng-options="item.privilegeName for item in selectAffiliatelist">
+                                </select>
+                            </div>
+                        }
+                    <div class="input-wrap">
+                        <input type="text" readonly="readonly" id="myInput" name="Email" class="textdemo" value="{{GeneratedLink}}" placeholder=" " />
+                        <label class="demo-label" for="Email">Generate Link</label>
+                        <button ng-click="myFunction()" class="btn CopyBtn"><i class="fas fa-copy"></i></button>
+                    </div>
+                        <div class="input-wrap input-wrapBtn">
+                            <input type="button" class="btn" value="Generate" ng-click="GenerateLink()" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

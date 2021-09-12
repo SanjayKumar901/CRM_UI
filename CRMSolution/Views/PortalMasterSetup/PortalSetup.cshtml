@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Portal Setup";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/PortalMasterSetup/PortalSetup.js"></script>
+@*<script src="/js/PortalMasterSetup/PortalSetup.js"></script>*@
+<div class="page-wrapper ng-scope open_Main" ng-controller="portalSetup">
+    <div class="container">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="MyProfileDet03 MyProfileDet03Master">
+                    <nav id="outer_container">
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" ng-click="SelectTab('PosSetup')"
+                               data-toggle="tab" href="#PosQuotaitionSetup" role="tab"
+                               aria-controls="nav-Car" aria-selected="true">Pos Setup for Motor Quotaition</a>
+                            <a class="nav-item nav-link" ng-click="SelectTab('PosHLTSetup')"
+                               data-toggle="tab" href="#PosHLTQuotaitionSetup" role="tab"
+                               aria-controls="nav-Car" aria-selected="true">Pos Setup for Health Quotaition</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="PosQuotaitionSetup" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <partial name="_PosQuotaitionSetup" />
+                        </div>
+                        <div class="tab-pane fade show" id="PosHLTQuotaitionSetup" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <partial name="_PosQuoteHLTSetup" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

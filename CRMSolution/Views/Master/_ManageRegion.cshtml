@@ -1,0 +1,47 @@
+﻿<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>Manage Region</h2>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" ng-model="regionName"ng-change="manageName(regionName,'regionName')"  
+                           placeholder="Region Name" class="form-control" />
+                </div>
+            </div>
+            <div class="row mt-3 mb-3 form-group">
+                <div class="col-md-3">
+                    <input type="button" class="btn allBtn btn-block" ng-click="SaveRegion()" value="{{RegionbtnSave}}" />
+                </div>
+                <div class="col-md-3">
+                    <input type="button" class="btn allBtn btn-block" ng-click="AddNew('regionName','RegionbtnSave')" value="Add New" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Region ID</th>
+                                <th>Region Name</th>
+                                <th>Edit</th>
+                                <th>Active</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in RegionList">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.id}}</td>
+                                <td>{{item.region}}</td>
+                                <td><a href="javascript:void(0)" ng-click="EditRegionBranch(item,'regionName','RegionbtnSave')">Edit</a> </td>
+                                <td><a href="javascript:void(0)" ng-click="ActiveData(item)">{{item.isActive}}</a> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

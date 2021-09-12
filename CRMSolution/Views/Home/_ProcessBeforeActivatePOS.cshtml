@@ -1,0 +1,247 @@
+﻿    <div ng-show="POSQProcess == true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content activePOSBox">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center">Mandatory 15 hours POSP Training & Certification</h3>
+                </div>
+                <div class="modal-body">
+                    <h5>
+                        <center>
+                            Do you want to start your 15 hours training or
+                            would like to start later.
+                        </center>
+                    </h5>
+                    <center><img src="~/images/time.png" class="img-fluid m-2" width="128" height="128"></center>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <center>
+                                <button type="button" class="btn btn-primary">Will Do Later</button>
+                                <button type="button" class="btn btn-primary ml-2"
+                                        ng-click="Start('start')">
+                                    Start Now
+                                </button>
+                                <button type="button" class="btn btn-primary ml-2"
+                                        ng-click="Start('automatically')">
+                                    Automatically Start
+                                </button>
+                            </center>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<div class="col-md-10 mx-auto shadow bg-white p-4 border" ng-show="IsFifteenHour"> 
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="text-question text-center mb-4">
+                Syllabus
+                <input type="button" value="15:00:00" class="btn btn-outline-secondary position-absolute" style="right: 10px;">
+            </h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="bg-new">
+                        <th>Module</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in examSummary">
+                        <td>{{index+1}}</td>
+                        <td><a href="{{item.link}}">{{item.name}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-12 text-center mb-4 mt-4">
+            <button type="button" ng-click="Syllabus(false)" class="btn btn-primary">Start</button>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="IsSyllabus">
+    <div class="col-md-10 mx-auto shadow bg-white p-4 border mt-3">
+        <div class="row">
+            <div class="col-md-3">
+                <button type="button" id="Panbutton" class="btn btn-secondary">Go to Test</button>
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center mb-4">
+                    Syllabus
+                </h4>
+            </div>
+            <div class="col-md-3 text-right">
+                <input type="button" value="14:38:00" class="btn btn-outline-secondary">
+            </div>
+            <div class="col-md-10 mx-auto mt-3">
+                <h4 class="text-primary">Module -1 Introduction of Insurance</h4>
+                <h5>Introduction</h5>
+                <p class="mb-0">Man is afraid of uncertainty and fears, and death, although a reality. One day each one will die; early or later, timely or untimely is the question, which has no answer. He is afraid of risk &amp; losses in future.</p>
+                <p class="mb-0">Man is ever in search of security &amp; certainty. In early history man lived in-groups and communities to be secure.</p>
+                <p class="mb-0">Whenever an earning member would die due to disease or death, the other members of the social group (or family or clan) would contribute to bail the survivors in the family out of financial difficulties.</p>
+                <p>This contribution was in the shape of food- clothing and shelter. Even today we donate money, food, clothing and other materials of life to rehabilitate the family whose breadwinner has left for his heavenly abode, unfortunately, suddenly, sadly. (Also people, contribute education, healthcare expenses or mishap). towards marriage,</p>
+                <h5>Nature of Insurance:</h5>
+                <p class="mb-0">Insurance may be defined as the transfer of pure risk from the insured to the insurer. The insured is the person or firm or company confronted by risk and the insurer is a person or firm or company, which specializes in the assumption of risk. The primary business of the insurer is risk assumption for a fee.</p>
+                <p class="mb-0">Insurance is a device for reducing risk by combining a sufficient losses shared proportionately by all units in the combination. Therefore, it implies both that uncertainty is reduced &amp; losses are shared.</p>
+                <p class="mb-0">It implies the law of large numbers so that the requirements of future funds to cover losses are predictable with reasonable accuracy.</p>
+                <p class="mb-0">It provides some definite method for raising these funds by levies against the units covered by the scheme.</p>
+                <p class="mb-0">Wherever there is accumulation for uncertain losses, or wherever there is transfer of risk, there is one element of Insurance, only when these are joined with the combination of risk in a group is the Insurance complete. Another way to state this is to say that “Insurance is a transfer of risk with the added features of (i) combination of risks (ii) an estimate of future losses”.</p>
+            </div>
+            <div class="col-lg-12 text-center mb-4 mt-4">
+                <button type="button"  ng-click="Syllabus(true)" class="btn btn-primary">Back</button>
+                <button type="button" ng-show="doneFifteenHour" 
+                        ng-click="CompleteTraining()"
+                        class="btn btn-primary ml-2">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="IsAllTheBest">
+    <div class="col-md-10 mx-auto shadow bg-white p-4 border mt-3">
+        <div class="row mt-3">
+            <div class="col-md-7 offset-md-1">
+                <h4 class="text-orange">Important points to Remember!</h4>
+                <p class="mb-0">After starting the test do not refresh the page.</p>
+                <p class="mb-0">Do not click back button or logout button.</p>
+                <p class="mb-0">You are about to start your assessment.</p>
+                <p class="mb-0">There are 20 questions in the test, minimum passing percentage is 50%.</p>
+                <p>There is no negative marking.</p>
+                <h3 class="text-orange">All the Best !</h3>
+            </div>
+            <div class="col-md-3">
+                <img src="~/images/all-the-best.png" class="img-fluid" width="150">
+            </div>
+            <div class="col-lg-12 text-center mb-4 mt-4">
+                <button type="button" class="btn btn-primary ml-2" 
+                        ng-click="StartExam()">Start Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="IsExamStart">
+    <div class="col-md-10 mx-auto shadow bg-white p-4 border mt-3">
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <b>Total Question </b>:- {{QuestionList.length}}
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center mb-4">
+                    POSP Assessment
+                </h4>
+            </div>
+            <div class="col-md-3 text-right">
+                <b> Total Attempt</b> :- {{QuestionList.length}}
+            </div>
+            <div class="col-md-12 mt-3">
+                <div ng-repeat="item in QuestionList">
+                    <h5 class="text-primary">{{$index+1}}. {{item.qstn}}</h5>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio mb-1">
+                            <input name="{{item.id}}" type="radio" value="{{item.option1}}" required="">
+                            <label>{{item.option1}}</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-1">
+                            <input name="{{item.id}}" type="radio" value="{{item.option2}}" required="">
+                            <label>{{item.option2}}</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-1">
+                            <input name="{{item.id}}" type="radio" value="{{item.option3}}" required="">
+                            <label>{{item.option3}}</label>
+                        </div>
+                        <div class="custom-control custom-radio mb-1">
+                            <input name="{{item.id}}" type="radio" value="{{item.option4}}" required="">
+                            <label>{{item.option4}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 text-center mb-4 mt-4">
+                <button type="button" class="btn btn-primary ml-2" 
+                        ng-click="GotoResult()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-show="IsResult">
+    <div class="col-md-10 mt-3 mx-auto shadow bg-white p-5 border">
+        <div class="row">
+            <div class="col-md-12">
+                <center ng-show="IsPass=='Pass'">
+                    <img src="~/images/happy.png" width="72">
+                    <h3 class="text-question mt-1">Congratulations you've passed the exam</h3>
+                </center>
+                <center ng-show="IsPass=='Fail'">
+                    <h3 class="text-question mt-1">You are failed the exam</h3>
+                </center>
+            </div>
+            <div class="col-md-6 ">
+                <div class="box">
+                    <center>
+                        <img src="~/images/question.png" class="img-fluid" width="48" height="48">
+                        <h4>Total Questions :- 25 </h4>
+                    </center>
+                </div>
+            </div>
+            @*<div class="col-md-6 ">
+                <div class="box">
+                    <center>
+                        <img src="~/images/checkmark.png" class="img-fluid" width="48" height="48">
+                        <h4>Attempted Questions :- 5 </h4>
+                    </center>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="box">
+                    <center>
+                        <img src="~/images/statistics.png" class="img-fluid" width="48" height="48">
+                        <h4>Marks :- 5 </h4>
+                    </center>
+                </div>
+            </div>*@
+
+            <div class="col-md-6 ">
+                <div class="box">
+                    <center>
+                        <img src="~/images/status.png" class="img-fluid" width="48" height="48">
+                        <h4>Status :- {{IsPass}} </h4>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@*<div ng-show="PosResult">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content activePOSBox">
+            <div class="modal-header">
+                <h3 class="modal-title text-center">Result</h3>
+            </div>
+            <div class="modal-body">
+                <h5>
+                    <center>
+                        Do you want to start your 15 hours training or
+                        would like to start later.
+                    </center>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>*@

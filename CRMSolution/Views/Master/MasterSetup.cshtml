@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewData["Title"] = "UserSetup";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Master/Master.js"></script>
+@*<script src="/js/Master/Master.js"></script>*@
+<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <!-- ============================================================== -->
+    <div class="page-wrapper open_Main" ng-controller="MasterSetup">
+        <div class="container">
+            <section class="MyProfileDet01">
+                <div class="MyProfileDet02 p-0 bg-transparent border-0">
+                    <div class="MyProfileDet02Img">
+                        <img class="logoimage" src="" />
+                        <label class="changeLogo">
+                            Change Image
+                            <button class="addfiles" ng-click="addfile()">Add Files</button>
+                            <input id="fileupload" type="file" onchange="angular.element(this).scope().fileNameChanged(this)" style="display:none;" />
+                        </label>
+                    </div>
+                </div>
+                <div class="MyProfileDet03 MyProfileDet03Master">
+                    <nav id="outer_container">
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" ng-click="OptionSeries()" id="nav-Car-tab" data-toggle="tab" href="#nav-Series" role="tab" aria-controls="nav-Car" aria-selected="true">Master Series</a>
+                            <a class="nav-item nav-link" ng-click="OptionMailServer()" id="nav-Bike-tab" data-toggle="tab" href="#nav-Server" role="tab" aria-controls="nav-Bike" aria-selected="false">Mail Config</a>
+                            <a class="nav-item nav-link" ng-click="OptionTraining()" id="TrainingDuration" data-toggle="tab" href="#PosTrainingDuration" role="tab" aria-controls="nav-Bike" aria-selected="false">Pos Training</a>
+                            <a class="nav-item nav-link" ng-click="CallRoleList()" id="role" data-toggle="tab" href="#maprole" role="tab" aria-controls="nav-Bike" aria-selected="false">Map Role</a>
+                            <a class="nav-item nav-link" ng-click="CallIrda()" id="role" data-toggle="tab" href="#Advance" role="tab" aria-controls="nav-Bike" aria-selected="false">Advance Setting</a>
+                            <a class="nav-item nav-link" id="role" ng-click="CallRegionMaster()" data-toggle="tab" href="#RegionMaster" role="tab" aria-controls="nav-Bike" aria-selected="false">Region Master</a>
+                            <a class="nav-item nav-link" ng-click="CallBranchMaster()" id="role" data-toggle="tab" href="#BranchMaster" role="tab" aria-controls="nav-Bike" aria-selected="false">Branch Master</a>
+                            @*<a class="nav-item nav-link" ng-click="CallBranch()" id="role" data-toggle="tab" href="#BranchSetup" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                    Branch Setting
+                                </a>*@
+                            <a class="nav-item nav-link" ng-click="OptionMailServer()" id="role" data-toggle="tab" href="#SMSServer" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                SMS Config
+                            </a>
+                            <a class="nav-item nav-link" ng-click="OptionPayout()" id="role" data-toggle="tab" href="#Payout" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Payout Setup
+                            </a>
+                            <a class="nav-item nav-link" id="role" data-toggle="tab" href="#PosExamQstn" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                POS Test
+                            </a>
+                            <a class="nav-item nav-link" ng-click="CallInactivePos()" id="role" data-toggle="tab" href="#PendingPosList" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Active Pending POS
+                            </a>
+                            <a class="nav-item nav-link" ng-click="RenewalSetup()" id="role" data-toggle="tab" href="#AutoRenewal" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Auto Renewal Setup
+                            </a>
+                            <a class="nav-item nav-link" ng-click="OptionMailServer()" id="role" data-toggle="tab" href="#NotificationConfig" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Notification Config
+                            </a>
+                            <a class="nav-item nav-link" ng-click="ReplaceUser()" id="role" data-toggle="tab" href="#ReplaceUser" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                User Remaping
+                            </a>
+                            <a class="nav-item nav-link" ng-click="PosDocSummary()" id="role" data-toggle="tab" href="#PosDocSummary" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Pos Exam Doc Summary
+                            </a>
+                            <a class="nav-item nav-link" ng-click="GetPageList()" id="role" data-toggle="tab" href="#Chatbox" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Configure Chat Box
+                            </a>
+                            <a class="nav-item nav-link" ng-click="ConfigSupprt()" id="role" data-toggle="tab" href="#SupportConfig" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Configure Support Feature
+                            </a>
+                            <a class="nav-item nav-link" ng-click="ConfigFeedBack()" id="role" data-toggle="tab" href="#SupportFeedBack" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Configure FeedBack Option
+                            </a>
+                            <a class="nav-item nav-link" ng-click="CallDigitalSig()" id="role" data-toggle="tab" href="#CallDigitalSig" role="tab" aria-controls="nav-Bike" aria-selected="false">
+                                Digital Signature Content
+                            </a>
+                        </div>
+                    </nav>
+                    @*<a class="ArrowLeft" ng-show="leftmovemodel" ng-click="leftMove()" >
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="ArrowRight" ng-click="rightMove()">
+                            <i class="fa fa-angle-right"></i>
+                        </a>*@
+
+
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-Series" role="tabpanel" aria-labelledby="nav-home-tab">
+                            <partial name="_Series" />
+                        </div>
+                        <div class="tab-pane fade" id="nav-Server" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_MailServer" />
+                        </div>
+                        <div class="tab-pane fade" id="PosTrainingDuration" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_PosTrainingDuration" />
+                        </div>
+                        <div class="tab-pane fade" id="maprole" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_MapRole" />
+                        </div>
+                        <div class="tab-pane fade" id="Advance" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_AdvanceSetup" />
+                        </div>
+                        <div class="tab-pane fade" id="BranchSetup" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_BranchSetup" />
+                        </div>
+                        <div class="tab-pane fade" id="SMSServer" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_SMS" />
+                        </div>
+                        <div class="tab-pane fade" id="Payout" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_PayoutSetup" />
+                        </div>
+                        <div class="tab-pane fade" id="PosExamQstn" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_PosExamQstn" />
+                        </div>
+                        <div id="RegionMaster" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_ManageRegion" />
+                        </div>
+                        <div id="BranchMaster" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_ManageBranch" />
+                        </div>
+                        <div id="PendingPosList" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_PendingPosList" />
+                        </div>
+                        <div id="AutoRenewal" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_AutoRenewal" />
+                        </div>
+                        <div id="NotificationConfig" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_NotificationConfig" />
+                        </div>
+                        <div id="ReplaceUser" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_ReplaceUser" />
+                        </div>
+                        <div id="PosDocSummary" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_PosDocSummary" />
+                        </div>
+                        <div id="Chatbox" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_ChatBox" />
+                        </div>
+                        <div id="SupportConfig" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_SupportConfig" />
+                        </div>
+                        <div id="SupportFeedBack" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_SupportFeedBack" />
+                        </div>
+                        <div id="CallDigitalSig" class="tab-pane fade" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <partial name="_CallDigitalSig" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

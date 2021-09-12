@@ -1,0 +1,93 @@
+﻿
+<div class="row">
+    <div class="col-md-12 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <h2>
+                        PoS Test Question Bank
+                    </h2>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input type="text" ng-model="posQstn" class="form-control" placeholder="Enter Question" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input type="text" ng-model="option1" class="form-control" placeholder="Enter Option1" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input type="text" ng-model="option2" class="form-control" placeholder="Enter Option2" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input type="text" ng-model="option3" class="form-control" placeholder="Enter Option3" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input type="text" ng-model="option4" class="form-control" placeholder="Enter Option4" />
+                </div>
+                <div class="col-md-3 mb-3">
+                    <input type="text" ng-model="Answer" class="form-control" placeholder="Enter Answer" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-3 mb-3">
+                    <input type="button" class="btn allBtn btn-block" value="Add Question" ng-click="AddQuestion()" />
+                </div>
+            
+                <div class="col-md-3 mb-3">
+                    <input type="button" class="btn allBtn btn-block" value="Save" ng-click="SaveQstns()" />
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SrNo.</th>
+                                <th>Questions</th>
+                                <th>Options</th>
+                                <th>Answer</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in PosQuestionList">
+                                <td>{{($index+1)}}</td>
+                                <td>{{item.Qstn}}</td>
+                                <td>{{item.Option1}},{{item.Option2}},{{item.Option3}},{{item.Option4}}</td>
+                                <td>{{item.Answer}}</td>
+                                <td><a href="javascript:void(0)" ng-click="RemoveQuestion($index)">Remove</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <input type="button" value="Show Saved Question" ng-click="ShowShavedQstn()" />
+                </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>SrNo.</th>
+                                <th>Questions</th>
+                                <th>Options</th>
+                                <th>Answer</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in SavedPosQstnList">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.qstn}}</td>
+                                <td>{{item.option1}},{{item.option2}},{{item.option3}},{{item.option4}}</td>
+                                <td>{{item.answer}}</td>
+                                <td><a href="javascript:void(0)" ng-click="RemoveQuestionfromServer(item)">Remove</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

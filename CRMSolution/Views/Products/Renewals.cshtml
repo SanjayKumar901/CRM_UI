@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewData["Title"] = "Renewals";
+}
+    <script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Products/Renewal.js"></script>
+@*<script src="~/js/Products/Renewal.js"></script>*@
+<div class="page-wrapper open_Main" ng-controller="Renewal">
+    <div class="container-fluid project-tab">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Renewals</h3>
+                </div>
+                <div class="col-md-6 text-right">
+
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="ISRegionBox">
+                    <div class="form-control textdemo" ng-click="IsRegionshow()">
+                        <span>Select</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down svg-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="close closeBtn RegionClose" ng-click="IsCloseRegions()" ng-show="IsCloseRegionBtn"></div>
+
+                    <div class="MultiSelectReg" ng-show="IsMultiselectRegion">
+                        <input type="text" ng-model="Search" class="form-control textdemo" ng-change="findUser(Search)" />
+                        <div ng-repeat="item in userList">
+                            <input type="checkbox" class="UserModel" value="{{item.userID}}" />
+                            <span>{{item.userName}} - {{item.userID}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>From Date</span>
+                        <input type="date" id="fromDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>To Date</span>
+                        <input type="date" id="toDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>
+                            <input type="button" value="Get Data" class="btn btn-primary" ng-click="GetData()" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-Car-tab" data-toggle="tab"
+                   href="#nav-Motor" role="tab" aria-controls="nav-Motor" aria-selected="true"
+                   ng-click="SelectProduct('Motor')">
+                    Motor
+                </a>
+                <a class="nav-item nav-link" id="nav-Health-tab" data-toggle="tab" href="#nav-Health"
+                   role="tab" aria-controls="nav-Health" aria-selected="false"
+                   ng-click="SelectProduct('Health')">
+                    Health
+                </a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-Motor" role="tabpanel" aria-labelledby="nav-home-tab">
+                <section class="mngUserSecond">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="manageUserFLT">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="project-tab">
+                    <div class="leadDetlsTable margin15_T_B">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="tableHeadRow">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="tableContainer">
+                                                        <span class="Tableloader"></span>
+                                                        <table class="table table-bordered table-light">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Employee Name</th>
+                                                                    <th>UserName</th>
+                                                                    <th>Mobile</th>
+                                                                    <th>Email</th>
+                                                                    <th>VehicleName</th>
+                                                                    <th>VehicleNo</th>
+                                                                    <th>CompanyName</th>
+                                                                    <th>TotalPremium</th>
+                                                                    <th>PolicyNo</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="item in RenewalList">
+                                                                    <td>{{item.empUserName}}</td>
+                                                                    <td>{{item.userName}}</td>
+                                                                    <td>{{item.mobile}}</td>
+                                                                    <td>{{item.email}}</td>
+                                                                    <td>{{item.vehicleName}}</td>
+                                                                    <td>{{item.vehicleNo}}</td>
+                                                                    <td>{{item.companyName}}</td>
+                                                                    <td>{{item.totalPremium}}</td>
+                                                                    <td>{{item.policyNo}}</td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0)" ng-click="GotoQuote(item.policyNo)">Renew</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="nav-Health" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <section class="mngUserSecond">
+                </section>
+                <section class="project-tab">
+                    <div class="leadDetlsTable margin15_T_B">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="tableHeadRow">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Employee Name</th>
+                                                                <th>UserName</th>
+                                                                <th>Mobile</th>
+                                                                <th>Email</th>
+                                                                <th>CompanyName</th>
+                                                                <th>TotalPremium</th>
+                                                                <th>Policy Exp Date</th>
+                                                                <th>Insured Members</th>
+                                                                <th>Payment On</th>
+                                                                <th>Plan</th>
+                                                                <th>PolicyNo</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="item in RenewalHealthList">
+                                                                <td>{{item.empUserName}}</td>
+                                                                <td>{{item.userName}}</td>
+                                                                <td>{{item.mobile}}</td>
+                                                                <td>{{item.email}}</td>
+                                                                <td>{{item.companyName}}</td>
+                                                                <td>{{item.totalPremium}}</td>
+                                                                <td>{{item.policyEndDate}}</td>
+                                                                <td>
+                                                                    User({{item.userAge}})
+                                                                    <span ng-show="item.spouseAge>0">
+                                                                        Spouse({{item.spouseAge}})
+                                                                    </span>                                                                    
+                                                                </td>
+                                                                <td>{{item.policyStartDate}}</td>
+                                                                <td>{{item.planName}}</td>
+                                                                <td>{{item.policyNo}}</td>
+                                                                <td>
+                                                                    <a href="javascript:void(0)" ng-click="GotoQuote(item.EnquiryNo)">Renew</a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <p>Are you sure you want to take this action?</p>
+                        <button class="btn DeRgstrBTN">Yes</button> <button class="btn DeRgstrBTN">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

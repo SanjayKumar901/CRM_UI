@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Feedback Report";
+}
+    <script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/UsersFeedback.js"></script>
+<div class="page-wrapper ng-scope open_Main" ng-controller="usersFeedback">
+    <div class="row">
+        <div class="col-md-4">
+            <select ng-model="FeedBackModel" ng-change="filterwithfeedbackoption(FeedBackModel)"
+                    ng-options="item.options for item in FeadbackOptionList">
+                <option value="">All Feedback</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>User Name</th>
+                        <th>Feedback</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="item in FeedbackList">
+                        <td>{{$index+1}}</td>
+                        <td>{{item.userName}} ({{item.userid}})</td>
+                        <td>{{item.feedbackText}}</td>
+                        <td>
+                            <input type="checkbox" ng-checked="itemls<item.rating" value="{{itemls}}" ng-click="checkRate(item)"
+                                   ng-repeat="itemls in RatingCounter" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

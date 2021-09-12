@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "ImportUser";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/ImportUser.js"></script>
+<div class="page-wrapper open_Main">
+    <div class="container-fluid" ng-controller="appcontroll">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="createUserBox generateLinkBox ImportUser">
+                    <h3> Import Users</h3>
+                    <form>
+                        <div class="input-wrap">
+                            <input type="file" id="file" name="Email" class="textdemo" />
+                        </div>
+                        <div class="input-wrap input-wrapBtn">
+                            <input type="button" id="btnUpload" class="btn" ng-click="UploadFile()" value="Import" />
+                        </div>
+                        <div  class="input-wrap input-wrapBtn">
+                            <a href="javascrip:void(0)" ng-click="GetSampleFile()">Get Sample File</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-12" ng-show="IsSave">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Response Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in UserResponse">
+                            <td>{{item.userEmail}}</td>
+                            <td>{{item.responseMessage}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

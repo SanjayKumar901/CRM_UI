@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-md-6 MPD03_Box">
+        <div class="MyProfileDet03Cnt">
+            <h2>Activation Duration</h2>
+
+            <div class="row MyProfileDet03CntServer">
+                <div class="col-md-5">
+                    <label class="demo-label" for="textdemo">Duration Hour :</label>
+                </div>
+                <div class="col-md-7">
+                    <div class="input-wrap">
+                        <select ng-model="OptionModel" class="theFilters"
+                                ng-change="SelectDuration()"
+                                ng-options="item.item for item in lstHour">
+                            <option value="">Select Duration</option>
+                        </select> : Hours
+                    </div>
+                </div>
+            </div>
+            <div class="row MyProfileDet03CntServer">
+                <label>
+                    <input type="button" ng-click="SaveTimeDuration()" ng-disabled="IsSaveTimeDuration" value="Save" class="btn btn-primary" />
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

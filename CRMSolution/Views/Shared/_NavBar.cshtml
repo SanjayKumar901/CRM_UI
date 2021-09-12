@@ -1,0 +1,9 @@
+﻿
+    <ul id="navlist" class="dropdown-menu dropdown-menu-right user-dd animated flipInY" ng-controller="navcontroller">
+        <li class="dropdown-item" ng-repeat="nav in Navs">
+            <a class="sidebar-link" href="{{nav.url}}" ng-click="submenu(nav)"
+               aria-expanded="false">
+                    {{nav.privilegeName}}
+            </a>
+        </li>
+    </ul>

@@ -1,0 +1,122 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/AngularJS/angular.js"></script>
+    @*<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Account/Login.js"></script>*@
+    <script src="/js/Account/Login.js"></script>
+    <link href="~/js/dist/css/style.css" rel="stylesheet" />
+    <link href="~/Content/customStyle.css" rel="stylesheet" />
+</head>
+<body ng-app="Login" ng-controller="logincontroll">
+    <div class="page-wrapper ng-scope open_Main" style="display: block;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="createUserBox">
+                        <img src="{{LOGO}}">
+                        <h3>Login to Your Account</h3>
+                        <form name="loginform" ng-submit="loginform.$valid && sumbit()">
+                            <div class="input-wrap">
+                                <input type="text" class="textdemo" ng-model="Email" autocomplete="off" name="Email" placeholder=" " required="required">
+                                <label class="demo-label" for="Mobile">Enter Mobile/Email</label>
+                                <span ng-show="loginform.Email.$touched && loginform.Email.$error.required" class="danger">Email Address Required</span>
+
+                            </div>
+                            <div ng-show="IsEmail" class="input-wrap">
+                                <input type="password" autocomplete="off" class="textdemo" ng-model="Password"
+                                       name="Password" placeholder=" ">
+                                <label class="demo-label" for="Mobile">Password</label>
+                                <span ng-show="loginform.Password.$touched && loginform.Password.$error.required" class="danger">Password Required</span>
+                            </div>
+                            <div ng-show="IsMobile" class="input-wrap">
+                                <input type="text" autocomplete="off" class="textdemo" ng-model="OTP"
+                                       name="Password" placeholder=" ">
+                                <label class="demo-label" for="Mobile">Password</label>
+                                <span ng-show="loginform.Password.$touched && loginform.Password.$error.required" class="danger">Password Required</span>
+                            </div>
+                            <div class="input-wrap input-wrapBtn">
+                                <input type="button" ng-click="nextProcess()" class="btn btn-block"
+                                       value="{{Login}}" />
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-6 text-left">
+                                        <a href="javascript:void(0)" ng-click="CreateAccount()">Create Account</a>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <a href="javascript:void(0)" ng-click="IsResetPass()">Reset Password</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-12 text-center" ng-show="isRenew">
+                    <div class="createUserBox">
+                        <h3>Renew with past policy number</h3>
+                        <form>
+                            <div class="input-wrap" id="EnterPass">
+                                <input type="text" autocomplete="off" name="Renewal" ng-model="RenewalPolicy" value=" " class="textdemo" />
+                                <label class="demo-label" for="Renewal">Your past policy number</label>
+                            </div>
+                            <div class="input-wrap input-wrapBtn">
+                                <input type="button" class="btn btn-block" value="Renew" ng-click="GotoRenew()" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Createdmodal" ng-show="IsReset">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+                    <div class="close closeBtn resetClose" ng-click="IsResetPass()"></div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="createUserBox">
+                                <h3>Are you sure you want to take this action?</h3>
+                                <form>
+                                    <div class="input-wrap" id="EnterPass">
+                                        <input type="text" ng-model="EmailIDforReset" name="EmailReset" class="textdemo" autocomplete="off" />
+                                        <label class="demo-label" for="EmailReset">Email ID</label>
+                                    </div>
+                                    <div class="input-wrap" id="EnterPass">
+                                        <input type="password" ng-model="OldPassReset" name="OLDPass" class="textdemo" autocomplete="off" />
+                                        <label class="demo-label" for="OLDPass">Old Password </label>
+                                    </div>
+                                    <div class="input-wrap" id="EnterPass">
+                                        <input type="password" ng-model="NewPassReset" name="NewPass" class="textdemo" autocomplete="off" />
+                                        <label class="demo-label" for="NewPass">New Password </label>
+                                    </div>
+                                    <div class="input-wrap" id="EnterPass">
+                                        <input type="password" ng-model="ConfirmPassReset" name="ConfirmPass" class="textdemo" autocomplete="off" />
+                                        <label class="demo-label" for="ConfirmPass">Confirm Password </label>
+                                    </div>
+                                    <div class="input-wrap input-wrapBtn">
+                                        <input type="button" class="btn btn-block" value="Change"
+                                               ng-click="ResetPass()" />
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

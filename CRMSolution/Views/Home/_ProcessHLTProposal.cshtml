@@ -1,0 +1,210 @@
+﻿
+<div class="CreatUser CreatUser02">
+    <div class="container-fluid">
+        <div class="close closeBtn" ng-click="CloseEnquiryInfo()"></div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="parivaar-GetFullDetails">
+                        <div class="row proposalBox03">
+                            <div class="col-md-8 offset-md-2">
+                                <div class="GF_DetBoxMain">
+                                    <div class="GF_DetBoxMainHead text-center">
+                                        <h3>Lead Details</h3>
+                                    </div>
+
+                                    <div class="form-cntnt">
+
+                                        <div class="form-group">
+                                            <strong class="tell-us">
+                                                <span>We help you find better plans for  <br /><strong> Health Insurance</strong></span>
+                                            </strong>
+                                        </div>
+                                        <div class="new" id="bike-Neww" style=" display:block;">
+
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="dropdown gender-dd style-inpt-home text-left">
+                                                        <select ng-model="HLTGender">
+                                                            <option value="">Select Your Gender</option>
+                                                            <option value="1">Male</option>
+                                                            <option value="2">Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <div class="gender-dd style-inpt-home text-left">
+                                                        <a href="#" data-toggle="modal" ng-click="MTBInsured()">
+                                                            <span class="MTB-TlShow1"></span>
+                                                            <span class="MTB-TlShow2"></span>
+                                                            <span class="MTB-TlShow3"></span>
+                                                            <span class="MTB-TlShow4"></span>
+                                                            <span class="MTB-TlShow5"></span>
+                                                            <span class="MTB-TlShow6"></span>
+                                                            <span id="MTB-TlHide">Members to be Insured </span>
+                                                            <i class="fa fa-plus pull-right"></i>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 no-padHealth">
+                                                    <div class="form-group">
+                                                        <label class="styleForm">
+                                                            <input class="form-control style-inpt style-inpt-home" id="HealthPinCode" ng-model="HealthPinCode" type="text" placeholder=" " maxlength="6">
+                                                            <span>Pincode</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 no-padHealth">
+                                                    <div class="form-group">
+                                                        <label class="styleForm">
+                                                            <input class="form-control style-inpt style-inpt-home" id="HealthMobileNo" ng-model="HealthMobileNo" type="text" placeholder=" " maxlength="10">
+                                                            <span>Mobile Number</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row" ng-repeat="item in InsurerHLTList">
+                                                        <div class="col-md-2">
+                                                            Insurer {{item.text}}
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <input type="file" id="{{item.text}}" />
+                                                            <input type="button" value="Upload Quotation"
+                                                                   ng-click="uploadQuote(item)" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 text-left">
+                                                    <button type="button" id="btnHealthSubmit" class="btn btn-primary btn-lg btn-home"
+                                                            ng-click="SaveHealthQuote()"
+                                                            data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Please wait...">
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="Createdmodal" ng-show="IsModelShow" role="dialog" id="MTB-Insured">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header text-center">
+                                                    WHO DO YOU WANT TO INSURE?
+                                                    <button type="button" ng-click="close()" class="close" data-dismiss="modal">×</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="choose-relative">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="trvlPrsnBox">
+                                                                    <label class="cmpCheck">
+                                                                        <input type="CheckBox" ng-model="ChkYou" id="ChkYou" checked="checked"
+                                                                               ng-change="CallCheck('#ChkYou','YourAge')">
+                                                                    </label><span>You</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control inpFLD g_right_HH" ng-show="YourAge"
+                                                                        ng-model="YourAgeModel"
+                                                                        ng-options="item.text for item in ageList">
+                                                                    <option value="0" selected>-Select Age-</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="trvlPrsnBox">
+                                                                    <label class="cmpCheck">
+                                                                        <input type="checkbox" value="" ng-model="chkSpouse" id="chkSpouse"
+                                                                               ng-change="CallCheck('#chkSpouse','SpouseAge')">
+                                                                        <span class="cmpCheckMark"></span>
+                                                                    </label><span>Spouse</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control inpFLD g_right_HH" id="SpouseAge" ng-show="SpouseAge"
+                                                                        ng-model="SpouseAgeModel"
+                                                                        ng-options="item.text for item in ageList">
+                                                                    <option value="0" selected>-Select Age-</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="trvlPrsnBox">
+                                                                    <label class="cmpCheck">
+                                                                        <input type="checkbox" value="" id="chkfather"
+                                                                               ng-model="Showchkfather" ng-change="CallCheck('#chkfather','FatherAge')">
+                                                                        <span class="cmpCheckMark"></span>
+                                                                    </label><span>Father</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control inpFLD g_right_HH" id="FatherAge" ng-show="FatherAge"
+                                                                        ng-model="FatherAgeModel"
+                                                                        ng-options="item.text for item in ageList">
+                                                                    <option value="0" selected>-Select Age-</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="trvlPrsnBox">
+                                                                    <label class="cmpCheck">
+                                                                        <input type="checkbox" value="" id="chkmother"
+                                                                               ng-model="Showchkmother" ng-change="CallCheck('#chkmother','MotherAge')">
+                                                                        <span class="cmpCheckMark"></span>
+                                                                    </label><span>Mother</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control inpFLD g_right_HH" id="MotherAge" ng-show="MotherAge"
+                                                                        ng-model="MotherAgeModel"
+                                                                        ng-options="item.text for item in ageList">
+                                                                    <option value="0" selected>-Select Age-</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="button" value="Add Child" ng-click="AddChild()" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="trvlPrsnBox">
+                                                                    <table id="childList">
+                                                                        <tbody>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" value="0" id="TotalMem" />
+                                                        <div class="">
+                                                            <div id="DynamicMemberDiv" class="divshowyyyy" style="display:none;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer text-center">
+                                                    <button class="btn MTB-Insured-btn" data-dismiss="modal">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,90 @@
+﻿    
+@{
+    ViewData["Title"] = "SetupLicBroKing";
+}
+    <script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/Licsetup.js"></script>
+@*<script src="/js/Setup/Licsetup.js"></script>*@
+<div class="page-wrapper mappedUser open_Main" ng-controller="licsetup">
+    <div class="container-fluid">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Lic BroKing</h3>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-md-3 text-left" ng-show="IsEnable!=null">
+                <a href="javascript:void(0)" ng-click="Edit()">Edit Configure</a>
+            </div>
+        </div>
+        <div class="row pb-2">            
+            <div class="col-md-3 text-center mb-2">
+                <input type="text" placeholder="Agency Code" ng-model="AgencyCode" class="theFilters" value="{{AgencyCode}}" ng-disabled="IsEnable!=null" />
+            </div>
+            <div class="col-md-3 text-center mb-2" ng-show="IsEnable==null">
+                <input type="text" placeholder="LIC API Url" ng-model="APIUrl" class="theFilters"/>
+            </div>
+            <div class="col-md-3 text-center mb-2" ng-show="IsEnable==null">
+                <input type="text" placeholder="Authorization" ng-model="Authorization" class="theFilters"/>
+            </div>
+            <div class="col-md-3 text-center mb-2" ng-show="IsEnable==null">
+                <input type="text" placeholder="User Name" ng-model="UserName" class="theFilters"/>
+            </div>
+            <div class="col-md-3 text-center mb-2" ng-show="IsEnable==null">
+                <input type="text" placeholder="Password" ng-model="Password" class="theFilters"/>
+            </div>
+            <div class="col-md-3 text-center mb-2" ng-show="IsEnable==null">
+                <input type="text" placeholder="RedirectionUrl" ng-model="RedirectionUrl" class="theFilters" />
+            </div>
+            <div class="col-md-2 text-left mb-2" ng-show="IsEnable==null">
+                <input type="button" value="Save Agency Code" class="border-0 rounded allBtn d-block" ng-disabled="IsEnable!=null" ng-click="SaveAgencyCode(AgencyCode)" />
+            </div>
+        </div>
+        <div class="DetailsGroup mb-3 w-auto" ng-show="IsEnable!=null">
+            <span class="GroupTitle">Config POS</span>
+            <form ng-submit="SaveSalesPersonCode()">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <select ng-model="SelectPos" class="theFilters" required ng-options="item.userName for item in UserList">
+                            <option value="">Select POS</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <input type="text" required ng-model="SalesPersonCode" class="theFilters" placeholder="Sales Person Code" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" class="border-0 rounded allBtn d-block" value="Map LIC Pos" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row pb-2" ng-show="IsEnable!=null">
+            <div class="col-md-12">
+                <input type="button" value="Get Sales Person Data" class="btn btn-primary" ng-click="GetSalesPerson()" />
+            </div>
+            <div class="col-md-12">
+                <table class="table table-bordered table-light">
+                    <thead>
+                        <tr>
+                            <th>SrNo.</th>
+                            <th>User Name</th>
+                            <th>User Email</th>
+                            <th>SP Code</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in SalesPersonCodeList">
+                            <td>{{$index+1}}</td>
+                            <td>{{item.userName}}</td>
+                            <td>{{item.emailAddress}}</td>
+                            <td>{{item.salesPersonCode}}</td>
+                            <td><a href="javascript:void(0)" ng-click="Edit(item)">Edit</a> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+</div>

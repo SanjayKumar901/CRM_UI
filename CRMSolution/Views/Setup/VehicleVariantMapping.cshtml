@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewData["Title"] = "VehicleVariantMapping";
+}
+    <script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/VehicleVariantMapping.js"></script>
+<div class="page-wrapper open_Main" ng-controller="vehiceMapp">
+    <div class="container-fluid">
+        <div class="close closeBtn"></div>
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Vehicle and Variant Mapping</h3>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <section class="mngUserfirst mngUserfirstMapping">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="manageUserFLT">
+                                <div class="row">
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="Vehicle" ng-change="changeVehhicle(Vehicle)"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Vehicle Type</option>
+                                                <option value="car">Four Wheeler</option>
+                                                <option value="two">Two Wheeler</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="makeModel"
+                                                    ng-options="item.manufacturername for item in MakeModelList"
+                                                    ng-change="changeMake(makeModel)"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Make Type</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="Modal"
+                                                    ng-options="item.vehicleName for item in ModalList"
+                                                    ng-change="changeModal(Modal)"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Modal Type</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="Variant"
+                                                    ng-options="item.variantName for item in VariantList"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Modal Type</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="FuelModal"
+                                                    ng-options="item.fuelname for item in FuelModalList"
+                                                    ng-change="OnFuelChange()"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Fuel</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="Comp"
+                                                    ng-options="item.companyName for item in CompList"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Insurer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <div class="input-wrap">
+                                            <button class="btn" ng-click="GetDetails()">Get Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-bordered MainTable text-left table-light" s>
+                                        <thead>
+                                            <tr>
+                                                <th>Manufacture</th>
+                                                <th>Model</th>
+                                                <th>Cubic Capacity</th>
+                                                <th>Vehicle Type</th>
+                                                <th>Variant</th>
+                                                <th>Fuel type</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in MappingList">
+                                                <td>{{item.make}}</td>
+                                                <td>{{item.model}}</td>
+                                                <td>{{item.cubicCapacity}}</td>
+                                                <td>{{item.vehicleType}}</td>
+                                                <td>{{item.variant}}</td>
+                                                <td>{{item.fueltype}}</td>
+                                                <td class="ng-binding">
+                                                    <div ng-switch="item.isMapp">
+                                                        <div ng-switch-when="1">
+                                                            <a href="javascript:void(0)">Mapped</a>
+                                                        </div>
+                                                        <div ng-switch-default>
+                                                            <a href="javascript:void(0)" ng-click="mapped(item)">Unmapped</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

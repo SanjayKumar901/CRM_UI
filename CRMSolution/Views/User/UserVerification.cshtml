@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "UserVerification";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Users/UserVerification.js"></script>
+@*<script src="/js/Users/UserVerification.js"></script>*@
+<div class="page-wrapper ng-scope open_Main" ng-controller="UserVerification">
+    <div class="container-fluid project-tab">
+        <div class="leadDetlsTable margin15_T_B">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tableHeadRow">
+                                <div class="row form-group">
+
+                                    <div class="col-md-1">
+                                        <input type="checkbox" ng-model="IsDuplicate"
+                                               ng-change="CHKDuplicate(IsDuplicate)"
+                                               class="btn btn-primary" />
+                                        <span ng-show="!IsDuplicate">Is Duplicate</span>
+                                        <span ng-show="IsDuplicate">Duplicate</span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" ng-model="VerifyMessage" class="form-control" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="button" value="User Verification"
+                                               ng-click="Verify()"
+                                               class="btn btn-primary" />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-control" ng-model="UserVerificationFilter"
+                                                ng-change="UserVerificationOptions()">
+                                            <option value="">All</option>
+                                            <option value="Created">Created</option>
+                                            <option value="Verification Failed">Verification Failed</option>
+                                            <option value="Verified">Verified</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 PadRight text-right">
+                                        <div id="RegisterAsPos" class="pull-right theFilters theFiltersClndr">
+                                            <span class="DateRangeShow BR"></span>
+                                            <i class="fas fa-calendar-alt"></i><b class="caret"></b>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Select</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>AadhaarNo</th>
+                                        <th>PAN No</th>
+                                        <th>DOB</th>
+                                        <th>Address</th>
+                                        <th>Request Date</th>
+                                        <th>ActiveUser</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in PosReqGrid">
+                                        <td><input ng-show="item.activeUser!='Created' && item.activeUser!='Verified'" type="checkbox" class="poscheck" value="{{item.id}}" /></td>
+                                        <td>{{item.firstName}} {{item.lastName}}</td>
+                                        <td>{{item.email}}</td>
+                                        <td>{{item.mobile}}</td>
+                                        <td>{{item.aadhaarNo}}</td>
+                                        <td>{{item.panNo}}</td>
+                                        <td>{{item.dob}}</td>
+                                        <td>{{item.address}}</td>
+                                        <td>{{item.createdDate}}</td>
+                                        <td>{{item.activeUser}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

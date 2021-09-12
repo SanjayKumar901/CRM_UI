@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "EndUserMapping";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/EndUserMapping.js"></script>
+<div class="page-wrapper mappedUser open_Main" ng-controller="EndUserMapp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <section class="mngUserfirst mngUserfirstMapping">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="createUserBox generateLinkBox">
+                                <h3> End User Mapping</h3>
+                                <form>
+                                    <div class="input-wrap">
+                                        <select ng-model="SelectProduct"
+                                                ng-change="SelectProductOpt(SelectProduct)"
+                                                class="theFilters">
+                                            <option value="Mot">Motor</option>
+                                            <option value="Hlt">Health</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-wrap">
+                                        <input type="text" ng-model="FilterText" name="Email" placeholder=" " class="textdemo" />
+                                        <label class="demo-label" for="Email">Enter Responce Number (EX : {{PlaceHolder}})</label>
+                                    </div>
+
+                                    <div class="input-wrap input-wrapBtn">
+                                        <input type="button" ng-click="GetEndUserDetails()" class="btn" value="Map" />
+                                    </div>
+
+                                    <div class="input-wrap">
+                                        <input type="text" ng-model="FilterUser" ng-blur="GetUserList()" name="FilterUser" placeholder=" " class="textdemo" />
+                                        <label class="demo-label" for="FilterUser">Search User</label>
+                                    </div>
+
+                                    <div class="input-wrap input-wrapBtn">
+                                        <select class="theFilters" ng-model="usermodel" 
+                                                ng-options="item.userName +' - '+ item.userID for item in Users">
+                                            <option value="">Select User</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-bordered MainTable text-left table-light" s>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>EntryDate</th>
+                                                <th>Userid</th>
+                                                <th>Enquiry number</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in EnduserData">
+                                                <td>{{item.firstName}} {{item.lastName}}</td>
+                                                <td>{{item.email}}</td>
+                                                <td>{{item.mobile}}</td>
+                                                <td>{{item.entryDate}}</td>
+                                                <td>{{item.userid}}</td>
+                                                <td>{{item.enquiryNo}}</td>
+                                                <td class="ng-binding">
+                                                    <a href="javascript:void(0)" ng-click="mapp(item)">Link</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

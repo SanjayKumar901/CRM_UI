@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewData["Title"] = "UserSetup";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/UserSetup.js"></script>
+@*<script src="/js/Setup/UserSetup.js"></script>*@
+<div class="page-wrapper mappedUser open_Main" ng-controller="usersetup">
+    <div class="container-fluid">
+        <div class="close closeBtn"></div>
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Bulk Privilege</h3>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <section class="mngUserSecond">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="manageUserFLT">
+                                <div class="row">
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="SetupAction" ng-change="changeAction(SetupAction)"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Select Action</option>
+                                                <option value="WithRoleID">With Role ID</option>
+                                                <option value="WithPrivilegeID">With Privilege ID</option>
+                                                <option value="WithRoleType">With Role Type</option>
+                                                <option value="WithRoleRegion">With Role Region</option>
+                                                <option value="WithAlternateCode">With Alternate Code</option>
+                                                <option value="WithRMCode">With RM Code</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight">
+                                        <div class="">
+                                            <select ng-model="SelectRole" ng-options="item.roleName for item in RoleList"
+                                                    ng-change="changeRole(SelectRole)"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Select Role</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight" ng-show="IsRole">
+                                        <div class="">
+                                            <select ng-model="TeamRole" ng-change="changeTeamRole(TeamRole)"
+                                                    ng-options="item.rolename for item in TeamTypeList"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Slect</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight" ng-show="IsTeamUser">
+                                        <div class="">
+                                            <select ng-model="TeamUser" ng-change="changeTeamUser(TeamUser)"
+                                                    ng-options="item.userName+' - '+ item.emailaddress for item in TeamUserList"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight" ng-show="IsRegion">
+                                        <div class="">
+                                            <select ng-model="RegionModel" ng-change="changeRegionZone(RegionModel,'BranchList')"
+                                                    ng-options="item.region for item in RegionList"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 PadRight" ng-show="IsBranch">
+                                        <div class="">
+                                            <select ng-model="BranchModel" ng-options="item.cityName for item in BranchList"
+                                                    class="theFiltersBulk theFilters">
+                                                <option value="">Select</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="button" ng-click="SaveRecord()" value="Submit" />
+                        </div>
+                    </div>
+                    <div class="row" ng-show="SetupAction=='WithAlternateCode'">
+                        <div class="col-md-4">
+                            <input type="text" placeholder="Alternate Code" ng-model="AlterNateCOde" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row" ng-show="SetupAction=='WithRMCode'">
+                        <div class="col-md-4">
+                            <input type="text" placeholder="RMCOde" ng-model="RMCOde" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row" ng-show="IsWithRoleID">
+                        <div class="col-md-12">
+                            <label ng-repeat="item in RoleList" class="col-md-2 RollType">
+                                <input type="radio" name="RoleRadio" value="{{item.roleID}}" />{{item.roleName}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="IsWithRoleRegion">
+                        <div class="col-md-2 PadRight">
+                            <div class="">
+                                <select ng-model="MoveRegion" ng-change="changeRegionZone(MoveRegion,'MoveBranchList')"
+                                        ng-options="item.region for item in MoveRegionList"
+                                        class="theFiltersBulk theFilters">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 PadRight">
+                            <div class="">
+                                <select ng-model="MoveBranch" ng-options="item.cityName for item in MoveBranchList"
+                                        class="theFiltersBulk theFilters">
+                                    <option value="">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="leadDetlsTable margin15_T_B">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="tblusers" class="table table-bordered MainTable text-left table-light" s>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Slect All
+                                                    <input type="checkbox"ng-model="allcheckUser" />
+                                                </th>
+                                                <th>User Name</th>
+                                                <th>User Email</th>
+                                                <th>User Type</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in UserList">
+                                                <td><input type="checkbox" ng-checked="allcheckUser" value="{{item.userID}}" /></td>
+                                                <td>{{item.userName}}</td>
+                                                <td>{{item.emailAddress}}</td>
+                                                <td>{{item.userType}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table id="tblpriv" class="table table-bordered MainTable text-left table-light">
+                                        <thead>
+                                            <tr>
+                                                <th>Slect</th>
+                                                <th>Privilege</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in PrivilegeList">
+                                                <td><input type="checkbox" class="selectedPriv" value="{{item.privilegeID+'-'+item.navBarMasterMenuID}}" /> </td>
+                                                <td>{{item.privilegeName}}</td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
