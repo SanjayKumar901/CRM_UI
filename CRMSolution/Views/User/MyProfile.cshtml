@@ -187,7 +187,7 @@
                                     <li>
                                         <span class="w-50">Highest Education Certificate</span>
                                         <span class="upload-btn-wrapper w-auto UPL_File">
-                                            <input type="file" id="EducationCertificate" />
+                                            <input type="file" id="EducationCertificate" accept="image/jpg,image/jpeg,application/pdf" />
                                             <button for="file" class="btn AddFile"
                                                     ng-show="Certificate!=null?CheckUpdation:true"
                                                     ng-disabled="IsNoEdit">
@@ -197,12 +197,12 @@
                                         <input type="button" class="btn w-25 btn-block"
                                                ng-show="Certificate!=null?CheckUpdation:true"
                                                ng-click="UploadDoc('Certificate')" value="Upload" ng-disabled="IsNoEdit" />
-                                        <a href="{{Certificate}}" class="btn w-25 text-right" target="_blank">View({{CertificateDate}})</a>
+                                        <a href="{{Certificate}}" class="btn w-25 text-right" target="_blank"><span ng-if="Certificate"> View({{CertificateDate | date:'dd/MM/yyyy'}})</span></a>
                                     </li>
                                     <li>
                                         <span class="w-50">Cancelled Cheque</span>
                                         <span class="upload-btn-wrapper w-auto UPL_File">
-                                            <input type="file" id="CancelledCheque" />
+                                            <input type="file" id="CancelledCheque" accept="image/jpg,image/jpeg,application/pdf" />
                                             <button for="file" class="btn AddFile"
                                                     ng-show="CancelCheque!=null?CheckUpdation:true"
                                                     ng-disabled="IsNoEdit">
@@ -214,12 +214,12 @@
                                                ng-show="CancelCheque!=null?CheckUpdation:true"
                                                ng-disabled="IsNoEdit" />
 
-                                        <a href="{{CancelCheque}}" class="btn w-25 text-right" target="_blank">View({{CancelChequeDate}})</a>
+                                        <a href="{{CancelCheque}}" class="btn w-25 text-right" target="_blank"><span ng-if="CancelCheque">View({{CancelChequeDate  | date:'dd/MM/yyyy'}})</span></a>
                                     </li>
                                     <li>
                                         <span class="w-50">PAN Card Document</span>
                                         <span class="upload-btn-wrapper w-auto UPL_File">
-                                            <input type="file" id="PANCardDocument" />
+                                            <input type="file" id="PANCardDocument" accept="image/jpg,image/jpeg,application/pdf" />
                                             <button for="file" class="btn AddFile"
                                                     ng-show="PaN!=null?CheckUpdation:true"
                                                     ng-disabled="IsNoEdit">
@@ -229,12 +229,12 @@
                                         <input type="button" class="btn w-25 btn-block"
                                                ng-show="PaN!=null?CheckUpdation:true"
                                                ng-click="UploadDoc('PANCard')" value="Upload" ng-disabled="IsNoEdit" />
-                                        <a href="{{PaN}}" class="btn w-25 text-right" target="_blank">View({{PanDate}})</a>
+                                        <a href="{{PaN}}" class="btn w-25 text-right" target="_blank"><span ng-if="PaN">View({{PanDate | date:'dd/MM/yyyy'}})</span></a>
                                     </li>
                                     <li>
                                         <span class="w-50">Aadhar Card Front</span>
                                         <span class="upload-btn-wrapper w-auto UPL_File">
-                                            <input type="file" id="AadharCardFront" />
+                                            <input type="file" id="AadharCardFront" accept="image/jpg,image/jpeg,application/pdf" />
                                             <button for="file" class="btn AddFile"
                                                     ng-show="AdhaarFront!=null?CheckUpdation:true"
                                                     ng-disabled="IsNoEdit">
@@ -244,12 +244,12 @@
                                         <input type="button" class="btn w-25 btn-block"
                                                ng-show="AdhaarFront!=null?CheckUpdation:true"
                                                ng-click="UploadDoc('AadharCardFront')" value="Upload" ng-disabled="IsNoEdit" />
-                                        <a href="{{AdhaarFront}}" class="btn w-25 text-right" target="_blank">View({{AdharFrontDate}})</a>
+                                        <a href="{{AdhaarFront}}" class="btn w-25 text-right" target="_blank"><span ng-if="AdhaarFront">View({{AdharFrontDate | date:'dd/MM/yyyy'}})</span></a>
                                     </li>
                                     <li>
                                         <span class="w-50">Aadhar Card Back</span>
                                         <span class="upload-btn-wrapper w-auto UPL_File">
-                                            <input type="file" id="AadharCardBack" />
+                                            <input type="file" id="AadharCardBack" accept="image/jpg,image/jpeg,application/pdf" />
                                             <button for="file" class="btn AddFile"
                                                     ng-show="AdhaarBack!=null?CheckUpdation:true"
                                                     ng-disabled="IsNoEdit">
@@ -259,12 +259,12 @@
                                         <input type="button" class="btn w-25 btn-block"
                                                ng-show="AdhaarBack!=null?CheckUpdation:true"
                                                ng-click="UploadDoc('AadharCardBack')" value="Upload" ng-disabled="IsNoEdit" />
-                                        <a href="{{AdhaarBack}}" class="btn w-25 text-right" target="_blank">View({{AdharBackDate}})</a>
+                                        <a href="{{AdhaarBack}}" class="btn w-25 text-right" target="_blank"><span ng-if="AdhaarBack">View({{AdharBackDate | date:'dd/MM/yyyy'}})</span></a>
                                     </li>
                                     <li>
                                         <span class="w-50">Terms & Conditions</span>
                                         <span class="upload-btn-wrapper w-auto UPL_File">
-                                            <input type="file" id="TandC" />
+                                            <input type="file" id="TandC" accept="image/jpg,image/jpeg,application/pdf" />
                                             <button for="file" class="btn AddFile"
                                                     ng-show="TearnAndCondition!=null?CheckUpdation:true"
                                                     ng-disabled="IsNoEdit">
@@ -274,7 +274,7 @@
                                         <input type="button" class="btn w-25 btn-block"
                                                ng-show="TearnAndCondition!=null?CheckUpdation:true"
                                                ng-click="UploadDoc('TandC')" value="Upload" ng-disabled="IsNoEdit" />
-                                        <a href="{{TearnAndCondition}}" class="btn w-25 text-right" target="_blank">View({{TermConditionDate}})</a>
+                                        <a href="{{TearnAndCondition}}" class="btn w-25 text-right" target="_blank"><span ng-if="TearnAndCondition">View({{TermConditionDate | date:'dd/MM/yyyy'}})</span></a>
                                     </li>
                                 </ul>
 
@@ -307,18 +307,18 @@
                         </div>
                         <div class="col-md-3 MPD03_Box">
                             <!--<div class="MyProfileDet03Cnt">
-                        <h2>Payout Configuration</h2>
-                        <ul>
-                            <li>
-                                <input type="checkbox">
-                                Instant Payout Enabled?
-                            </li>
-                        </ul>
-                        <label>
-                            <input type="button" class="btn btn-block" value="Update"
-                                   ng-disabled="IsNoEdit">
-                        </label>
-                    </div>-->
+                                <h2>Payout Configuration</h2>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox">
+                                        Instant Payout Enabled?
+                                    </li>
+                                </ul>
+                                <label>
+                                    <input type="button" class="btn btn-block" value="Update"
+                                           ng-disabled="IsNoEdit">
+                                </label>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -342,9 +342,9 @@
                                                     <input type="text" class="theFilters" autocomplete="off" required ng-model="PinState" placeholder="State" />
                                                 </label>
                                                 <label class="w-100">
-                                                    <input type="text" class="theFilters" autocomplete="off" required ng-model="PinCity"  placeholder="City" />
+                                                    <input type="text" class="theFilters" autocomplete="off" required ng-model="PinCity" placeholder="City" />
                                                 </label>
-                                                <label >
+                                                <label>
                                                     <input type="submit" class="border-0 rounded allBtn" value="Update" />
                                                 </label>
                                             </div>

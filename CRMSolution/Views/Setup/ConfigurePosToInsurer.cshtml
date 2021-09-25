@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "SetupLicBroKing";
+}
+<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Setup/ConfigurePos.js"></script>
+@*<script src="/js/Setup/ConfigurePos.js"></script>*@
+
+<div class="page-wrapper mappedUser open_Main" ng-controller="InsurerPOS">
+    <div class="container-fluid">
+        <section class="mngUserfirst">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Insurer POS Configure</h3>
+                </div>
+            </div>
+        </section>
+        <div class="row">
+            <div class="col-md-3">
+                <select ng-model="Insurer" ng-change="SelectedInsurer()"
+                        ng-options="item.companyName for item in Insurerlist">
+                    <option value="">Select Insurer</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select ng-model="User" ng-options="item.userName for item in Userlist">
+                    <option value="">Select User</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="button" ng-click="SaveInsurer()" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>

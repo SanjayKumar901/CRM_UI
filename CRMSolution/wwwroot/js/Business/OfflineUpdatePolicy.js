@@ -288,8 +288,8 @@ app.controller("OfflineBusiness", function ($scope, $http) {
     function GetFuels(ManufacModel) {
         let Url = "";
         let endpoint = ""
-        //endpoint = "/centralapi/api/Vehicle/GetFuelByVehicleID/" + ManufacModel.VehicleID;
-        endpoint = "/api/Vehicle/GetFuelByVehicleID/" + ManufacModel.VehicleID;
+        endpoint = "/centralapi/api/Vehicle/GetFuelByVehicleID/" + ManufacModel.VehicleID;
+        //endpoint = "/api/Vehicle/GetFuelByVehicleID/" + ManufacModel.VehicleID;
         Url = CurrentDomail + endpoint;
         var model = {
             URL: Url
@@ -306,8 +306,8 @@ app.controller("OfflineBusiness", function ($scope, $http) {
     function variants(ManufacModel, Fuel) {
         let Url = "";
         let endpoint = ""
-        //endpoint = "/centralapi/api/Vehicle/GetVariantsByVehicleAndFuel?VehicleID=" + ManufacModel.VehicleID + "&FuelID=" + Fuel.FuelID;
-        endpoint = "/api/Vehicle/GetVariantsByVehicleAndFuel?VehicleID=" + ManufacModel.VehicleID + "&FuelID=" + Fuel.FuelID;
+        endpoint = "/centralapi/api/Vehicle/GetVariantsByVehicleAndFuel?VehicleID=" + ManufacModel.VehicleID + "&FuelID=" + Fuel.FuelID;
+        //endpoint = "/api/Vehicle/GetVariantsByVehicleAndFuel?VehicleID=" + ManufacModel.VehicleID + "&FuelID=" + Fuel.FuelID;
         Url = CurrentDomail + endpoint;
         var model = {
             URL: Url
@@ -321,7 +321,6 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         });
     }
     function successPolicy() {
-        debugger;
         $scope.PolicyEndDate = PolicyEndDate;
         if ($scope.CustomerEmail == null && $scope.CustomerMobile == null) {
             alert("Customer Email or Customer Mobile no required.")
@@ -465,8 +464,8 @@ app.controller("OfflineBusiness", function ($scope, $http) {
     function GetVehicleList() {
         let param = $scope.MotorType == "PrivateCar" ? "Car" : "Two Wheeler";
         let Url = "";
-        //let endpoint = "/centralapi/api/Vehicle/GetVehiclesByType?type=" + param;
-        let endpoint = "/api/Vehicle/GetVehiclesByType?type=" + param;
+        let endpoint = "/centralapi/api/Vehicle/GetVehiclesByType?type=" + param;
+        //let endpoint = "/api/Vehicle/GetVehiclesByType?type=" + param;
         Url = CurrentDomail + endpoint;
         var model = {
             URL: Url

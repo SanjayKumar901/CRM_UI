@@ -37,11 +37,8 @@ namespace CRMSolution
                 try
                 {
                     WebResponse response = webEx.Response;
-                    if (response != null)
-                    {
-                        Stream stream = response.GetResponseStream();
-                        Response = new StreamReader(stream).ReadToEnd();
-                    }
+                    Stream stream = response.GetResponseStream();
+                    Response = new StreamReader(stream).ReadToEnd();
                 }
                 catch { }
             }

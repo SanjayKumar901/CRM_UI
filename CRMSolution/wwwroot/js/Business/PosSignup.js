@@ -1,5 +1,5 @@
 ﻿var app = angular.module("app", []);
-app.controller("PosSignup", function ($scope, $http,$filter) {
+app.controller("PosSignup", function ($scope, $http, $filter) {
     $scope.IsEditDelRight = true;
     $scope.UserID = null;
     $scope.PosList = [];
@@ -15,27 +15,27 @@ app.controller("PosSignup", function ($scope, $http,$filter) {
             PostString: JSON.stringify(dataIn),
         }
         $http.post(CallApiPostMethod, model).then(function (Response) {
-            //debugger;
             $scope.PosList = JSON.parse(Response.data);
             $(".Tableloader").hide();
         }, function (Response) {
-                $(".Tableloader").hide();
+            $(".Tableloader").hide();
         });
     }
 
     $scope.Edit = function (userId) {
-        //$scope.viewPos = {};
         $scope.viewPos = $scope.PosList.filter(x => x.userID == userId)[0];
-        $("#loginModal").modal('show');  
+        $("#loginModal").modal('show');
     }
     $scope.$watch("viewPos.signDate", function (newValue, oldValue) {
-        debugger;
         $scope.viewPos.signDate = (newValue || oldValue);
+    });
+    $scope.$watch("viewPos.iibDate", function (newValue, oldValue) {
+        $scope.viewPos.iibDate = (newValue || oldValue);
     });
 
     $scope.UploadPosFile = function () {
-        document.getElementById("lblSuccess").innerHTML = ""; 
-        document.getElementById("lblError").innerHTML = ""; 
+        document.getElementById("lblSuccess").innerHTML = "";
+        document.getElementById("lblError").innerHTML = "";
         let URL = defaultpage + '/Business/UploadPosFile';
         var fileData = new FormData();
         let files = $("#file").get(0);
@@ -43,10 +43,10 @@ app.controller("PosSignup", function ($scope, $http,$filter) {
             return;
         }
         let file = files.files[0];
-        
+
         fileData.append(file.name, file);
         fileData.append("token", JsonWebToken.token);
-        fileData.append("apiurl", Domain+"/api/sftp/UploadPosFile");
+        fileData.append("apiurl", Domain + "/api/sftp/UploadPosFile");
 
         $.ajax({
             url: URL,
@@ -56,16 +56,16 @@ app.controller("PosSignup", function ($scope, $http,$filter) {
             contentType: false,
             processData: false,
             success: function (d) {
-                //debugger;
-                if (d.response == "Done") {
+                let res = JSON.parse(d.response || JSON.stringify(d));
+                if (res && res.message?.length == 0) {
                     document.getElementById("lblSuccess").innerText = "Success !";
                 } else {
-                    document.getElementById("lblError").innerText= d.response;
+                    document.getElementById("lblError").innerText = res.message;
                 }
                 document.getElementById("file").value = null;
             },
             error: function (er) {
-                document.getElementById("lblError").innerText = er; 
+                document.getElementById("lblError").innerText = er;
             }
         });
     }
@@ -79,22 +79,21 @@ app.controller("PosSignup", function ($scope, $http,$filter) {
             PostString: JSON.stringify(body)
         }
         $http.post(CallApiPostMethod, model).then(function (Response) {
-            //debugger;
             $scope.IsEditDelRight = JSON.parse(Response.data).roleID == 28 || JSON.parse(Response.data).roleID == 1 ? true : false;
         })
     }
 
     $scope.UpdatePos = function () {
-        debugger;
-        if ($scope.viewPos && $scope.viewPos.stampID && $scope.viewPos.signDate) {
+        if ($scope.viewPos && $scope.viewPos.stampID && $scope.viewPos.signDate && $scope.viewPos.iibDate) {
             // Update api call ""
             $(".Tableloader").show();
             var dataIn = {
                 Token: JsonWebToken.token,
                 SignDate: $scope.viewPos.signDate,
-                StampID:$scope.viewPos.stampID,
-                UserID:$scope.viewPos.userID,
+                StampID: $scope.viewPos.stampID,
+                UserID: $scope.viewPos.userID,
                 POSCode: $scope.viewPos.posCode,
+                IIBDate: $scope.viewPos.iibDate,
 
             }
             var model = {
@@ -102,13 +101,8 @@ app.controller("PosSignup", function ($scope, $http,$filter) {
                 PostString: JSON.stringify(dataIn),
             }
             $http.post(CallApiPostMethod, model).then(function (Response) {
-                //debugger;
-                //$scope.viewPos = {};
-                if (Response.data == "Done") {
-                   // alert('Data saved.');
-                    $("#loginModal").modal('hide'); 
-                    $scope.GetPosList();
-                }
+                $("#loginModal").modal('hide');
+                $scope.GetPosList();
                 $(".Tableloader").hide();
             }, function (Response) {
                 $(".Tableloader").hide();
@@ -144,7 +138,7 @@ app.controller("PosSignup", function ($scope, $http,$filter) {
         cb(start, end);
     });
     //**************************END******************************
-   
+
 });
 
 app.controller("navcontroller", function ($scope, $http) {

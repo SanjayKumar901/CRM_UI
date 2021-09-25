@@ -252,5 +252,11 @@ namespace CRMSolution.Controllers
         {
             return View();
         }
+
+        //Created by Ziaur (8Sep2021)
+        public IActionResult ConfigurePosToInsurer()
+        {
+            return View();
+        }
     }
 }
