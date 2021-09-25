@@ -210,7 +210,7 @@ app.controller("CRMIndex", function ($scope, $http) {
     var lstOption = "";
     FormLoad();
     function FormLoad() {
-        
+        debugger;
         let body = {
             Token: JsonWebToken.token
         };
@@ -219,6 +219,7 @@ app.controller("CRMIndex", function ($scope, $http) {
             PostString: JSON.stringify(body)
         }
         $http.post(CallApiPostMethod, model).then(function (ResponseData) {
+            debugger;
             let info = JSON.parse(ResponseData.data);
             if (info.status == "Active") {
                 $scope.UserRole = info.roleID
@@ -2044,6 +2045,7 @@ app.controller("navcontroller", function ($scope, $http) {
         PostString: JSON.stringify(body)
     }
     $http.post(CallApiPostMethod, model).then(function (Response) {
+        debugger;
         navgrouplistMaster = JSON.parse(Response.data);
         var counter = 0;
         let fillUrl = "";
@@ -2063,6 +2065,9 @@ app.controller("navcontroller", function ($scope, $http) {
                     url: fillUrl//value.privilegeGroupName == "Booking Policy" ? value.url + "?user=" + JsonWebToken.token : value.url
                 }
                 counter += 1;
+                if (Domain == "http://localhost:50972") {
+                    prv.url = prv.url.replace("/myaccount","");
+                }
                 navgrouplist.push(prv)
             }
         })
@@ -2071,6 +2076,7 @@ app.controller("navcontroller", function ($scope, $http) {
     }, function (Response) {
     })
     $scope.submenu = function (nav) {
+        debugger;
         //check active or not navlist 
         //$("#navlist").addClass("show");
         //$("#navtoggle").attr('aria-expanded','true')

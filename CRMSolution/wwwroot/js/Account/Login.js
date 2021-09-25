@@ -129,6 +129,7 @@ app.controller("logincontroll", function ($scope, $http) {
         window.open(Win +"/ePartner","_blank")
     }
     function Login() {
+        debugger;
         let HoldVal = $scope.Login;
         var Login = {
             UserID: $scope.Email,
@@ -167,6 +168,7 @@ app.controller("logincontroll", function ($scope, $http) {
 
     }
     function UserExist() {
+        debugger
         let modal = null;
         try {
             modal = JSON.parse(window.localStorage.getItem("token"))
@@ -218,6 +220,7 @@ app.controller("logincontroll", function ($scope, $http) {
         });
     }
     function CallAPIDomain() {
+        debugger;
         var DomainMap = null;
         DomainMap = window.localStorage.getItem("getdomain");
         if (DomainMap == null) {
