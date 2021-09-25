@@ -2065,9 +2065,11 @@ app.controller("navcontroller", function ($scope, $http) {
                     url: fillUrl//value.privilegeGroupName == "Booking Policy" ? value.url + "?user=" + JsonWebToken.token : value.url
                 }
                 counter += 1;
+                //TODO : Modified by Sanjay 25-09-2021 
                 if (Domain == "http://localhost:50972") {
-                    prv.url = prv.url.replace("/myaccount","");
+                    prv.url = prv.url.replace("/myaccount", "");
                 }
+                /***************************/
                 navgrouplist.push(prv)
             }
         })
