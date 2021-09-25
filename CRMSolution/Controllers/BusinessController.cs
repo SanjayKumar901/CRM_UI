@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -528,10 +529,8 @@ namespace CRMSolution.Controllers
         public JsonResult UploadPosFile()
         {
             string Response = "";
-            string Path = "";
             try
             {
-                string path = "";
                 var files = Request.Form.Files;
                 IFormFile file = files[0];
                 var existCookies = Request.Cookies["token"];
@@ -559,7 +558,7 @@ namespace CRMSolution.Controllers
                 }
             }
             catch (Exception ex) { Response = ex.Message; }
-            return Json(new { Response, Path });
+            return Json(new { status = true, message = Response });
         }
 
         private string PosFiletoData(string Token, string[] ListOfNewLine, string Url)
@@ -575,28 +574,31 @@ namespace CRMSolution.Controllers
                 string[] columns = lineData.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 try
                 {
-                    if (columns.Length < 11)
+                    if (columns.Length < 12)
                     {
                         continue;
                     }
-                    if (string.IsNullOrEmpty(columns[0]) || string.IsNullOrEmpty(columns[1]) || string.IsNullOrEmpty(columns[9]) || string.IsNullOrEmpty(columns[10]))
+                    if (string.IsNullOrEmpty(columns[0]) || string.IsNullOrEmpty(columns[1]) || string.IsNullOrEmpty(columns[9]) || string.IsNullOrEmpty(columns[10]) || string.IsNullOrEmpty(columns[11]))
                     {
                         continue;
                     }
-                    var dt = new DateTime();
-                    if (DateTime.TryParse(columns[9], out dt))
+                    CultureInfo enUS = new CultureInfo("en-US");
+                    var dtIIB = new DateTime();
+                    var dtSign = new DateTime();
+                    if (DateTime.TryParseExact(columns[9], "dd-MM-yyyy", enUS, DateTimeStyles.None, out dtIIB) && DateTime.TryParseExact(columns[10], "dd-MM-yyyy", enUS, DateTimeStyles.None, out dtSign))
                     {
                         objList.Add(new POSStampModel()
                         {
                             POSCode = columns[0],
                             POSName = columns[1],
-                            SignDate = dt,
-                            StampID = columns[10]
+                            IIBDate = dtIIB,
+                            SignDate = dtSign,
+                            StampID = columns[11]
                         });
                     }
                     else
                     {
-                        Response += String.Format("Date format for POSCode {0} is not valid." + Environment.NewLine, columns[0]);
+                        Response += String.Format("IIBDate or SignDate format for POSCode {0} is not valid. Required format DD-MM-YYYY" + Environment.NewLine, columns[0]);
                     }
                 }
                 catch (Exception ex)

@@ -214,7 +214,6 @@ app.controller("BusinessMaster", function ($scope, $http) {
         BindtypeData(CallApiPostMethod, model, "DownloadReport")
     }
     $scope.GetPolicyPDF = function (obj, product) {
-        debugger;
         var body = {
             Token: JsonWebToken.token,
             PolicyNo: product == "Health" ? obj.policyNumber : obj.policyNo,
@@ -341,7 +340,6 @@ app.controller("BusinessMaster", function ($scope, $http) {
     $scope.TotalManualOfflineNop = 0;
     $scope.TotalManualOfflineBusiness = 0;
     $scope.Downloadofflinemanualreport = function (policyno, product) { //---Sunil 
-        debugger;
         let body = {
             Token: JsonWebToken.token,
             Policyno: policyno,

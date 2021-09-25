@@ -200,7 +200,7 @@ app.controller("Profile", function ($scope, $http) {
         fileData.append("Doc", "UserProfilePic");
         //fileData.append("url", Domain + '/api/user/UserProfilePic');
         fileData.append("url", Domain + '/api/user/UploadFiles');
-        
+
         $.ajax({
             url: defaultpage + '/user/UploadData',
             type: 'POST',
@@ -216,7 +216,7 @@ app.controller("Profile", function ($scope, $http) {
                 alert('Error!');
             }
         });
-        
+
     }
     $scope.UploadDoc = function (doc) {
         UploadDocuments(doc);
@@ -245,7 +245,7 @@ app.controller("Profile", function ($scope, $http) {
         })
     }
     $scope.DownloadCertificate = function () {
-        window.open("/user/certificate", "_blank");
+        window.open("/myaccount/user/certificate", "_blank");
     }
     $scope.checkPincode = function (pin) {
         if (pin.length >= 6) {
@@ -258,7 +258,7 @@ app.controller("Profile", function ($scope, $http) {
                 PostString: JSON.stringify(body)
             }
             $http.post(CallApiPostMethod, model).then(function (Response) {
-                if (Response.data ="NotFound")
+                if (Response.data == "NotFound")
                     $scope.IsAllowConfigPinCode = true
                 else
                     $scope.IsAllowConfigPinCode = false
@@ -319,7 +319,7 @@ app.controller("Profile", function ($scope, $http) {
         }, function (Response) {
         })
     }
-    function FileUploadFunction(url,formdata) {
+    function FileUploadFunction(url, formdata) {
         $.ajax({
             url: url,
             type: 'POST',
@@ -344,7 +344,7 @@ app.controller("Profile", function ($scope, $http) {
     function CheckEditable() {
         let urlParams = new URLSearchParams(window.location.search);
         let userid = urlParams.get('userid');
-        GlobalUserID = userid == null ? "": manageQueryString(userid);
+        GlobalUserID = userid == null ? "" : manageQueryString(userid);
         let action = urlParams.get('action');
         GlobalModal = JSON.parse(window.localStorage.getItem("token"))
         if (action == "N")
@@ -413,7 +413,7 @@ app.controller("Profile", function ($scope, $http) {
             $scope.PanDate = $scope.PaN != null ? user.userDocuments.panDate : null;
             $scope.AdhaarFront = user.userDocuments != null ? user.userDocuments.adhaar_Front_URL == null ? null : Domain + user.userDocuments.adhaar_Front_URL : null;
             $scope.AdharFrontDate = $scope.AdhaarFront != null ? user.userDocuments.adharFrontDate : null;
-            $scope.AdhaarBack = user.userDocuments != null ? user.userDocuments.adhaar_Back_URL==null? null : Domain + user.userDocuments.adhaar_Back_URL : null;
+            $scope.AdhaarBack = user.userDocuments != null ? user.userDocuments.adhaar_Back_URL == null ? null : Domain + user.userDocuments.adhaar_Back_URL : null;
             $scope.AdharBackDate = $scope.AdhaarBack != null ? user.userDocuments.adharBackDate : null;
             $scope.TearnAndCondition = user.userDocuments != null ? user.userDocuments.tearnAndCondition == null ? null : Domain + user.userDocuments.tearnAndCondition : null;
             $scope.TermConditionDate = $scope.TearnAndCondition != null ? user.userDocuments.termConditionDate : null;

@@ -40,14 +40,7 @@ app.controller("OfflineBusiness", function ($scope, $http) {
     $scope.ManufacturingYearList = [];
     $scope.MotorBusinessTypes = ["STP", "SOD", "Comprehensive"];
     $scope.PolicyDetails = {};
-    $scope.CustomerAddress = null;
-    $scope.CustomerPin = null;
-    $scope.SelectState = null;
-    $scope.SelectCity = null;
-    $scope.StateList = null;
-    $scope.CityList = null;
 
-    var PincodeFetchData = null;
     var policyIssueDate = null;
     var policyStartDate
     var policyEndDate
@@ -57,9 +50,7 @@ app.controller("OfflineBusiness", function ($scope, $http) {
     let modal = JSON.parse(window.localStorage.getItem("token"));
     GetInsurerList();
     MonthList();
-    GetStates();
     LoadOfflineData();
-
     function LoadOfflineData() {
         let querystring = new URLSearchParams(window.location.search);
         let qry = querystring.get("policyno");
@@ -254,9 +245,6 @@ app.controller("OfflineBusiness", function ($scope, $http) {
             body.CustomerMobile = $scope.CustomerMobile;
             body.SeatingCapacity = parseInt($scope.Seating);
             body.GVW = $scope.GVW;
-            body.CustomerCityID = $scope.SelectCity.cityID;
-            body.CustomerAddress = $scope.CustomerAddress;
-            body.CustomerPin = $scope.CustomerPin;
         }
         var model = {
             URL: Domain + url,
@@ -355,6 +343,35 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         })
     }
 
+    //function GetInsurerList(MotorType) {
+
+    //    let uri = CurrentDomail.replace("https://", "").replace("http://", "").replace("www.", "").replace("/commercial","");
+    //    let Url = "";
+    //    let endpoint = "/api/api/Vehicle/GetInsurerList?Type=" + MotorType + "&url=" + uri;
+    //    Url = CurrentDomail + endpoint;
+    //    var model = {
+    //        URL: Url
+    //    };
+    //    $http.post(CallApiGetMethod, model).then(function (ResponseData) {
+    //        $scope.InsurerList = JSON.parse(ResponseData.data)
+    //    }, function (ResponseData) {
+    //    })
+
+    //    let body = {
+    //        Token: JsonWebToken.token
+    //    };
+    //    let model = {
+    //        //let uri = CurrentDomail.Replace("https://", "").Replace("http://", "").Replace("www.", "");
+    //        //let Url = "";
+    //        //let endpoint = "/commercial/api/api/Vehicle/GetInsurerList?Type=" + param + "&url=" + uri;
+    //        URL: Domain + "/api/Master/GetInsurerCompanies",
+    //        PostString: JSON.stringify(body)
+    //    }
+    //    $http.post(CallApiPostMethod, model).then(function (ResponseData) {
+    //        $scope.InsurerList = JSON.parse(ResponseData.data).filter(row => row.carInsurance == true || row.twowheelerInsurance == true)
+    //    }, function (ResponseData) {
+    //    })
+    //}
     function ManageDate(date) {
         let datadate = new Date(date);
         let mon = (datadate.getMonth() + 1) < 10 ? "0" + (datadate.getMonth() + 1) : (datadate.getMonth() + 1);
@@ -434,6 +451,7 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         $scope.IsPospProduct = PolicyDetails.isPospProduct == null ? false : PolicyDetails.isPospProduct;
         $scope.CustomerName = PolicyDetails.customerName
         $scope.CustomerEmail = PolicyDetails.customerEmail
+        $scope.CustomerEmail = PolicyDetails.customerEmail;
         $scope.CustomerMobile = PolicyDetails.customerMobile;
         $scope.CustomerAddress = PolicyDetails.customerAddress;
         $scope.CustomerPhoneNo = PolicyDetails.customerMobile;
@@ -461,72 +479,7 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         $scope.Insurer = $scope.InsurerList.filter(row => row.companyID == $scope.PolicyDetails.insurer)[0];
     }
 
-    $scope.SelectedStateData = function (SelectState) {
-        GetCities(SelectState);
-    }
 
-    $scope.CustomerPinEvent = function () {
-        if ($scope.CustomerPin.length >= 6) {
-            var body = {
-                Token: JsonWebToken.token,
-                PinCode: parseInt($scope.CustomerPin)
-            }
-            var model = {
-                URL: Domain + "/api/user/GetStateCity",
-                PostString: JSON.stringify(body)
-            }
-            $http.post(CallApiPostMethod, model).then(function (Response) {
-                PincodeFetchData = JSON.parse(Response.data);
-                var data = $scope.SelectStateList.filter(row => row.statename.toLowerCase() == PincodeFetchData.state_Name.toLowerCase());
-                if (data.length > 0) {
-                    $scope.SelectState = data[0];
-                    GetCities($scope.SelectState, 1);
-                }
-            }, function (Response) {
-                ////alert(Response.statusText)	
-            });
-        }
-    }
-    function GetStates() {
-        let body = {
-            Token: JsonWebToken.token
-        };
-        let model = {
-            URL: Domain + "/api/BusinessReport/GetStateList",
-            PostString: JSON.stringify(body)
-        }
-        $http.post(CallApiPostMethod, model).then(function (ResponseData) {
-            $scope.StateList = JSON.parse(ResponseData.data)
-            if (PolicyDetails) {
-                $scope.SelectState = $scope.StateList.filter(row => row.stateID == PolicyDetails.stateID)[0];
-                GetCities($scope.SelectState);
-            }
-        }, function (ResponseData) {
-        })
-    }
-    function GetCities(SelectState, opt) {
-        let body = {
-            Token: JsonWebToken.token,
-            StateID: parseInt(SelectState.stateID)
-        };
-        let model = {
-            URL: Domain + "/api/BusinessReport/GetCityList",
-            PostString: JSON.stringify(body)
-        }
-        $http.post(CallApiPostMethod, model).then(function (ResponseData) {
-            $scope.SelectCityList = JSON.parse(ResponseData.data)
-            if (opt == 1) {
-                var data = $scope.SelectCityList.filter(row => row.cityName.toLowerCase() == PincodeFetchData.district_Name.toLowerCase());
-                if (data.length > 0) {
-                    $scope.SelectCity = data[0];
-                }
-            }
-            if (PolicyDetails) {
-                $scope.SelectCity = $scope.SelectCityList.filter(row => row.cityID == PolicyDetails.customerCityID)[0];
-            }
-        }, function (ResponseData) {
-        })
-    }
 });
 
 app.controller("navcontroller", function ($scope, $http) {

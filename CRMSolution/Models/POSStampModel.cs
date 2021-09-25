@@ -12,5 +12,6 @@ namespace CRMSolution.Models
         public string POSCode { get; set; }
         public string POSName { get; set; }
         public DateTime SignDate { get; set; }
+        public DateTime IIBDate { get; set; }
     }
 }

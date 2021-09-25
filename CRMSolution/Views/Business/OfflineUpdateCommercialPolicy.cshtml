@@ -85,6 +85,7 @@
                                         <div class="col-md-4">
                                             @*<select ng-model="MotorType" class="theFilters" required=""
                                                         ng-change="selectMotor(MotorType)">
+
                                                     <option value="">Select Motor</option>
                                                     <option value="PCV">PCV</option>
                                                     <option value="GCV">GCV</option>
@@ -187,29 +188,6 @@
                                             <input type="text" class="theFilters" ng-model="CustomerMobile" required=""
                                                    maxlength="10" onkeypress="return OnlyNumAccept(event)"
                                                    placeholder="Customer Mobile No." />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="theFilters" ng-model="CustomerAddress" required=""
-                                                   maxlength="200"
-                                                   placeholder="Address" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="theFilters" ng-model="CustomerPin" required="" ng-blur="CustomerPinEvent"
-                                                   maxlength="6" onkeypress="return OnlyNumAccept(event)"
-                                                   placeholder="PinCode" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <select ng-model="SelectState" class="theFilters" required=""
-                                                    ng-change="SelectedStateData(SelectState)"
-                                                    ng-options="item.statename for item in StateList">
-                                                <option value="">Select State</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <select ng-model="SelectCity" class="theFilters" required=""
-                                                    ng-options="item.cityName for item in CityList">
-                                                <option value="">Select City</option>
-                                            </select>
                                         </div>
 
                                     </div>

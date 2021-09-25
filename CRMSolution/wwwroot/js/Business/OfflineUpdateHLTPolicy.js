@@ -121,6 +121,7 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         fileData.append("Domain", window.location.hostname.replace("https://", "").replace("http://", "").replace("www.", ""));
         fileData.append("Product", "HLT");
         fileData.append("url", Domain + '/api/BusinessReport/UploadBulkManualOfflineHLTBusiness');
+
         $.ajax({
             url: defaultpage + '/Business/BulkMotorDataPost',
             type: 'POST',
@@ -247,7 +248,6 @@ app.controller("OfflineBusiness", function ($scope, $http) {
             PostString: JSON.stringify(body)
         }
         $http.post(CallApiPostMethod, model).then(function (ResponseData) {
-            debugger;
             $scope.InsurerList = JSON.parse(ResponseData.data).filter(row => row.healthInsurance == true)
             if (PolicyDetails) {
                 $scope.ManualInsurer = $scope.InsurerList.filter(row => row.companyID == PolicyDetails.insurerID)[0];
@@ -256,7 +256,6 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         })
     }
     function LoadPolicyFile(SelectedTab) {
-        debugger;
         let path = "OfflinePolicy"
         let URL = "";
         var GSTFile = null;
@@ -278,7 +277,6 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         }
         if (GSTFile == null)
             return;
-
         fileData.append(FileGST.name, FileGST);
         fileData.append("Token", JsonWebToken.token);
         fileData.append("Path", path);
@@ -337,7 +335,6 @@ app.controller("OfflineBusiness", function ($scope, $http) {
         }, function (ResponseData) {
         })
     }
-
 
     $scope.$watch("ManualCustomerDOB", function (newValue, oldValue) {
         $scope.ManualCustomerDOB = newValue || oldValue;
