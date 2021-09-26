@@ -13,11 +13,15 @@
     <script src="~/lib/AngularJS/angular.js"></script>
     @*<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/Account/Login.js"></script>*@
     <script src="/js/Account/Login.js"></script>
+
+    @*///TODO : Modified by Sanjay 25-09-2021*@
+    <script src="~/js/clientSetting.js"></script>
     <link href="~/js/dist/css/style.css" rel="stylesheet" />
     <link href="~/Content/customStyle.css" rel="stylesheet" />
 </head>
-<body ng-app="Login" ng-controller="logincontroll">
-
+@*///TODO : Modified by Sanjay 25-09-2021*@
+<body ng-app="Login" ng-controller="logincontroll" id="dynamicId" class="bg_default">
+    @*/***************************/*@
     <div class="content">
         <div class="container">
             <div class="row">
@@ -32,7 +36,7 @@
                                 <h3>Login to Your Account</h3>
                                 @*<p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>*@
                             </div>
-                            
+
                             <form name="loginform" ng-submit="loginform.$valid && sumbit()">
                                 <div class="form-group first">
                                     <input type="text" class="form-control" ng-model="Email" autocomplete="off" name="Email" placeholder="Enter Mobile/Email" required="required">

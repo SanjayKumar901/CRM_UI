@@ -26,7 +26,9 @@
 
     @*<link rel="stylesheet" href="~/css/site.css" />*@
 </head>
-<body ng-app="app">
+@*///TODO : Modified by Sanjay 25-09-2021*@
+<body ng-app="app" id="dynamicId" class="bg_default">
+    @*/***************************/*@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -313,8 +315,12 @@
     <script src="~/js/dist/js/bootstrap-daterangepicker.js"></script>
     @*<script src="~/js/dist/js/jquery-ui.min.js"></script>*@
     <!-- DatepickerEnd -->
-    <script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/site.js" asp-append-version="true"></script>
-    @*<script src="/js/site.js" asp-append-version="true"></script>*@
+    @*<script src="https://centralapi.stariglocal.com/JsMaster/CRMJS/js/site.js" asp-append-version="true"></script>*@
+    <script src="/js/site.js" asp-append-version="true"></script>
+
+    @*///TODO : Modified by Sanjay 25-09-2021*@
+    <script src="~/js/clientSetting.js"></script>
+
     @RenderSection("Scripts", required: false)
     <script>
         jQuery(function ($) {
@@ -323,16 +329,16 @@
                 $('#main').toggleClass("open_Main");
             });
         })
-                    //function openNav() {
-                    //    debugger
-                    //    document.getElementById("mySidenav").style.width = "250px";
-                    //    document.getElementById("main").style.marginLeft = "250px";
-                    //}
+                                        //function openNav() {
+                                        //    debugger
+                                        //    document.getElementById("mySidenav").style.width = "250px";
+                                        //    document.getElementById("main").style.marginLeft = "250px";
+                                        //}
 
-                    //function closeNav() {
-                    //    document.getElementById("mySidenav").style.width = "0";
-                    //    document.getElementById("main").style.marginLeft = "0";
-                    //}
+                                        //function closeNav() {
+                                        //    document.getElementById("mySidenav").style.width = "0";
+                                        //    document.getElementById("main").style.marginLeft = "0";
+                                        //}
     </script>
 
 

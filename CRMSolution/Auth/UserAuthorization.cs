@@ -39,6 +39,7 @@ namespace CRMSolution.Auth
                         URl = url
                     };
                     url = apiURL(context.HttpContext.Request.Host.Host) + "/api/account/CheckAuthorization";
+                   
                     try { System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "\\CheckAuthorization.txt", JsonConvert.SerializeObject(auth)); } catch { }
                     var Respone = CommonMethods.GetResponse(url, JsonConvert.SerializeObject(auth));
                     try { System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "\\CheckAuthorizationRes.txt", Respone); } catch { }

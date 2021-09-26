@@ -342,6 +342,7 @@ app.controller("Profile", function ($scope, $http) {
         })
     }
     function CheckEditable() {
+        debugger
         let urlParams = new URLSearchParams(window.location.search);
         let userid = urlParams.get('userid');
         GlobalUserID = userid == null ? "" : manageQueryString(userid);
@@ -430,6 +431,15 @@ app.controller("Profile", function ($scope, $http) {
             $scope.IsPin = $scope.CheckUpdation == false ? ($scope.PinCode != "" && $scope.PinCode != null) : false;
             $scope.IsGSTIN = $scope.CheckUpdation == false ? ($scope.GSTIN != "" && $scope.GSTIN != null) : false;
 
+            //TODO : Modified by Sanjay 25-09-2021
+            $scope.CancelCheque = $scope.CancelCheque == null ? null : $scope.CancelCheque + GetRandomString(10);
+            $scope.PaN = $scope.PaN ==null ? null : $scope.PaN + GetRandomString(10);
+            $scope.AdhaarFront = $scope.AdhaarFront == null ? null : $scope.AdhaarFront + GetRandomString(10);
+            $scope.AdhaarBack = $scope.AdhaarBack == null ? null : $scope.AdhaarBack + GetRandomString(10);
+            $scope.Certificate = $scope.Certificate == null ? null :  $scope.Certificate + GetRandomString(10);
+            $scope.TearnAndCondition = $scope.TearnAndCondition == null ? null : $scope.TearnAndCondition + GetRandomString(10);
+           ///***************************/
+
             if ($scope.IsPos == true && $scope.Ismyprofile == true) {
                 if (user.userMaster.isDocRequred) {
                     if (user.userDocuments.docVerified && user.posExamStart.passOrFail == "Pass") {
@@ -453,6 +463,7 @@ app.controller("Profile", function ($scope, $http) {
             return null;
         }
     }
+
     function UploadDocuments(doc) {
         let ElementID = "";
         switch (doc) {
@@ -517,6 +528,16 @@ app.controller("Profile", function ($scope, $http) {
                 alert('Error!');
             }
         });
+    }
+
+    function GetRandomString(length) {
+        debugger;
+        var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '?=';
+        for (var i = 0; i < length; i++) {
+            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+        return result;
     }
 });
 
